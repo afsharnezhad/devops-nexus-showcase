@@ -34,12 +34,12 @@ const About = () => {
             <div className="animate-slide-up">
               <Card className="hover-lift shadow-professional">
                 <CardContent className="p-8">
-                  <div className="aspect-square bg-gradient-card rounded-2xl flex items-center justify-center">
-                    <div className="w-full h-full bg-muted rounded-2xl flex items-center justify-center">
-                      <span className="text-muted-foreground text-lg font-medium">
-                        Professional Photo
-                      </span>
-                    </div>
+                  <div className="aspect-square bg-gradient-card rounded-2xl overflow-hidden">
+                    <img 
+                      src="/professional-photo.png" 
+                      alt="Professional headshot of DevOps Engineer"
+                      className="w-full h-full object-cover rounded-2xl"
+                    />
                   </div>
                 </CardContent>
               </Card>
