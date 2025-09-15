@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
+import TechStack from "@/components/sections/TechStack";
 import About from "@/components/sections/About";
 import Skills from "@/components/sections/Skills";
 import Services from "@/components/sections/Services";
@@ -46,6 +47,7 @@ const Portfolio = () => {
       <Navigation darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       <main>
         <Hero />
+        <TechStack />
         <About />
         <Skills />
         <Services />
