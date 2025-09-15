@@ -4,9 +4,11 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, Search, ArrowRight } from "lucide-react";
+import { useTranslation } from "@/hooks/useTranslation";
 
 const Blog = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const { t, isRTL } = useTranslation();
 
   const blogPosts = [
     {
@@ -75,24 +77,24 @@ const Blog = () => {
           {/* Section Header */}
           <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              Latest Blog Posts
+              {t('blogTitle')}
             </h2>
             <div className="w-24 h-1 bg-gradient-button mx-auto rounded-full mb-6"></div>
             <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-              Insights, tutorials, and best practices from the world of DevOps
+              {t('blogSubtitle')}
             </p>
           </div>
 
           {/* Search Bar */}
           <div className="max-w-md mx-auto mb-12 animate-slide-up">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+              <Search className={`absolute ${isRTL ? 'right-3' : 'left-3'} top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4`} />
               <Input
                 type="text"
                 placeholder="Search blog posts..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10"
+                className={isRTL ? 'pr-10' : 'pl-10'}
               />
             </div>
           </div>
@@ -109,9 +111,9 @@ const Blog = () => {
                     <Badge variant="secondary" className="text-xs">
                       {post.category}
                     </Badge>
-                    <div className="flex items-center text-muted-foreground text-sm">
-                      <Calendar className="h-4 w-4 mr-1" />
-                      {new Date(post.date).toLocaleDateString()}
+                    <div className={`flex items-center text-muted-foreground text-sm ${isRTL ? 'space-x-reverse space-x-1' : 'space-x-1'}`}>
+                      <Calendar className="h-4 w-4" />
+                      <span>{new Date(post.date).toLocaleDateString()}</span>
                     </div>
                   </div>
                   <CardTitle className="text-xl font-bold text-foreground leading-tight hover:text-primary transition-colors duration-200">
@@ -132,13 +134,13 @@ const Blog = () => {
                   </div>
                   
                   <div className="flex items-center justify-between pt-4 border-t border-border">
-                    <div className="flex items-center text-muted-foreground text-sm">
-                      <Clock className="h-4 w-4 mr-1" />
-                      {post.readTime}
+                    <div className={`flex items-center text-muted-foreground text-sm ${isRTL ? 'space-x-reverse space-x-1' : 'space-x-1'}`}>
+                      <Clock className="h-4 w-4" />
+                      <span>{post.readTime}</span>
                     </div>
                     <Button variant="ghost" size="sm" className="hover:text-primary">
-                      Read more
-                      <ArrowRight className="h-4 w-4 ml-1" />
+                      {t('readMore')}
+                      <ArrowRight className={`h-4 w-4 ${isRTL ? 'mr-1 flip-rtl' : 'ml-1'}`} />
                     </Button>
                   </div>
                 </CardContent>

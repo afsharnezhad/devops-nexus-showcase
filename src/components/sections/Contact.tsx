@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "@/hooks/useTranslation";
 
 const Contact = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -15,6 +16,7 @@ const Contact = () => {
     message: ""
   });
   const { toast } = useToast();
+  const { t, isRTL } = useTranslation();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -57,37 +59,35 @@ const Contact = () => {
           {/* Section Header */}
           <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              Get in Touch
+              {t('contactTitle')}
             </h2>
             <div className="w-24 h-1 bg-gradient-button mx-auto rounded-full mb-6"></div>
             <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-              Ready to discuss your next project? Let's connect and explore how I can help transform your infrastructure.
+              {t('contactSubtitle')}
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className={`grid lg:grid-cols-2 gap-12 ${isRTL ? 'lg:grid-flow-col-dense' : ''}`}>
             {/* Contact Information */}
             <div className="animate-slide-up">
               <Card className="shadow-professional h-full">
                 <CardHeader>
                   <CardTitle className="text-2xl font-bold text-foreground">
-                    Let's Connect
+                    {t('contactTitle')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-8">
                   <p className="text-muted-foreground leading-relaxed">
-                    I'm always excited to discuss new opportunities and challenges. 
-                    Whether you need DevOps consulting, cloud migration, or infrastructure 
-                    optimization, I'm here to help.
+                    {t('contactDescription')}
                   </p>
 
                   <div className="space-y-6">
-                    <div className="flex items-center space-x-4">
+                    <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-4' : 'space-x-4'}`}>
                       <div className="w-12 h-12 bg-gradient-button rounded-full flex items-center justify-center">
                         <Mail className="h-6 w-6 text-white" />
                       </div>
                       <div>
-                        <p className="font-semibold text-foreground">Email</p>
+                        <p className="font-semibold text-foreground">{t('email')}</p>
                         <a 
                           href="mailto:info@mysite.com" 
                           className="text-muted-foreground hover:text-primary transition-colors duration-200"
@@ -97,7 +97,7 @@ const Contact = () => {
                       </div>
                     </div>
 
-                    <div className="flex items-center space-x-4">
+                    <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-4' : 'space-x-4'}`}>
                       <div className="w-12 h-12 bg-gradient-button rounded-full flex items-center justify-center">
                         <Phone className="h-6 w-6 text-white" />
                       </div>
@@ -107,7 +107,7 @@ const Contact = () => {
                       </div>
                     </div>
 
-                    <div className="flex items-center space-x-4">
+                    <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-4' : 'space-x-4'}`}>
                       <div className="w-12 h-12 bg-gradient-button rounded-full flex items-center justify-center">
                         <MapPin className="h-6 w-6 text-white" />
                       </div>
@@ -132,13 +132,13 @@ const Contact = () => {
               <Card className="shadow-professional">
                 <CardHeader>
                   <CardTitle className="text-2xl font-bold text-foreground">
-                    Send a Message
+                    {t('send')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="space-y-2">
-                      <Label htmlFor="name">Name *</Label>
+                      <Label htmlFor="name">{t('name')} *</Label>
                       <Input
                         id="name"
                         name="name"
@@ -152,7 +152,7 @@ const Contact = () => {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="email">Email *</Label>
+                      <Label htmlFor="email">{t('email')} *</Label>
                       <Input
                         id="email"
                         name="email"
@@ -166,7 +166,7 @@ const Contact = () => {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="message">Message *</Label>
+                      <Label htmlFor="message">{t('message')} *</Label>
                       <Textarea
                         id="message"
                         name="message"
@@ -192,8 +192,8 @@ const Contact = () => {
                         </>
                       ) : (
                         <>
-                          <Send className="mr-2 h-4 w-4" />
-                          Send Message
+                          <Send className={`${isRTL ? 'ml-2 flip-rtl' : 'mr-2'} h-4 w-4`} />
+                          {t('send')}
                         </>
                       )}
                     </Button>

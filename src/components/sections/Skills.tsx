@@ -1,7 +1,9 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { useTranslation } from "@/hooks/useTranslation";
 
 const Skills = () => {
+  const { t, formatNum } = useTranslation();
   const skillCategories = [
     {
       category: "DevOps & Automation",
@@ -39,11 +41,11 @@ const Skills = () => {
           {/* Section Header */}
           <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              Skills & Expertise
+              {t('skillsTitle')}
             </h2>
             <div className="w-24 h-1 bg-gradient-button mx-auto rounded-full mb-6"></div>
             <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-              Technical proficiency levels based on years of hands-on experience
+              {t('skillsSubtitle')}
             </p>
           </div>
 
@@ -70,7 +72,7 @@ const Skills = () => {
                           {skill.name}
                         </span>
                         <span className="text-sm text-muted-foreground">
-                          {skill.level}%
+                          {formatNum(skill.level)}%
                         </span>
                       </div>
                       <Progress 

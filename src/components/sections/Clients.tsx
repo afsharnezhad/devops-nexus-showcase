@@ -1,7 +1,9 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useTranslation } from "@/hooks/useTranslation";
 
 const Clients = () => {
+  const { t } = useTranslation();
   const projects = [
     {
       client: "TechCorp Solutions",
@@ -36,11 +38,11 @@ const Clients = () => {
           {/* Section Header */}
           <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              Client Projects
+              {t('clientsTitle')}
             </h2>
             <div className="w-24 h-1 bg-gradient-button mx-auto rounded-full mb-6"></div>
             <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-              Recent successful projects and client collaborations
+              {t('clientsSubtitle')}
             </p>
           </div>
 

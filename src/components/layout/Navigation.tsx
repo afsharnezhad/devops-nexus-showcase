@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Moon, Sun } from "lucide-react";
+import { Menu, X, Moon, Sun, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { useTranslation } from "@/hooks/useTranslation";
+import { Language } from "@/lib/i18n";
 
 interface NavigationProps {
   darkMode: boolean;
@@ -10,6 +13,8 @@ interface NavigationProps {
 const Navigation = ({ darkMode, toggleDarkMode }: NavigationProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { language, setLanguage } = useLanguage();
+  const { t, isRTL } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,13 +25,18 @@ const Navigation = ({ darkMode, toggleDarkMode }: NavigationProps) => {
   }, []);
 
   const menuItems = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Services", href: "#services" },
-    { name: "Clients", href: "#clients" },
-    { name: "Blog", href: "#blog" },
-    { name: "Contact", href: "#contact" },
+    { name: t('home'), href: "#home" },
+    { name: t('about'), href: "#about" },
+    { name: t('services'), href: "#services" },
+    { name: t('clients'), href: "#clients" },
+    { name: t('blog'), href: "#blog" },
+    { name: t('contact'), href: "#contact" },
   ];
+
+  const toggleLanguage = () => {
+    const newLanguage: Language = language === 'en' ? 'fa' : 'en';
+    setLanguage(newLanguage);
+  };
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
@@ -68,8 +78,27 @@ const Navigation = ({ darkMode, toggleDarkMode }: NavigationProps) => {
             </div>
           </div>
 
-          {/* Theme Toggle & Mobile Menu Button */}
-          <div className="flex items-center space-x-4">
+          {/* Language Toggle, Theme Toggle & Mobile Menu Button */}
+          <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-4' : 'space-x-4'}`}>
+            {/* Language Toggle */}
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={toggleLanguage}
+              className="p-2 flex items-center gap-1"
+              aria-label="Toggle language"
+            >
+              <Globe className="h-4 w-4" />
+              <span className="text-xs font-medium">
+                {language === 'en' ? (
+                  <>EN | <span className="text-muted-foreground">FA</span></>
+                ) : (
+                  <><span className="text-muted-foreground">EN</span> | FA</>
+                )}
+              </span>
+            </Button>
+
+            {/* Theme Toggle */}
             <Button
               variant="ghost"
               size="sm"

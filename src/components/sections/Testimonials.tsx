@@ -1,7 +1,9 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Star } from "lucide-react";
+import { useTranslation } from "@/hooks/useTranslation";
 
 const Testimonials = () => {
+  const { t, isRTL } = useTranslation();
   const testimonials = [
     {
       name: "Sarah Johnson",
@@ -40,11 +42,11 @@ const Testimonials = () => {
           {/* Section Header */}
           <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              Client Testimonials
+              {t('testimonialsTitle')}
             </h2>
             <div className="w-24 h-1 bg-gradient-button mx-auto rounded-full mb-6"></div>
             <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-              What clients say about working with me
+              {t('testimonialsSubtitle')}
             </p>
           </div>
 
@@ -57,7 +59,7 @@ const Testimonials = () => {
               >
                 <CardContent className="p-8">
                   {/* Stars */}
-                  <div className="flex space-x-1 mb-4">
+                  <div className={`flex mb-4 ${isRTL ? 'space-x-reverse space-x-1' : 'space-x-1'}`}>
                     {[...Array(testimonial.rating)].map((_, i) => (
                       <Star
                         key={i}
@@ -72,7 +74,7 @@ const Testimonials = () => {
                   </blockquote>
 
                   {/* Client Info */}
-                  <div className="flex items-center space-x-4">
+                  <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-4' : 'space-x-4'}`}>
                     <div className="w-12 h-12 bg-gradient-button rounded-full flex items-center justify-center">
                       <span className="text-white font-bold text-sm">
                         {testimonial.avatar}

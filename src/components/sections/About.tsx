@@ -1,7 +1,9 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useTranslation } from "@/hooks/useTranslation";
 
 const About = () => {
+  const { t, formatNum, isRTL } = useTranslation();
   const skills = [
     "DevOps",
     "Linux",
@@ -24,7 +26,7 @@ const About = () => {
           {/* Section Header */}
           <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              About Me
+              {t('aboutTitle')}
             </h2>
             <div className="w-24 h-1 bg-gradient-button mx-auto rounded-full"></div>
           </div>
@@ -54,16 +56,7 @@ const About = () => {
                   </h3>
                   
                   <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-                    With 9 years of experience in IT, I specialize in DevOps practices, 
-                    Linux system administration, networking, and cloud technologies. 
-                    I'm passionate about automating processes, optimizing infrastructure, 
-                    and helping teams deliver better software faster.
-                  </p>
-
-                  <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-                    My expertise spans across multiple cloud platforms and I focus on 
-                    creating scalable, secure, and efficient solutions that drive 
-                    business success.
+                    {t('aboutBio')}
                   </p>
 
                   {/* Skills */}

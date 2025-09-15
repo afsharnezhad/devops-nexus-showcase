@@ -1,7 +1,9 @@
 import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "@/hooks/useTranslation";
 
 const Hero = () => {
+  const { t, isRTL } = useTranslation();
   const scrollToContact = () => {
     const element = document.querySelector("#contact");
     if (element) {
@@ -32,27 +34,26 @@ const Hero = () => {
 
           {/* Subtitle */}
           <p className="text-xl sm:text-2xl md:text-3xl text-white/90 mb-8 animate-slide-up delay-300">
-            DevOps Engineer & IT Consultant
+            {t('heroTitle')}
           </p>
 
           {/* Description */}
           <p className="text-lg text-white/80 mb-12 max-w-3xl mx-auto leading-relaxed animate-slide-up delay-400">
-            Transforming infrastructure with 9 years of expertise in DevOps, cloud technologies, 
-            and modern system architecture. Let's build something amazing together.
+            {t('heroDescription')}
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-bounce-in delay-500">
+          <div className={`flex flex-col sm:flex-row items-center justify-center gap-4 animate-bounce-in delay-500 ${isRTL ? 'sm:flex-row-reverse' : ''}`}>
             <Button
               onClick={scrollToContact}
               size="lg"
               className="bg-white text-primary hover:bg-white/90 px-8 py-4 text-lg font-semibold shadow-hero hover-lift"
             >
-              Get in Touch
-              <ArrowRight className="ml-2 h-5 w-5" />
+              {t('getStarted')}
+              <ArrowRight className={`${isRTL ? 'mr-2 flip-rtl' : 'ml-2'} h-5 w-5`} />
             </Button>
             
-            <div className="flex items-center space-x-4">
+            <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-4' : 'space-x-4'}`}>
               <Button
                 variant="ghost"
                 size="lg"

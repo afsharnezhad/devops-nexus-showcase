@@ -1,27 +1,30 @@
 import { Server, Cloud, Wrench, Shield } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useTranslation } from "@/hooks/useTranslation";
 
 const Services = () => {
+  const { t } = useTranslation();
+  
   const services = [
     {
       icon: Server,
-      title: "DevOps Automation",
-      description: "Streamline your development workflow with automated CI/CD pipelines, infrastructure as code, and deployment strategies that reduce time-to-market and improve reliability."
+      title: t('devopsAutomation'),
+      description: t('devopsAutomationDesc')
     },
     {
       icon: Cloud,
-      title: "Cloud & Docker",
-      description: "Migrate and optimize your applications with containerization, orchestration, and cloud-native solutions across AWS, Azure, and Google Cloud Platform."
+      title: t('cloudDocker'),
+      description: t('cloudDockerDesc')
     },
     {
       icon: Wrench,
-      title: "IT Support",
-      description: "Comprehensive IT infrastructure support including system administration, monitoring, troubleshooting, and performance optimization to keep your systems running smoothly."
+      title: t('itSupport'),
+      description: t('itSupportDesc')
     },
     {
       icon: Shield,
-      title: "Cybersecurity",
-      description: "Implement robust security measures, vulnerability assessments, compliance frameworks, and security best practices to protect your digital assets."
+      title: t('cybersecurity'),
+      description: t('cybersecurityDesc')
     }
   ];
 
@@ -32,11 +35,11 @@ const Services = () => {
           {/* Section Header */}
           <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              Services
+              {t('servicesTitle')}
             </h2>
             <div className="w-24 h-1 bg-gradient-button mx-auto rounded-full mb-6"></div>
             <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-              Comprehensive DevOps and IT solutions tailored to your business needs
+              {t('servicesSubtitle')}
             </p>
           </div>
 

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
@@ -43,21 +44,23 @@ const Portfolio = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <Navigation darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-      <main>
-        <Hero />
-        <TechStack />
-        <About />
-        <Skills />
-        <Services />
-        <Clients />
-        <Testimonials />
-        <Blog />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <LanguageProvider>
+      <div className="min-h-screen bg-background text-foreground">
+        <Navigation darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+        <main>
+          <Hero />
+          <TechStack />
+          <About />
+          <Skills />
+          <Services />
+          <Clients />
+          <Testimonials />
+          <Blog />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </LanguageProvider>
   );
 };
 

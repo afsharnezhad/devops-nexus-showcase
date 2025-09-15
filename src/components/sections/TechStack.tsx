@@ -1,4 +1,5 @@
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useTranslation } from "@/hooks/useTranslation";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { 
   SiDocker, 
@@ -16,6 +17,7 @@ import { Settings, Cloud } from "lucide-react";
 
 const TechStack = () => {
   const { ref, isVisible } = useScrollAnimation();
+  const { t } = useTranslation();
 
   const technologies = [
     {
@@ -102,7 +104,7 @@ const TechStack = () => {
           {/* Section Header */}
           <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              Technologies I Work With
+              {t('techStackTitle')}
             </h2>
             <div className="w-24 h-1 bg-gradient-button mx-auto rounded-full"></div>
           </div>
