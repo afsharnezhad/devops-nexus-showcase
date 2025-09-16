@@ -1,6 +1,7 @@
 import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "@/hooks/useTranslation";
+import { SiLinux, SiDocker, SiKubernetes, SiAmazonwebservices, SiGooglecloud, SiTerraform, SiAnsible, SiJenkins, SiGitlab, SiPrometheus, SiGrafana } from "react-icons/si";
 
 const Hero = () => {
   const { t, isRTL } = useTranslation();
@@ -11,16 +12,59 @@ const Hero = () => {
     }
   };
 
+  // Background pattern icons
+  const backgroundIcons = [
+    SiLinux, SiDocker, SiKubernetes, SiAmazonwebservices, SiGooglecloud, 
+    SiTerraform, SiAnsible, SiJenkins, SiGitlab, SiPrometheus, SiGrafana
+  ];
+
+  // Generate random positions for background icons
+  const generateIconPositions = () => {
+    const positions = [];
+    for (let i = 0; i < 20; i++) {
+      positions.push({
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        delay: Math.random() * 10,
+        Icon: backgroundIcons[Math.floor(Math.random() * backgroundIcons.length)]
+      });
+    }
+    return positions;
+  };
+
+  const iconPositions = generateIconPositions();
+
   return (
     <section
       id="home"
       className="min-h-screen flex items-center justify-center bg-gradient-hero relative overflow-hidden"
     >
+      {/* Tech Icons Background Pattern */}
+      <div className="absolute inset-0 pointer-events-none">
+        {iconPositions.map((pos, index) => {
+          const IconComponent = pos.Icon;
+          return (
+            <div
+              key={index}
+              className="absolute animate-float-slow opacity-10"
+              style={{
+                left: `${pos.left}%`,
+                top: `${pos.top}%`,
+                animationDelay: `${pos.delay}s`,
+                transform: 'rotate(45deg)',
+              }}
+            >
+              <IconComponent className="w-8 h-8 text-white/50" />
+            </div>
+          );
+        })}
+      </div>
+
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
+      <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
       
       {/* Content */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
         <div className="text-center animate-fade-in">
           {/* Main Heading */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">

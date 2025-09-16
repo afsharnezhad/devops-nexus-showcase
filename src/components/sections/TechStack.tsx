@@ -2,18 +2,19 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useTranslation } from "@/hooks/useTranslation";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { 
+  SiLinux,
   SiDocker, 
   SiKubernetes, 
-  SiAmazon, 
+  SiAmazonwebservices, 
   SiGooglecloud,
   SiTerraform,
   SiAnsible,
   SiJenkins,
   SiGitlab,
   SiPrometheus,
-  SiLinux
+  SiGrafana
 } from "react-icons/si";
-import { Settings, Cloud } from "lucide-react";
+import { Cloud } from "lucide-react";
 
 const TechStack = () => {
   const { ref, isVisible } = useScrollAnimation();
@@ -21,154 +22,170 @@ const TechStack = () => {
 
   const technologies = [
     {
-      name: "DevOps",
-      icon: Settings,
-      color: "#FF6B6B",
-      bgColor: "bg-red-50 dark:bg-red-950/20"
-    },
-    {
       name: "Linux",
       icon: SiLinux,
-      color: "#FCC419",
-      bgColor: "bg-yellow-50 dark:bg-yellow-950/20"
+      color: "#FCC624",
+      experience: "9+ years",
+      category: "Operating System"
     },
     {
       name: "Docker",
       icon: SiDocker,
       color: "#2496ED",
-      bgColor: "bg-blue-50 dark:bg-blue-950/20"
+      experience: "6+ years",
+      category: "Containerization"
     },
     {
       name: "Kubernetes",
       icon: SiKubernetes,
       color: "#326CE5",
-      bgColor: "bg-blue-50 dark:bg-blue-950/20"
+      experience: "5+ years",
+      category: "Container Orchestration"
     },
     {
       name: "AWS",
-      icon: SiAmazon,
+      icon: SiAmazonwebservices,
       color: "#FF9900",
-      bgColor: "bg-orange-50 dark:bg-orange-950/20"
+      experience: "7+ years",
+      category: "Cloud Platform"
     },
     {
       name: "Azure",
       icon: Cloud,
       color: "#0078D4",
-      bgColor: "bg-blue-50 dark:bg-blue-950/20"
+      experience: "5+ years",
+      category: "Cloud Platform"
     },
     {
-      name: "Google Cloud",
+      name: "Google Cloud Platform",
       icon: SiGooglecloud,
       color: "#4285F4",
-      bgColor: "bg-blue-50 dark:bg-blue-950/20"
+      experience: "4+ years",
+      category: "Cloud Platform"
     },
     {
       name: "Terraform",
       icon: SiTerraform,
       color: "#7B42BC",
-      bgColor: "bg-purple-50 dark:bg-purple-950/20"
+      experience: "6+ years",
+      category: "Infrastructure as Code"
     },
     {
       name: "Ansible",
       icon: SiAnsible,
       color: "#EE0000",
-      bgColor: "bg-red-50 dark:bg-red-950/20"
+      experience: "7+ years",
+      category: "Configuration Management"
     },
     {
       name: "Jenkins",
       icon: SiJenkins,
       color: "#D33833",
-      bgColor: "bg-red-50 dark:bg-red-950/20"
+      experience: "8+ years",
+      category: "CI/CD"
     },
     {
       name: "GitLab CI/CD",
       icon: SiGitlab,
       color: "#FC6D26",
-      bgColor: "bg-orange-50 dark:bg-orange-950/20"
+      experience: "6+ years",
+      category: "CI/CD"
     },
     {
-      name: "Monitoring",
+      name: "Prometheus",
       icon: SiPrometheus,
       color: "#E6522C",
-      bgColor: "bg-orange-50 dark:bg-orange-950/20"
+      experience: "5+ years",
+      category: "Monitoring"
+    },
+    {
+      name: "Grafana",
+      icon: SiGrafana,
+      color: "#F46800",
+      experience: "5+ years",
+      category: "Visualization"
     }
   ];
 
   return (
-    <section className="py-20 bg-muted/30 relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-      
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="max-w-6xl mx-auto">
+    <TooltipProvider>
+      <section 
+        ref={ref as React.RefObject<HTMLElement>}
+        className="py-20 bg-muted/30 dark:bg-muted/10 relative overflow-hidden"
+      >
+        {/* Background Pattern */}
+        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+        
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
           {/* Section Header */}
-          <div className="text-center mb-16 animate-fade-in">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              {t('techStackTitle')}
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
+              Technologies I Work With
             </h2>
-            <div className="w-24 h-1 bg-gradient-button mx-auto rounded-full"></div>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Comprehensive expertise in modern DevOps tools and cloud technologies with years of hands-on experience in enterprise environments.
+            </p>
           </div>
 
-          {/* Tech Icons Grid */}
-          <div 
-            ref={ref as React.RefObject<HTMLDivElement>}
-            className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 transition-all duration-1000 ${
-              isVisible ? "animate-fade-in" : "opacity-0 translate-y-10"
-            }`}
-          >
-            <TooltipProvider>
-              {technologies.map((tech, index) => {
-                const IconComponent = tech.icon;
-                return (
-                  <Tooltip key={tech.name}>
-                    <TooltipTrigger asChild>
-                      <div 
-                        className={`
-                          group relative flex flex-col items-center p-6 rounded-2xl border border-border/50 
-                          ${tech.bgColor} 
-                          hover:scale-105 hover:shadow-professional 
-                          transition-all duration-300 cursor-pointer
-                          animate-scale-in
-                        `}
-                        style={{ 
-                          animationDelay: `${100 + index * 100}ms`,
-                          animationFillMode: 'both'
-                        }}
-                      >
-                        {/* Glow Effect */}
+          {/* Technologies Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {technologies.map((tech, index) => {
+              const IconComponent = tech.icon;
+              return (
+                <Tooltip key={tech.name}>
+                  <TooltipTrigger asChild>
+                    <div
+                      className={`
+                        relative group bg-card rounded-xl p-6 border border-border
+                        hover:shadow-lg hover:scale-105 transition-all duration-300
+                        cursor-pointer hover:border-primary/20
+                        ${isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}
+                      `}
+                      style={{
+                        animationDelay: `${index * 100}ms`,
+                      }}
+                    >
+                      {/* Tech Icon */}
+                      <div className="flex flex-col items-center text-center space-y-3">
                         <div 
-                          className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"
+                          className="w-16 h-16 flex items-center justify-center rounded-lg bg-background/50 group-hover:bg-background transition-colors duration-300"
                           style={{ 
-                            background: `radial-gradient(circle at center, ${tech.color}40, transparent 70%)`
+                            color: tech.color,
+                            filter: 'brightness(1.1) saturate(1.2)'
                           }}
-                        ></div>
-                        
-                        {/* Icon */}
-                        <div className="relative mb-3">
-                          <IconComponent 
-                            size={60} 
-                            style={{ color: tech.color }}
-                            className="drop-shadow-sm group-hover:drop-shadow-md transition-all duration-300"
-                          />
+                        >
+                          <IconComponent className="w-10 h-10" />
                         </div>
                         
-                        {/* Name */}
-                        <span className="text-sm font-medium text-foreground text-center leading-tight">
+                        {/* Tech Name */}
+                        <h3 className="font-semibold text-foreground text-sm">
                           {tech.name}
-                        </span>
+                        </h3>
                       </div>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>{tech.name}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                );
-              })}
-            </TooltipProvider>
+
+                      {/* Hover Glow Effect */}
+                      <div 
+                        className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-xl"
+                        style={{
+                          background: `radial-gradient(circle, ${tech.color} 0%, transparent 70%)`
+                        }}
+                      />
+                    </div>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <div className="text-center">
+                      <p className="font-semibold">{tech.name}</p>
+                      <p className="text-sm text-muted-foreground">{tech.category}</p>
+                      <p className="text-sm font-medium text-primary">{tech.experience}</p>
+                    </div>
+                  </TooltipContent>
+                </Tooltip>
+              );
+            })}
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </TooltipProvider>
   );
 };
 
