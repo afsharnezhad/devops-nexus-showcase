@@ -76,6 +76,10 @@ export default {
         'gradient-card': 'var(--gradient-card)',
         'gradient-button': 'var(--gradient-button)',
       },
+      fontFamily: {
+        'vazirmatn': ['Vazirmatn', 'system-ui', '-apple-system', 'sans-serif'],
+        'sans': ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+      },
       transitionTimingFunction: {
         'smooth': 'cubic-bezier(0.4, 0, 0.2, 1)',
         'bounce': 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',

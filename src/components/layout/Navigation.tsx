@@ -65,7 +65,7 @@ const Navigation = ({ darkMode, toggleDarkMode }: NavigationProps) => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
+            <div className={`ml-10 flex items-baseline ${isRTL ? 'space-x-reverse space-x-8' : 'space-x-8'}`}>
               {menuItems.map((item) => (
                 <button
                   key={item.name}
@@ -136,12 +136,12 @@ const Navigation = ({ darkMode, toggleDarkMode }: NavigationProps) => {
       {/* Mobile Navigation Menu */}
       {isOpen && (
         <div className="md:hidden animate-fade-in">
-          <div className="px-2 pt-2 pb-3 space-y-1 bg-background/95 backdrop-blur-md border-t border-border">
+          <div className={`px-2 pt-2 pb-3 space-y-1 bg-background/95 backdrop-blur-md border-t border-border ${isRTL ? 'text-right' : 'text-left'}`}>
             {menuItems.map((item) => (
               <button
                 key={item.name}
                 onClick={() => scrollToSection(item.href)}
-                className="text-foreground hover:text-primary hover:bg-muted block px-3 py-2 text-base font-medium w-full text-left rounded-md transition-colors duration-200"
+                className={`text-foreground hover:text-primary hover:bg-muted block px-3 py-2 text-base font-medium w-full rounded-md transition-colors duration-200 ${isRTL ? 'text-right' : 'text-left'}`}
               >
                 {item.name}
               </button>
