@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useTranslation } from "@/hooks/useTranslation";
+import professionalHeadshot from "@/assets/professional-headshot.jpg";
 
 const About = () => {
   const { t, formatNum, isRTL } = useTranslation();
@@ -38,7 +39,7 @@ const About = () => {
                 <CardContent className="p-8">
                   <div className="aspect-square bg-gradient-card rounded-2xl overflow-hidden">
                     <img 
-                      src="/professional-photo.png" 
+                      src={professionalHeadshot} 
                       alt="Professional headshot of DevOps Engineer"
                       className="w-full h-full object-cover rounded-2xl"
                     />
