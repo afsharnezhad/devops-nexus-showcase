@@ -25,87 +25,91 @@ const TechStack = () => {
       name: "Linux",
       icon: SiLinux,
       color: "#FCC624",
-      experience: "9+ years",
+      experienceYears: 9,
       category: "Operating System"
     },
     {
       name: "Docker",
       icon: SiDocker,
       color: "#2496ED",
-      experience: "6+ years",
+      experienceYears: 6,
       category: "Containerization"
     },
     {
       name: "Kubernetes",
       icon: SiKubernetes,
       color: "#326CE5",
-      experience: "5+ years",
+      experienceYears: 5,
       category: "Container Orchestration"
     },
     {
       name: "AWS",
       icon: SiAmazonwebservices,
       color: "#FF9900",
-      experience: "7+ years",
+      experienceYears: 7,
       category: "Cloud Platform"
     },
     {
       name: "Azure",
       icon: Cloud,
       color: "#0078D4",
-      experience: "5+ years",
+      experienceYears: 5,
       category: "Cloud Platform"
     },
     {
       name: "Google Cloud Platform",
       icon: SiGooglecloud,
       color: "#4285F4",
-      experience: "4+ years",
+      experienceYears: 4,
       category: "Cloud Platform"
     },
     {
       name: "Terraform",
       icon: SiTerraform,
       color: "#7B42BC",
-      experience: "6+ years",
+      experienceYears: 6,
       category: "Infrastructure as Code"
     },
     {
       name: "Ansible",
       icon: SiAnsible,
       color: "#EE0000",
-      experience: "7+ years",
+      experienceYears: 7,
       category: "Configuration Management"
     },
     {
       name: "Jenkins",
       icon: SiJenkins,
       color: "#D33833",
-      experience: "8+ years",
+      experienceYears: 8,
       category: "CI/CD"
     },
     {
       name: "GitLab CI/CD",
       icon: SiGitlab,
       color: "#FC6D26",
-      experience: "6+ years",
+      experienceYears: 6,
       category: "CI/CD"
     },
     {
       name: "Prometheus",
       icon: SiPrometheus,
       color: "#E6522C",
-      experience: "5+ years",
+      experienceYears: 5,
       category: "Monitoring"
     },
     {
       name: "Grafana",
       icon: SiGrafana,
       color: "#F46800",
-      experience: "5+ years",
+      experienceYears: 5,
       category: "Visualization"
     }
   ];
+
+  const renderStars = (years: number) => {
+    return "⭐".repeat(years);
+  };
 
   return (
     <TooltipProvider>
@@ -127,8 +131,8 @@ const TechStack = () => {
             </p>
           </div>
 
-          {/* Technologies Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {/* Technologies Row */}
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
             {technologies.map((tech, index) => {
               const IconComponent = tech.icon;
               return (
@@ -136,38 +140,50 @@ const TechStack = () => {
                   <TooltipTrigger asChild>
                     <div
                       className={`
-                        relative group bg-card rounded-xl p-6 border border-border
-                        hover:shadow-lg hover:scale-105 transition-all duration-300
-                        cursor-pointer hover:border-primary/20
-                        ${isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}
+                        relative group flex flex-col items-center justify-center p-4
+                        hover:scale-110 transition-all duration-500 ease-out
+                        cursor-pointer
+                        ${isVisible ? 'animate-fade-in' : 'opacity-0 translate-y-4'}
                       `}
                       style={{
-                        animationDelay: `${index * 100}ms`,
+                        animationDelay: `${index * 150}ms`,
                       }}
                     >
                       {/* Tech Icon */}
-                      <div className="flex flex-col items-center text-center space-y-3">
-                        <div 
-                          className="w-16 h-16 flex items-center justify-center rounded-lg bg-background/50 group-hover:bg-background transition-colors duration-300"
-                          style={{ 
-                            color: tech.color,
-                            filter: 'brightness(1.1) saturate(1.2)'
-                          }}
-                        >
-                          <IconComponent className="w-10 h-10" />
-                        </div>
-                        
-                        {/* Tech Name */}
-                        <h3 className="font-semibold text-foreground text-sm">
-                          {tech.name}
-                        </h3>
+                      <div 
+                        className="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center rounded-2xl bg-background/80 backdrop-blur-sm border border-border/50 group-hover:border-primary/30 shadow-lg group-hover:shadow-xl transition-all duration-500"
+                        style={{ 
+                          color: tech.color,
+                          filter: 'brightness(1.1) saturate(1.2)'
+                        }}
+                      >
+                        <IconComponent className="w-8 h-8 md:w-10 md:h-10" />
+                      </div>
+                      
+                      {/* Tech Name */}
+                      <h3 className="font-medium text-foreground text-xs md:text-sm mt-3 text-center max-w-20 leading-tight">
+                        {tech.name}
+                      </h3>
+                      
+                      {/* Experience Stars */}
+                      <div className="text-xs mt-1 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                        {renderStars(tech.experienceYears)}
                       </div>
 
                       {/* Hover Glow Effect */}
                       <div 
-                        className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-xl"
+                        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-15 transition-all duration-500 blur-2xl scale-150"
                         style={{
                           background: `radial-gradient(circle, ${tech.color} 0%, transparent 70%)`
+                        }}
+                      />
+                      
+                      {/* Pulse Ring Animation */}
+                      <div 
+                        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-30 transition-all duration-700 animate-pulse"
+                        style={{
+                          border: `2px solid ${tech.color}`,
+                          animation: 'pulse 2s infinite'
                         }}
                       />
                     </div>
@@ -176,7 +192,8 @@ const TechStack = () => {
                     <div className="text-center">
                       <p className="font-semibold">{tech.name}</p>
                       <p className="text-sm text-muted-foreground">{tech.category}</p>
-                      <p className="text-sm font-medium text-primary">{tech.experience}</p>
+                      <p className="text-sm font-medium text-primary">{tech.experienceYears} years experience</p>
+                      <div className="text-lg mt-1">{renderStars(tech.experienceYears)}</div>
                     </div>
                   </TooltipContent>
                 </Tooltip>
