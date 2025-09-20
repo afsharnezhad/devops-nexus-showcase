@@ -4,9 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Loader2, ExternalLink } from "lucide-react";
+import { SiLinkedin, SiGithub, SiTelegram, SiX } from "react-icons/si";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslation } from "@/hooks/useTranslation";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Contact = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -17,6 +19,45 @@ const Contact = () => {
   });
   const { toast } = useToast();
   const { t, isRTL } = useTranslation();
+  const { ref, isVisible } = useScrollAnimation();
+
+  const socialLinks = [
+    {
+      name: "Email",
+      url: "mailto:mo.afsharnezhad@gmail.com",
+      icon: Mail,
+      color: "hsl(24, 100%, 50%)", // Orange for email
+      hoverColor: "hsl(24, 100%, 60%)"
+    },
+    {
+      name: "LinkedIn", 
+      url: "https://linkedin.com/in/afsharnezhad",
+      icon: SiLinkedin,
+      color: "#0A66C2", // LinkedIn blue
+      hoverColor: "#0752A8"
+    },
+    {
+      name: "GitHub",
+      url: "https://github.com/afsharnezhad", 
+      icon: SiGithub,
+      color: "hsl(var(--foreground))", // Adaptive to theme
+      hoverColor: "hsl(var(--primary))"
+    },
+    {
+      name: "Telegram",
+      url: "https://t.me/eafshar",
+      icon: SiTelegram,
+      color: "#0088CC", // Telegram blue
+      hoverColor: "#006BB3"
+    },
+    {
+      name: "X (Twitter)",
+      url: "https://x.com/autoopsai",
+      icon: SiX,
+      color: "hsl(var(--foreground))", // Adaptive to theme
+      hoverColor: "hsl(var(--primary))"
+    }
+  ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -65,6 +106,80 @@ const Contact = () => {
             <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
               {t('contactSubtitle')}
             </p>
+          </div>
+
+          {/* Connect With Me Section */}
+          <div 
+            ref={ref as React.RefObject<HTMLDivElement>}
+            className={`text-center mb-16 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}
+          >
+            <h3 className="text-2xl font-bold text-foreground mb-8">Connect With Me</h3>
+            <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8">
+              {socialLinks.map((social, index) => {
+                const IconComponent = social.icon;
+                return (
+                  <a
+                    key={social.name}
+                    href={social.url}
+                    target={social.name !== "Email" ? "_blank" : undefined}
+                    rel={social.name !== "Email" ? "noopener noreferrer" : undefined}
+                    className={`
+                      group relative p-4 rounded-2xl bg-card/50 backdrop-blur-sm border border-border/50
+                      hover:border-primary/30 hover:scale-110 hover:shadow-2xl
+                      transition-all duration-500 ease-out cursor-pointer
+                      hover:bg-card/80 flex flex-col items-center justify-center w-24 h-24
+                      ${isVisible ? 'animate-scale-in' : 'opacity-0 scale-95'}
+                    `}
+                    style={{
+                      animationDelay: `${200 + index * 100}ms`,
+                    }}
+                    aria-label={`Connect with me on ${social.name}`}
+                  >
+                    {/* Social Icon */}
+                    <div className="relative">
+                      <IconComponent 
+                        className="w-8 h-8 transition-all duration-300 group-hover:scale-110"
+                        style={{ 
+                          color: social.color 
+                        }}
+                      />
+                      
+                      {/* Hover Glow Effect */}
+                      <div 
+                        className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-30 transition-all duration-500 blur-lg scale-150"
+                        style={{
+                          background: `radial-gradient(circle, ${social.color} 30%, transparent 70%)`
+                        }}
+                      />
+                    </div>
+
+                    {/* Hover Text */}
+                    <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors duration-300 mt-2 opacity-0 group-hover:opacity-100">
+                      {social.name}
+                    </span>
+
+                    {/* External Link Indicator */}
+                    {social.name !== "Email" && (
+                      <ExternalLink className="w-3 h-3 absolute -top-1 -right-1 text-muted-foreground opacity-0 group-hover:opacity-60 transition-all duration-300" />
+                    )}
+
+                    {/* Animated Ring on Hover */}
+                    <div 
+                      className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-40 transition-all duration-700"
+                      style={{
+                        border: `2px solid ${social.color}`,
+                        animation: 'pulse 2s infinite'
+                      }}
+                    />
+                  </a>
+                );
+              })}
+            </div>
+            
+            {/* Divider */}
+            <div className="mt-12 mb-8">
+              <div className="w-24 h-px bg-gradient-to-r from-transparent via-border to-transparent mx-auto"></div>
+            </div>
           </div>
 
           <div className={`grid lg:grid-cols-2 gap-12 ${isRTL ? 'lg:grid-flow-col-dense' : ''}`}>
