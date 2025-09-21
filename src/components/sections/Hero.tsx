@@ -2,6 +2,7 @@ import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "@/hooks/useTranslation";
 import { SiLinux, SiDocker, SiKubernetes, SiAmazonwebservices, SiGooglecloud, SiTerraform, SiAnsible, SiJenkins, SiGitlab, SiPrometheus, SiGrafana } from "react-icons/si";
+import Prism from "@/components/ui/prism";
 const Hero = () => {
   const {
     t,
@@ -34,8 +35,26 @@ const Hero = () => {
   };
   const iconPositions = generateIconPositions();
   return <section id="home" className="min-h-screen flex items-center justify-center bg-gradient-hero relative overflow-hidden">
+      {/* 3D Prism Background */}
+      <div className="absolute inset-0 opacity-30">
+        <Prism
+          animationType="3drotate"
+          timeScale={0.3}
+          height={4.0}
+          baseWidth={6.0}
+          scale={2.8}
+          hueShift={0.5}
+          colorFrequency={0.8}
+          noise={0.3}
+          glow={1.2}
+          bloom={0.8}
+          transparent={true}
+          suspendWhenOffscreen={true}
+        />
+      </div>
+
       {/* Tech Icons Background Pattern */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none z-10">
         {iconPositions.map((pos, index) => {
         const IconComponent = pos.Icon;
         return <div key={index} className="absolute animate-float-slow opacity-10" style={{
@@ -50,7 +69,7 @@ const Hero = () => {
       </div>
 
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+      <div className="absolute inset-0 bg-grid-pattern opacity-5 z-10"></div>
       
       {/* Content */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
