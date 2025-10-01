@@ -49,14 +49,14 @@ const Portfolio = () => {
           <section id="home">
             <Hero />
           </section>
+          <section id="tech-stack">
+            <TechStack />
+          </section>
           <section id="about">
             <About />
           </section>
           <section id="services">
             <Services />
-          </section>
-          <section id="tech-stack">
-            <TechStack />
           </section>
           <section id="clients">
             <Clients />

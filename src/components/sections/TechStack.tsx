@@ -1,131 +1,90 @@
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { GlowingEffect } from "@/components/ui/glowing-effect";
+import { 
+  Server, 
+  Cloud, 
+  Container, 
+  Database, 
+  Settings, 
+  Shield, 
+  GitBranch, 
+  Activity,
+  Layers,
+  Package,
+  Workflow,
+  FileCode
+} from "lucide-react";
 import { useTranslation } from "@/hooks/useTranslation";
-import { GradientHeading } from "@/components/ui/gradient-heading";
-import { LogoCarousel } from "@/components/ui/logo-carousel";
-import { Calendar } from "lucide-react";
-import { type SVGProps } from "react";
 
-// Technology SVG Components
-function LinuxIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="#FCC624" {...props}>
-      <path d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489a.424.424 0 00-.11.135c-.26.268-.45.6-.663.839-.199.199-.485.267-.797.4-.313.136-.658.269-.864.68-.09.189-.136.394-.132.602 0 .199.027.4.055.536.058.399.116.728.04.97-.249.68-.28 1.145-.106 1.484.174.334.535.47.94.601.81.2 1.91.135 2.774.6.926.466 1.866.67 2.616.47.526-.116.97-.464 1.208-.946.587-.003 1.23-.269 2.26-.334.699-.058 1.574.267 2.577.2.025.134.063.198.114.333l.003.003c.391.778 1.113 1.132 1.884 1.071.771-.06 1.592-.536 2.257-1.306.631-.765 1.683-1.084 2.378-1.503.348-.199.629-.469.649-.853.023-.4-.2-.811-.714-1.376v-.097l-.003-.003c-.17-.2-.25-.535-.338-.926-.085-.401-.182-.786-.492-1.046h-.003c-.059-.054-.123-.067-.188-.135a.357.357 0 00-.19-.064c.431-1.278.264-2.55-.173-3.694-.533-1.41-1.465-2.638-2.175-3.483-.796-1.005-1.576-1.957-1.56-3.368.026-2.152.236-6.133-3.544-6.139zm.529 3.405h.013c.213 0 .396.062.584.198.19.135.33.332.438.533.105.259.158.459.166.724 0-.02.006-.04.006-.06v.105a.086.086 0 01-.004-.021l-.004-.024a1.807 1.807 0 01-.15.706.953.953 0 01-.213.335.71.71 0 00-.088-.042c-.104-.045-.198-.064-.284-.133a1.312 1.312 0 00-.22-.066c.05-.06.146-.133.183-.198.053-.128.082-.264.088-.402v-.02a1.21 1.21 0 00-.061-.4c-.045-.134-.101-.2-.183-.333-.084-.066-.167-.132-.267-.132h-.016c-.093 0-.176.03-.262.132a.8.8 0 00-.205.334 1.18 1.18 0 00-.09.4v.019c.002.089.008.179.02.267-.193-.067-.438-.135-.607-.202a1.635 1.635 0 01-.018-.2v-.02a1.772 1.772 0 01.15-.768c.082-.22.232-.406.43-.533.198-.135.412-.2.628-.2h.007zm2.571 4.221c.049.132.267.197.267.197.549.132.798.666.798.666.069.266-.197.4-.197.4s-.267.197-.466.197c-.135 0-.335-.066-.335-.334 0 0-.132-.199-.132-.333 0-.135.065-.268.065-.333 0-.066.066-.133.066-.199h-.066zm-4.49.135s.199-.066.333-.066c.135 0 .268.066.401.066.135 0 .267-.066.4-.066.135 0 .334.066.467.132.135.066.4 0 .4 0s.265.197.331.265c.066.066.066.199 0 .199-.065 0-.197-.066-.265-.132-.066-.066-.199 0-.199 0s-.135.066-.203.132c-.065.066-.197.066-.197.066s-.135 0-.201-.066c-.066-.066-.197-.132-.197-.132s-.133 0-.2.066c-.066.066-.199.132-.199.132s-.134.066-.201 0c-.066-.066-.197-.199-.197-.199s-.066-.199 0-.265c.066-.066.197-.132.264-.132h.063z"/>
-    </svg>
-  );
-}
-
-function DockerIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="#2496ED" {...props}>
-      <path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.186.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.186.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.186.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338 0-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983 0 1.981-.099 2.934-.292 1.22-.247 2.364-.633 3.394-1.146 1.428-.715 2.651-1.718 3.634-2.982 1.687.016 2.694-.406 3.148-.956.152-.184.22-.383.204-.598v-.027l-.004-.024c-.007-.047-.014-.094-.027-.14l-.013-.03c-.007-.018-.018-.034-.028-.05l-.008-.016c-.014-.027-.024-.055-.04-.081L23.757 9.9l.006-.01zM.720 11.075h1.018a.185.185 0 00.185-.186V9.006a.186.186 0 00-.185-.186H.72a.185.185 0 00-.184.185v1.888c0 .102.082.185.184.185"/>
-    </svg>
-  );
-}
-
-function KubernetesIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="#326CE5" {...props}>
-      <path d="M10.204 14.35l.007.01-.999 2.413a5.171 5.171 0 002.638.632c.639 0 1.249-.12 1.809-.34l-.009-.02-.881-2.365a.905.905 0 00.064-.045c.113-.102.184-.25.184-.415 0-.3-.243-.543-.543-.543a.544.544 0 00-.41.186c-.02.022-.035.047-.05.072l-.007-.003-.418-1.125-.5 1.343-.885.2zm-.675-.522c.019.006.038.007.058.011a.543.543 0 00.644-.27c.088-.19.021-.415-.15-.56a.544.544 0 00-.618-.068c-.027.014-.05.032-.074.05l.003.006L8.16 12.11c-.359-.443-.907-.73-1.523-.73-.99 0-1.807.732-1.945 1.685l.018.006 2.06 1.17c.01-.008.018-.017.029-.024zm8.474-2.785l-1.845-.637-.637 1.845c.017.01.03.024.046.036a.543.543 0 00.068.618c.19.088.415.021.56-.15.102-.119.14-.275.089-.418-.014-.038-.035-.07-.058-.1l.007-.003 1.125-.418-.343-.5-.012-.27zm-3.898-4.21l.006-.017L12.342 5.13c-.171-.171-.408-.277-.669-.277s-.498.106-.669.277L9.235 6.816l.006.017a.544.544 0 00-.615.072c-.19.088-.257.313-.15.502.075.133.214.214.362.214a.544.544 0 00.41-.186c.068-.08.1-.18.089-.28l.007-.005 1.234-.17.5 1.343.418-1.125-.007-.003c.015-.025.03-.05.05-.072a.544.544 0 00-.41-.186.544.544 0 00-.41.186c-.02.022-.035.047-.05.072l.007.003-.418 1.125-.5-1.343-1.234.17-.007.005c.011.1-.021.2-.089.28a.544.544 0 00-.41.186c-.148 0-.287-.081-.362-.214-.107-.189-.04-.414.15-.502a.544.544 0 00.615-.072zm-7.24 4.907c-.99 0-1.807.732-1.945 1.685l.018.006 2.06 1.17c.01-.008.018-.017.029-.024.019.006.038.007.058.011a.543.543 0 00.644-.27c.088-.19.021-.415-.15-.56a.544.544 0 00-.618-.068c-.027.014-.05.032-.074.05l.003.006L8.16 12.11c-.359-.443-.907-.73-1.523-.73zm8.474 2.785l-1.845-.637-.637 1.845c.017.01.03.024.046.036a.543.543 0 00.068.618c.19.088.415.021.56-.15.102-.119.14-.275.089-.418-.014-.038-.035-.07-.058-.1l.007-.003 1.125-.418-.343-.5-.012-.27zm-3.698 1.418l.007-.003c.015-.025.03-.05.05-.072a.544.544 0 00-.41-.186c-.3 0-.543.243-.543.543 0 .165.071.313.184.415.022.02.047.035.072.05l-.003.007 1.125.418-.5 1.343-.885-.2-.418-1.125a.905.905 0 00-.064-.045c-.113-.102-.184-.25-.184-.415 0-.3.243-.543.543-.543a.544.544 0 00.41.186c.068.08.1.18.089.28l.007.005 1.234.17-.5-1.343-.418 1.125-.007.003c-.015.025-.03.05-.05.072a.544.544 0 00.41.186c.3 0 .543-.243.543-.543 0-.165-.071-.313-.184-.415a.905.905 0 00-.064-.045l-.885-.2-.5-1.343-.418 1.125zm4.905-2.497l-.018.006-2.06-1.17c-.01.008-.018.017-.029.024-.019-.006-.038-.007-.058-.011a.543.543 0 00-.644.27c-.088.19-.021.415.15.56.119.102.275.14.418.089.038-.014.07-.035.1-.058l.003.007.418-1.125.5 1.343.885.2.418-1.125a.905.905 0 00.064.045c.113.102.184.25.184.415 0 .3-.243.543-.543.543a.544.544 0 00-.41-.186c-.068-.08-.1-.18-.089-.28l-.007-.005-1.234-.17.5 1.343.418-1.125.007-.003c.015-.025.03-.05.05-.072a.544.544 0 00.41-.186c.3 0 .543.243.543.543 0 .165-.071.313-.184.415-.022.02-.047.035-.072.05l.003.007-1.125.418.5 1.343.885.2.418-1.125-.007-.003c-.015-.025-.03-.05-.05-.072a.544.544 0 00.41-.186c.3 0 .543-.243.543-.543 0-.165-.071-.313-.184-.415a.905.905 0 00-.064-.045l-.885-.2-.5-1.343-.418 1.125zm-.482-2.125c-.639 0-1.249.12-1.809.34l.009.02.881 2.365a.905.905 0 00-.064.045c-.113.102-.184.25-.184.415 0 .3.243.543.543.543a.544.544 0 00.41-.186c.02-.022.035-.047.05-.072l.007.003.418 1.125.5-1.343.885-.2.418 1.125.007-.003c.015.025.03.05.05.072a.544.544 0 00.41.186c.3 0 .543-.243.543-.543 0-.165-.071-.313-.184-.415a.905.905 0 00-.064-.045l.881-2.365-.009-.02c.56.22 1.17.34 1.809.34a5.171 5.171 0 002.638-.632l-.999-2.413.007-.01c-.113-.102-.184-.25-.184-.415 0-.3.243-.543.543-.543a.544.544 0 00.41.186c.02.022.035.047.05.072l.007-.003.418 1.125.5-1.343.885-.2-.007.01-.999 2.413a5.171 5.171 0 002.638-.632c.639 0 1.249.12 1.809.34l-.009.02-.881 2.365a.905.905 0 00.064.045c.113.102.184.25.184.415 0 .3-.243.543-.543.543a.544.544 0 00-.41-.186c-.02-.022-.035-.047-.05-.072l-.007.003-.418-1.125-.5 1.343-.885.2zm-5.204-1.171c0-.9.73-1.63 1.63-1.63s1.63.73 1.63 1.63-.73 1.63-1.63 1.63-1.63-.73-1.63-1.63z"/>
-    </svg>
-  );
-}
-
-function AWSIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="#FF9900" {...props}>
-      <path d="M6.763 10.036c0 .296.032.535.088.71.064.176.144.368.256.576.04.063.056.127.056.183 0 .08-.048.16-.151.24l-.503.335c-.072.048-.144.072-.2.072-.08 0-.16-.04-.239-.112a2.417 2.417 0 01-.287-.375 6.18 6.18 0 01-.248-.471c-.622.735-1.403 1.101-2.336 1.101-.668 0-1.196-.191-1.596-.574-.399-.384-.6-.894-.6-1.533 0-.678.239-1.226.726-1.644.487-.417 1.133-.627 1.955-.627.27 0 .551.024.846.064.296.04.6.104.918.176v-.583c0-.607-.127-1.03-.375-1.277-.255-.248-.686-.367-1.277-.367-.272 0-.551.032-.83.096-.287.064-.56.144-.83.24-.12.047-.207.08-.248.096-.04.016-.072.024-.088.024-.08 0-.12-.06-.12-.184v-.289c0-.096.016-.168.056-.216.04-.048.112-.096.207-.144.272-.144.599-.264.972-.36.375-.095.775-.144 1.196-.144.91 0 1.58.207 1.997.615.423.408.631 1.02.631 1.836v2.423zm-3.24 1.213c.263 0 .535-.048.822-.144.287-.096.543-.271.758-.513.128-.152.224-.32.272-.512.047-.191.08-.423.08-.694v-.335a6.66 6.66 0 00-.735-.136 6.02 6.02 0 00-.75-.048c-.535 0-.926.104-1.189.32-.263.215-.39.518-.39.917 0 .375.095.655.295.838.2.191.455.287.838.287zm6.43.862c-.103 0-.176-.016-.215-.056-.04-.032-.08-.103-.12-.199L7.362 4.599c-.04-.135-.064-.224-.064-.27 0-.104.048-.16.151-.16h.617c.111 0 .183.016.215.056.04.032.072.103.104.199L9.747 8.31l1.277-3.886c.024-.096.056-.167.096-.199.04-.04.111-.056.207-.056h.503c.111 0 .183.016.207.056.048.032.08.103.096.199L13.412 8.31l1.37-3.886c.032-.096.072-.167.103-.199.04-.04.111-.056.215-.056h.583c.104 0 .16.048.16.16 0 .032-.008.064-.016.104-.008.04-.024.096-.048.16L13.54 11.696c-.04.127-.08.199-.12.231-.04.032-.111.048-.215.048h-.542c-.111 0-.183-.016-.215-.048-.048-.032-.08-.104-.096-.231L11.083 7.943l-1.245 3.722c-.024.127-.056.199-.096.231-.04.032-.111.048-.215.048h-.542zm8.582.215c-.463 0-.926-.056-1.373-.167-.447-.111-.795-.255-1.038-.431-.127-.095-.215-.2-.247-.295-.032-.096-.048-.2-.048-.32v-.303c0-.127.048-.191.136-.191.04 0 .08.008.12.024.04.016.103.048.175.08.239.111.495.2.774.264.287.063.567.096.846.096.447 0 .774-.08.99-.24.223-.159.327-.374.327-.654 0-.192-.063-.36-.183-.511-.128-.151-.351-.296-.678-.431l-.966-.303c-.487-.151-.838-.374-1.062-.671-.215-.296-.327-.24-.327-.958 0-.279.063-.527.183-.75.128-.215.295-.406.51-.567.215-.159.456-.279.734-.36.287-.08.574-.12.878-.12.2 0 .406.016.607.048.2.032.391.08.575.128.167.056.32.112.447.175.135.063.24.127.295.2.064.071.111.151.135.239.032.088.048.184.048.287v.27c0 .128-.048.192-.135.192-.048 0-.135-.024-.247-.08-.375-.183-.798-.272-1.277-.272-.407 0-.718.064-.926.2-.207.135-.31.334-.31.598 0 .191.071.36.207.502.135.144.375.287.726.423l.942.302c.479.16.822.361 1.014.615.2.255.295.558.295.917 0 .287-.056.55-.175.782-.111.239-.271.438-.478.606-.207.167-.455.29-.75.375-.303.104-.63.16-.99.16z"/>
-    </svg>
-  );
-}
-
-function TerraformIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="#7B42BC" {...props}>
-      <path d="M1.555 5.438v6.25l5.417 3.125V8.563L1.555 5.438zm6.25 8.73L13.222 17.3v-6.25l-5.417-3.132v6.25zm0-14.168v6.25l5.417 3.125V3.125L7.805 0zM14.055 6.25v6.25L19.472 15.625V9.375L14.055 6.25z"/>
-    </svg>
-  );
-}
-
-function AnsibleIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="#EE0000" {...props}>
-      <path d="M10.617 11.473l4.686 3.695-3.102-7.662zM12 0C5.371 0 0 5.371 0 12s5.371 12 12 12 12-5.371 12-12S18.629 0 12 0zm5.797 17.305c-.011.471-.403.854-.875.854-.236 0-.416-.09-.664-.293l-6.19-5.478-.004-.003c-.248-.225-.45-.508-.45-.831 0-.467.42-.908.748-1.347l6.062-8.067c.183-.26.402-.351.652-.351.473 0 .875.379.875.852 0 .186-.068.352-.207.543l-6.586 8.77c-.139.186-.139.368 0 .554l6.172 4.797c.139.107.467.361.467.852v-.852z"/>
-    </svg>
-  );
-}
-
-function JenkinsIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="#D33833" {...props}>
-      <path d="M11.1797 0c.6445 0 1.2383.2734 1.6523.7539l1.8125 2.1035c.8398.9727 1.3281 2.2422 1.3281 3.5625v.4512c0 .7617-.2812 1.4922-.7969 2.0742l-.7031.7969c-.2734.3086-.4219.7109-.4219 1.1328v.3516c0 .4766.2109.9258.5742 1.2305l1.4219 1.1875c.8555.7148 1.3516 1.7734 1.3516 2.8945v.8789c0 .4102-.0859.8203-.2539 1.1992l-.8203 1.8555c-.3594.8125-1.0898 1.4219-1.9492 1.625l-1.5117.3516c-.5469.1289-.9258.625-.9258 1.1914v.4023c0 .6641-.5391 1.2031-1.2031 1.2031h-2.4063c-.6641 0-1.2031-.5391-1.2031-1.2031v-.4023c0-.5664-.3789-1.0625-.9258-1.1914l-1.5117-.3516c-.8594-.2031-1.5898-.8125-1.9492-1.625L2.9102 18.793c-.168-.3789-.2539-.7891-.2539-1.1992v-.8789c0-1.1211.4961-2.1797 1.3516-2.8945l1.4219-1.1875c.3633-.3047.5742-.7539.5742-1.2305v-.3516c0-.4219-.1484-.8242-.4219-1.1328l-.7031-.7969c-.5156-.582-.7969-1.3125-.7969-2.0742v-.4512c0-1.3203.4883-2.5898 1.3281-3.5625L6.2227.7539C6.6367.2734 7.2305 0 7.875 0h3.3047zm-1.0781 6.4805c-.5508 0-.9961.4453-.9961.9961s.4453.9961.9961.9961.9961-.4453.9961-.9961-.4453-.9961-.9961-.9961zm-1.9922 2.9883c-.5508 0-.9961.4453-.9961.9961s.4453.9961.9961.9961.9961-.4453.9961-.9961-.4453-.9961-.9961-.9961zm3.9844 0c-.5508 0-.9961.4453-.9961.9961s.4453.9961.9961.9961.9961-.4453.9961-.9961-.4453-.9961-.9961-.9961z"/>
-    </svg>
-  );
-}
-
-function GitLabIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="#FC6D26" {...props}>
-      <path d="M23.955 13.587l-1.342-4.135-2.664-8.189c-.135-.412-.567-.412-.702 0L16.583 9.452H7.417L4.753 1.263c-.135-.412-.567-.412-.702 0L1.387 9.452.045 13.587a.803.803 0 00.292.897l11.653 8.47a.109.109 0 00.02 0l11.653-8.47a.803.803 0 00.292-.897"/>
-    </svg>
-  );
-}
-
-function PrometheusIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="#E6522C" {...props}>
-      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.4c5.302 0 9.6 4.298 9.6 9.6s-4.298 9.6-9.6 9.6S2.4 17.302 2.4 12 6.698 2.4 12 2.4zm-.72 2.64a.96.96 0 00-.96.96v4.8a.96.96 0 001.92 0V6c0-.531-.429-.96-.96-.96zm3.36 1.44a.96.96 0 00-.96.96v2.4a.96.96 0 001.92 0V7.44c0-.531-.429-.96-.96-.96zm-6.72 0a.96.96 0 00-.96.96v2.4a.96.96 0 001.92 0V7.44c0-.531-.429-.96-.96-.96z"/>
-    </svg>
-  );
-}
-
-function GrafanaIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="#F46800" {...props}>
-      <path d="M21.103 5.879c-.309-1.018-.897-1.958-1.747-2.794C18.507 2.249 17.567 1.661 16.549 1.352c-1.018-.309-2.098-.309-3.116 0C12.415 1.661 11.475 2.249 10.626 3.085c-.849.836-1.437 1.776-1.746 2.794-.309 1.018-.309 2.098 0 3.116.309 1.018.897 1.958 1.746 2.794.849.836 1.789 1.424 2.807 1.733 1.018.309 2.098.309 3.116 0 1.018-.309 1.958-.897 2.794-1.733.836-.836 1.424-1.776 1.733-2.794.309-1.018.309-2.098 0-3.116zM12 15.75c-2.07 0-3.75-1.68-3.75-3.75S9.93 8.25 12 8.25s3.75 1.68 3.75 3.75-1.68 3.75-3.75 3.75z"/>
-    </svg>
-  );
-}
-
-function AzureIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="#0078D4" {...props}>
-      <path d="M5.483 18.923L12.622 5.1H17.306L19.69 18.923H5.483zM12.622 5.1L8.726 17.747H19.69L17.306 5.1H12.622z"/>
-    </svg>
-  );
-}
-
-function GoogleCloudIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="#4285F4" {...props}>
-      <path d="M12.19 2.38a9.344 9.344 0 016.627 2.747L16.32 7.624a5.906 5.906 0 00-4.13-1.624c-3.272 0-5.93 2.658-5.93 5.93s2.658 5.93 5.93 5.93c2.4 0 4.081-1.344 4.636-3.23H12.19v-2.79h7.876c.082.436.123.883.123 1.34 0 4.752-3.195 8.132-8 8.132-4.418 0-8-3.582-8-8s3.582-8 8-8z"/>
-    </svg>
-  );
-}
 
 const TechStack = () => {
-  const { ref, isVisible } = useScrollAnimation();
-
-  // Technology logos for the carousel
+  const { t } = useTranslation();
+  
   const technologies = [
-    { name: "Linux", id: 1, img: LinuxIcon },
-    { name: "Docker", id: 2, img: DockerIcon },
-    { name: "Kubernetes", id: 3, img: KubernetesIcon },
-    { name: "AWS", id: 4, img: AWSIcon },
-    { name: "Azure", id: 5, img: AzureIcon },
-    { name: "Google Cloud", id: 6, img: GoogleCloudIcon },
-    { name: "Terraform", id: 7, img: TerraformIcon },
-    { name: "Ansible", id: 8, img: AnsibleIcon },
-    { name: "Jenkins", id: 9, img: JenkinsIcon },
-    { name: "GitLab", id: 10, img: GitLabIcon },
-    { name: "Prometheus", id: 11, img: PrometheusIcon },
-    { name: "Grafana", id: 12, img: GrafanaIcon },
+    {
+      icon: Container,
+      name: "Docker & Kubernetes",
+      description: "Container orchestration and microservices management"
+    },
+    {
+      icon: Cloud,
+      name: "AWS & Azure",
+      description: "Multi-cloud infrastructure and deployment"
+    },
+    {
+      icon: Server,
+      name: "Linux Administration",
+      description: "System configuration and optimization"
+    },
+    {
+      icon: Database,
+      name: "Database Management",
+      description: "SQL, NoSQL, and data optimization"
+    },
+    {
+      icon: GitBranch,
+      name: "CI/CD Pipelines",
+      description: "Automated testing and deployment"
+    },
+    {
+      icon: Settings,
+      name: "Terraform & Ansible",
+      description: "Infrastructure as Code and automation"
+    },
+    {
+      icon: Activity,
+      name: "Monitoring & Logging",
+      description: "Prometheus, Grafana, and ELK stack"
+    },
+    {
+      icon: Shield,
+      name: "Security & Compliance",
+      description: "Security best practices and auditing"
+    },
+    {
+      icon: Workflow,
+      name: "Jenkins & GitLab CI",
+      description: "Continuous integration platforms"
+    },
+    {
+      icon: Package,
+      name: "Package Management",
+      description: "Artifact repositories and versioning"
+    },
+    {
+      icon: Layers,
+      name: "Networking",
+      description: "Load balancing and traffic management"
+    },
+    {
+      icon: FileCode,
+      name: "Scripting",
+      description: "Bash, Python, and automation scripts"
+    }
   ];
 
   return (
-    <section 
-      ref={ref as React.RefObject<HTMLElement>}
-      className="py-20 bg-gradient-to-br from-background via-muted/20 to-background relative overflow-hidden"
-    >
+    <section className="py-20 bg-gradient-to-br from-background via-muted/20 to-background relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-float-slow"></div>
@@ -135,68 +94,49 @@ const TechStack = () => {
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
-            <Calendar className="w-4 h-4" />
-            Years of Experience
-          </div>
-          <GradientHeading 
-            size="xl" 
-            className={`mb-6 ${isVisible ? 'animate-slide-up' : 'opacity-0 translate-y-4'}`}
-          >
-            Technologies I Work With
-          </GradientHeading>
-          <p className={`text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed ${isVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '200ms' }}>
-            Comprehensive expertise across modern DevOps, cloud platforms, and infrastructure technologies. 
-            Each tool represents years of hands-on experience in enterprise environments.
+        <div className="text-center mb-16 animate-fade-in">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+            {t('techStackTitle')}
+          </h2>
+          <div className="w-24 h-1 bg-gradient-button mx-auto rounded-full mb-6"></div>
+          <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
+            {t('techStackSubtitle')}
           </p>
         </div>
 
-        {/* Logo Carousel */}
-        <div className={`flex justify-center ${isVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '400ms' }}>
-          <LogoCarousel columnCount={4} logos={technologies} />
-        </div>
-
-        {/* Technology Categories */}
-        <div className={`mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 text-center ${isVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '600ms' }}>
-          <div className="p-4 rounded-lg bg-card/50 border border-border/50">
-            <h4 className="font-semibold text-primary mb-2">Cloud Platforms</h4>
-            <p className="text-sm text-muted-foreground">AWS • Azure • GCP</p>
-          </div>
-          <div className="p-4 rounded-lg bg-card/50 border border-border/50">
-            <h4 className="font-semibold text-primary mb-2">DevOps & CI/CD</h4>
-            <p className="text-sm text-muted-foreground">Jenkins • GitLab • Ansible</p>
-          </div>
-          <div className="p-4 rounded-lg bg-card/50 border border-border/50">
-            <h4 className="font-semibold text-primary mb-2">Containers</h4>
-            <p className="text-sm text-muted-foreground">Docker • Kubernetes</p>
-          </div>
-          <div className="p-4 rounded-lg bg-card/50 border border-border/50">
-            <h4 className="font-semibold text-primary mb-2">Monitoring</h4>
-            <p className="text-sm text-muted-foreground">Prometheus • Grafana</p>
-          </div>
-        </div>
-
-        {/* Experience Stats */}
-        <div className={`mt-16 text-center ${isVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '800ms' }}>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div>
-              <div className="text-3xl font-bold text-primary mb-2">9+</div>
-              <div className="text-sm text-muted-foreground">Years Linux Experience</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-primary mb-2">8+</div>
-              <div className="text-sm text-muted-foreground">Years Jenkins CI/CD</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-primary mb-2">7+</div>
-              <div className="text-sm text-muted-foreground">Years AWS Cloud</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-primary mb-2">6+</div>
-              <div className="text-sm text-muted-foreground">Years Terraform IaC</div>
-            </div>
-          </div>
+        {/* Technologies Grid */}
+        <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {technologies.map((tech, index) => {
+            const IconComponent = tech.icon;
+            return (
+              <Card
+                key={tech.name}
+                className={`relative hover-lift shadow-professional animate-slide-up delay-${index * 50}`}
+              >
+                <GlowingEffect
+                  spread={40}
+                  glow={true}
+                  disabled={false}
+                  proximity={64}
+                  inactiveZone={0.01}
+                  borderWidth={2}
+                />
+                <CardHeader className="text-center pb-3">
+                  <div className="mx-auto w-14 h-14 bg-gradient-button rounded-full flex items-center justify-center mb-3 hover-glow">
+                    <IconComponent className="h-7 w-7 text-white" />
+                  </div>
+                  <CardTitle className="text-base font-bold text-foreground">
+                    {tech.name}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground text-center text-sm leading-relaxed">
+                    {tech.description}
+                  </p>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
       </div>
     </section>
