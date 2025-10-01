@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { Calendar, Clock, Search, ArrowRight } from "lucide-react";
 import { useTranslation } from "@/hooks/useTranslation";
 
@@ -104,8 +105,16 @@ const Blog = () => {
             {filteredPosts.map((post, index) => (
               <Card
                 key={post.title}
-                className={`hover-lift shadow-professional animate-slide-up delay-${index * 100}`}
+                className={`relative hover-lift shadow-professional animate-slide-up delay-${index * 100}`}
               >
+                <GlowingEffect
+                  spread={40}
+                  glow={true}
+                  disabled={false}
+                  proximity={64}
+                  inactiveZone={0.01}
+                  borderWidth={2}
+                />
                 <CardHeader className="pb-4">
                   <div className="flex items-center justify-between mb-2">
                     <Badge variant="secondary" className="text-xs">

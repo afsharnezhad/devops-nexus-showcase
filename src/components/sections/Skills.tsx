@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { useTranslation } from "@/hooks/useTranslation";
 
 const Skills = () => {
@@ -54,8 +55,16 @@ const Skills = () => {
             {skillCategories.map((category, categoryIndex) => (
               <Card
                 key={category.category}
-                className={`hover-lift shadow-professional animate-slide-up delay-${categoryIndex * 200}`}
+                className={`relative hover-lift shadow-professional animate-slide-up delay-${categoryIndex * 200}`}
               >
+                <GlowingEffect
+                  spread={40}
+                  glow={true}
+                  disabled={false}
+                  proximity={64}
+                  inactiveZone={0.01}
+                  borderWidth={2}
+                />
                 <CardHeader className="pb-4">
                   <CardTitle className="text-xl font-bold text-center text-foreground">
                     {category.category}

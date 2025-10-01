@@ -1,5 +1,6 @@
 import { Server, Cloud, Wrench, Shield } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { useTranslation } from "@/hooks/useTranslation";
 
 const Services = () => {
@@ -50,8 +51,16 @@ const Services = () => {
               return (
                 <Card
                   key={service.title}
-                  className={`hover-lift shadow-professional animate-slide-up delay-${index * 100}`}
+                  className={`relative hover-lift shadow-professional animate-slide-up delay-${index * 100}`}
                 >
+                  <GlowingEffect
+                    spread={40}
+                    glow={true}
+                    disabled={false}
+                    proximity={64}
+                    inactiveZone={0.01}
+                    borderWidth={2}
+                  />
                   <CardHeader className="text-center pb-4">
                     <div className="mx-auto w-16 h-16 bg-gradient-button rounded-full flex items-center justify-center mb-4 hover-glow">
                       <IconComponent className="h-8 w-8 text-white" />
