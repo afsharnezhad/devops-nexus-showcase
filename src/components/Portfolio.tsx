@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import SocialStoriesBar from "@/components/layout/SocialStoriesBar";
 import NavigationBubble from "@/components/layout/NavigationBubble";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
@@ -44,8 +45,9 @@ const Portfolio = () => {
   return (
     <LanguageProvider>
       <div className="min-h-screen bg-background text-foreground">
+        <SocialStoriesBar />
         <NavigationBubble darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-        <main>
+        <main className="pt-[80px] lg:pt-[80px]">
           <section id="home">
             <Hero />
           </section>

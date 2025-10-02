@@ -307,8 +307,18 @@
 
   /* Smooth scrolling for entire page */
   html {
-    scroll-behavior: smooth;
-  }
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar for stories bar */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
 }
 
 @keyframes fadeIn {
