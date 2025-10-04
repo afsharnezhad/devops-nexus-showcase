@@ -47,7 +47,7 @@ const Portfolio = () => {
       <div className="min-h-screen bg-background text-foreground">
         <SocialStoriesBar />
         <NavigationBubble darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-        <main className="pt-[80px] lg:pt-[80px]">
+        <main className="pt-[160px] lg:pt-[170px]">
           <section id="home">
             <Hero />
           </section>

@@ -51,7 +51,7 @@ const NavigationBubble = ({ darkMode, toggleDarkMode }: NavigationBubbleProps) =
   return (
     <>
       {/* Floating Bubble Navigation */}
-      <nav className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50">
+      <nav className="fixed top-[88px] left-1/2 transform -translate-x-1/2 z-[100]">
         <div 
           className={`hidden md:flex items-center gap-2 px-6 py-3 rounded-full transition-all duration-500 ${
             isScrolled 
@@ -115,7 +115,7 @@ const NavigationBubble = ({ darkMode, toggleDarkMode }: NavigationBubbleProps) =
       </nav>
 
       {/* Mobile Navigation */}
-      <nav className="fixed top-4 right-4 z-50 md:hidden">
+      <nav className="fixed top-[84px] right-4 z-[100] md:hidden">
         <Button
           variant="ghost"
           size="sm"

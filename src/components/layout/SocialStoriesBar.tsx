@@ -99,7 +99,7 @@ export default function SocialStoriesBar() {
   };
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-[999] bg-background/80 backdrop-blur-md border-b border-border/50">
+    <div className="fixed top-0 left-0 right-0 z-[50] h-[72px] bg-background/80 backdrop-blur-md border-b border-border/50">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-center gap-4 sm:gap-6 py-2 overflow-x-auto scrollbar-hide">
           {socialStories.map((story) => {
