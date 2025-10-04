@@ -8,7 +8,8 @@ import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { SocialCard } from "@/components/ui/social-card";
+import { GlassIcons } from "@/components/ui/glass-icons";
+import { SiLinkedin, SiGithub, SiX, SiInstagram, SiYoutube } from "react-icons/si";
 
 const Contact = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -20,6 +21,45 @@ const Contact = () => {
   const { toast } = useToast();
   const { t, isRTL } = useTranslation();
   const { ref, isVisible } = useScrollAnimation();
+
+  const socialIcons = [
+    { 
+      icon: <SiLinkedin />, 
+      color: 'blue', 
+      label: 'LinkedIn',
+      href: 'https://linkedin.com/in/yourprofile'
+    },
+    { 
+      icon: <SiGithub />, 
+      color: 'purple', 
+      label: 'GitHub',
+      href: 'https://github.com/yourusername'
+    },
+    { 
+      icon: <SiX />, 
+      color: 'indigo', 
+      label: 'X / Twitter',
+      href: 'https://x.com/yourusername'
+    },
+    { 
+      icon: <SiInstagram />, 
+      color: 'red', 
+      label: 'Instagram',
+      href: 'https://instagram.com/yourusername'
+    },
+    { 
+      icon: <SiYoutube />, 
+      color: 'orange', 
+      label: 'YouTube',
+      href: 'https://youtube.com/@yourchannel'
+    },
+    { 
+      icon: <Mail />, 
+      color: 'green', 
+      label: 'Email',
+      href: 'mailto:info@mysite.com'
+    },
+  ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -75,7 +115,10 @@ const Contact = () => {
             ref={ref as React.RefObject<HTMLDivElement>}
             className={`mb-16 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}
           >
-            <SocialCard />
+            <h3 className="text-2xl font-semibold text-center mb-8 text-foreground">Connect With Me</h3>
+            <div className="flex justify-center">
+              <GlassIcons items={socialIcons} />
+            </div>
             
             {/* Divider */}
             <div className="mt-16 mb-8">
