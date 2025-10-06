@@ -19,7 +19,6 @@ const PreLanding = () => {
       name: 'محمدصادق افشارنژاد',
     },
     navLinks: [],
-    resume: undefined,
     hero: {
       titleLine1: (
         <div className="space-y-4">
@@ -94,7 +93,6 @@ const PreLanding = () => {
         label: 'Enter My Website / ورود به سایت من',
         onClick: () => navigate('/home'),
       },
-      secondary: undefined,
     },
     projects: [],
     stats: [],
