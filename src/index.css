@@ -383,11 +383,26 @@
   }
 }
 
-@keyframes floatSlow {
+/* Scrollbar hide utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Float animation for starfall component */
+@keyframes float {
   0%, 100% {
-    transform: translateY(0px) rotate(45deg);
+    transform: translateY(0px);
   }
   50% {
-    transform: translateY(-10px) rotate(45deg);
+    transform: translateY(-10px);
   }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
 }
