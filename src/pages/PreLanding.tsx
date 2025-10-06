@@ -1,9 +1,36 @@
 import { PortfolioPage } from "@/components/ui/starfall-portfolio-landing";
-import { Linkedin, Github, Send, Mail, Phone } from "lucide-react";
+import { Linkedin, Github, Send, Mail, Phone, Moon, Sun } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const PreLanding = () => {
   const navigate = useNavigate();
+  const [darkMode, setDarkMode] = useState(false);
+
+  // Initialize dark mode from localStorage or system preference
+  useEffect(() => {
+    const savedMode = localStorage.getItem('darkMode');
+    if (savedMode !== null) {
+      setDarkMode(savedMode === 'true');
+    } else {
+      // Check system preference
+      setDarkMode(window.matchMedia('(prefers-color-scheme: dark)').matches);
+    }
+  }, []);
+
+  // Apply dark mode class to document
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    localStorage.setItem('darkMode', darkMode.toString());
+  }, [darkMode]);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
 
   const socialLinks = [
     { icon: <Linkedin className="w-6 h-6" />, href: "https://linkedin.com/in/afsharnezhad", label: "LinkedIn", color: "#0077b5" },
@@ -19,6 +46,19 @@ const PreLanding = () => {
       name: 'محمدصادق افشارنژاد',
     },
     navLinks: [],
+    darkModeToggle: (
+      <button
+        onClick={toggleDarkMode}
+        className="fixed top-6 right-6 z-50 w-12 h-12 bg-card/30 backdrop-blur-md border border-border hover:bg-card/50 transition-all rounded-full flex items-center justify-center group"
+        aria-label="Toggle dark mode"
+      >
+        {darkMode ? (
+          <Sun className="w-5 h-5 text-foreground group-hover:rotate-45 transition-transform duration-300" />
+        ) : (
+          <Moon className="w-5 h-5 text-foreground group-hover:-rotate-12 transition-transform duration-300" />
+        )}
+      </button>
+    ),
     hero: {
       titleLine1: (
         <div className="space-y-4">

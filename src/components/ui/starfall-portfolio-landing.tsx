@@ -17,6 +17,7 @@ export interface PortfolioPageProps {
   projects?: Project[];
   stats?: Stat[];
   showAnimatedBackground?: boolean;
+  darkModeToggle?: React.ReactNode;
 }
 
 // --- INTERNAL ANIMATED BACKGROUND COMPONENT ---
@@ -85,10 +86,12 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({
   projects = defaultData.projects,
   stats = defaultData.stats,
   showAnimatedBackground = true,
+  darkModeToggle,
 }) => {
   return (
     <div className="bg-background text-foreground">
       {showAnimatedBackground && <AuroraBackground />}
+      {darkModeToggle}
       <div className="relative">
         <nav className="w-full px-6 py-4">
             <div className="max-w-7xl mx-auto flex justify-between items-center">
