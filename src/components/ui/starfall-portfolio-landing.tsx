@@ -123,7 +123,7 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({
                 </div>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
                     {ctaButtons.primary && (
-                      <button onClick={ctaButtons.primary.onClick} className="bg-primary hover:bg-primary/90 transition-colors px-6 py-3 text-primary-foreground rounded-lg font-medium text-sm min-w-[160px]">{ctaButtons.primary.label}</button>
+                      <div>{ctaButtons.primary.label}</div>
                     )}
                     {ctaButtons.secondary && (
                       <button onClick={ctaButtons.secondary.onClick} className="bg-card/30 backdrop-blur-md border border-border hover:bg-card/50 transition-all min-w-[160px] text-sm font-medium text-foreground rounded-lg px-6 py-3">{ctaButtons.secondary.label}</button>

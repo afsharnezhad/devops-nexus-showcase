@@ -3,6 +3,7 @@ import { Linkedin, Github, Send, Mail, Phone, Moon, Sun } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import autoopsLogo from "@/assets/autoops-logo-new.png";
+import { LiquidButton } from "@/components/ui/liquid-glass-button";
 
 const PreLanding = () => {
   const navigate = useNavigate();
@@ -135,8 +136,14 @@ const PreLanding = () => {
     },
     ctaButtons: {
       primary: {
-        label: 'Enter My Website / ورود به سایت من',
-        onClick: () => navigate('/home'),
+        label: (
+          <LiquidButton 
+            onClick={() => navigate('/home')}
+            className="text-lg font-semibold"
+          >
+            Enter My Website / ورود به سایت من
+          </LiquidButton>
+        ),
       },
     },
     projects: [],
