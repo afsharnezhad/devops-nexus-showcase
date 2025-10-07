@@ -6,7 +6,7 @@ import autoopsLogo from "@/assets/autoops-logo.png";
 
 const PreLanding = () => {
   const navigate = useNavigate();
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
 
   // Initialize dark mode from localStorage or system preference
   useEffect(() => {
