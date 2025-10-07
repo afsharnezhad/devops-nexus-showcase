@@ -39,9 +39,6 @@ const Hero = () => {
       <div className="absolute inset-0 opacity-20 dark:opacity-30">
         <ShaderAnimation />
       </div>
-      
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/80 to-background z-[1]"></div>
 
       {/* Tech Icons Background Pattern */}
       <div className="absolute inset-0 pointer-events-none z-10">
