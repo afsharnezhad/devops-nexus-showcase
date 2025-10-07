@@ -65,7 +65,7 @@ const PreLanding = () => {
         <div className="space-y-4">
           {/* Profile Photo */}
           <div className="flex justify-center mb-8 animate-fade-in">
-            <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-primary/20 shadow-lg">
+            <div className="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-primary/20 shadow-lg hover:scale-105 transition-transform duration-300">
               <img 
                 src="/professional-photo.png" 
                 alt="Mohammad Sadegh Afsharnezhad Mehrabi"
