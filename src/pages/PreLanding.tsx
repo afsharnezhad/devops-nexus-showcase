@@ -2,6 +2,7 @@ import { PortfolioPage } from "@/components/ui/starfall-portfolio-landing";
 import { Linkedin, Github, Send, Mail, Phone, Moon, Sun } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import autoopsLogo from "@/assets/autoops-logo.png";
 
 const PreLanding = () => {
   const navigate = useNavigate();
@@ -42,8 +43,8 @@ const PreLanding = () => {
 
   const portfolioData = {
     logo: {
-      initials: 'MA',
-      name: 'محمدصادق افشارنژاد',
+      initials: <img src={autoopsLogo} alt="AutoOps Logo" className="w-full h-full object-contain" />,
+      name: '',
     },
     navLinks: [],
     darkModeToggle: (
