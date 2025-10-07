@@ -96,8 +96,8 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({
         <nav className="w-full px-6 py-4">
             <div className="max-w-7xl mx-auto flex justify-between items-center">
                 <div className="flex items-center space-x-2">
-                    <div className="h-12 rounded-lg flex items-center justify-center">
-                        <span className="text-sm font-bold text-foreground">{logo.initials}</span>
+                    <div className="flex items-center justify-center">
+                        {logo.initials}
                     </div>
                     <span className="text-lg font-medium text-foreground">{logo.name}</span>
                 </div>
