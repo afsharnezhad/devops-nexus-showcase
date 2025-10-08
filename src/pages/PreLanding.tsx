@@ -45,7 +45,7 @@ const PreLanding = () => {
   const portfolioData = {
     logo: {
       initials: (
-        <div className="w-14 h-14 rounded-full border-2 border-primary/30 bg-background/50 backdrop-blur-sm flex items-center justify-center p-2 shadow-lg">
+        <div className="w-24 h-24 rounded-full border-2 border-primary/30 bg-background/50 backdrop-blur-sm flex items-center justify-center p-3 shadow-lg">
           <img src={autoopsLogo} alt="AutoOps Logo" className="w-full h-full object-contain" />
         </div>
       ),
@@ -67,52 +67,9 @@ const PreLanding = () => {
     ),
     hero: {
       titleLine1: (
-        <div className="space-y-4">
-          {/* Profile Photo */}
-          <div className="flex justify-center mb-8 animate-fade-in">
-            <div className="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-primary/20 shadow-lg hover:scale-105 transition-transform duration-300">
-              <img 
-                src="/professional-photo.png" 
-                alt="Mohammad Sadegh Afsharnezhad Mehrabi"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
-          
-          {/* English */}
-          <div className="text-left sm:text-center">
-            <p className="text-xl md:text-2xl font-light mb-2">Hi, I'm</p>
-            <p className="text-3xl md:text-5xl font-bold mb-4">Mohammad Sadegh Afsharnezhad Mehrabi</p>
-          </div>
-        </div>
-      ),
-      titleLine2Gradient: (
-        <span className="text-2xl md:text-4xl">IT Support & DevOps Professional</span>
-      ),
-      subtitle: (
-        <div className="space-y-8">
-          {/* English Description */}
-          <p className="text-base md:text-lg text-left sm:text-center">
-            Helping people solve technical problems and build smarter systems.
-          </p>
-          
-          {/* Divider */}
-          <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent my-8" />
-          
-          {/* Persian Section */}
-          <div className="text-right sm:text-center font-vazirmatn" dir="rtl">
-            <p className="text-xl md:text-2xl font-light mb-2">سلام، من</p>
-            <p className="text-3xl md:text-5xl font-bold mb-4">محمدصادق افشارنژاد مهرابی</p>
-            <p className="text-2xl md:text-4xl bg-gradient-to-r from-primary via-purple-500 to-primary bg-clip-text text-transparent mb-4">
-              متخصص پشتیبانی فناوری اطلاعات و علاقه‌مند به DevOps
-            </p>
-            <p className="text-base md:text-lg">
-              به افراد کمک می‌کنم مشکلات فنی‌شان را حل کنند و سیستم‌های هوشمندتری بسازند.
-            </p>
-          </div>
-
-          {/* Social Links */}
-          <div className="flex flex-wrap justify-center gap-4 mt-12">
+        <div className="flex items-center justify-between gap-8 max-w-6xl mx-auto px-8">
+          {/* Left Side - Social Links */}
+          <div className="flex flex-col gap-4">
             {socialLinks.map((link) => (
               <a
                 key={link.label}
@@ -125,14 +82,60 @@ const PreLanding = () => {
                 <div className="text-muted-foreground group-hover:text-foreground transition-colors">
                   {link.icon}
                 </div>
-                <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                <span className="absolute left-20 text-sm text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                   {link.label}
                 </span>
               </a>
             ))}
           </div>
+
+          {/* Center - Text Content */}
+          <div className="flex-1 text-center space-y-4">
+            {/* English */}
+            <div>
+              <p className="text-xl font-light mb-2">Hi, I'm</p>
+              <p className="text-3xl md:text-4xl font-bold mb-3">Mohammad Sadegh Afsharnezhad Mehrabi</p>
+              <p className="text-xl md:text-2xl bg-gradient-to-r from-primary via-purple-500 to-primary bg-clip-text text-transparent mb-4">
+                IT Support & DevOps Professional
+              </p>
+              <p className="text-sm md:text-base text-muted-foreground mb-6">
+                Helping people solve technical problems and build smarter systems.
+              </p>
+            </div>
+            
+            {/* Divider */}
+            <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent my-4" />
+            
+            {/* Persian Section */}
+            <div className="text-center font-vazirmatn" dir="rtl">
+              <p className="text-xl font-light mb-2">سلام، من</p>
+              <p className="text-3xl md:text-4xl font-bold mb-3">محمدصادق افشارنژاد مهرابی</p>
+              <p className="text-xl md:text-2xl bg-gradient-to-r from-primary via-purple-500 to-primary bg-clip-text text-transparent mb-4">
+                متخصص پشتیبانی فناوری اطلاعات و علاقه‌مند به DevOps
+              </p>
+              <p className="text-sm md:text-base text-muted-foreground">
+                به افراد کمک می‌کنم مشکلات فنی‌شان را حل کنند و سیستم‌های هوشمندتری بسازند.
+              </p>
+            </div>
+          </div>
+
+          {/* Right Side - Photo and Logo */}
+          <div className="flex flex-col items-center gap-6">
+            <div className="w-24 h-24 rounded-full border-2 border-primary/30 bg-background/50 backdrop-blur-sm flex items-center justify-center p-3 shadow-lg">
+              <img src={autoopsLogo} alt="AutoOps Logo" className="w-full h-full object-contain" />
+            </div>
+            <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-primary/20 shadow-lg hover:scale-105 transition-transform duration-300">
+              <img 
+                src="/professional-photo.png" 
+                alt="Mohammad Sadegh Afsharnezhad Mehrabi"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
         </div>
       ),
+      titleLine2Gradient: '',
+      subtitle: '',
     },
     ctaButtons: {
       primary: {

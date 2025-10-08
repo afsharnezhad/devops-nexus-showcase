@@ -6,7 +6,7 @@ interface NavLink { label: string; href: string; }
 interface Project { title: string; description: string; tags: string[]; imageContent?: React.ReactNode; }
 interface Stat { value: string; label: string; }
 interface ResumeButton { label: string; onClick?: () => void; }
-interface CTAButton { label: string; onClick?: () => void; }
+interface CTAButton { label: React.ReactNode; onClick?: () => void; }
 
 export interface PortfolioPageProps {
   logo?: { initials: React.ReactNode; name: React.ReactNode; };
@@ -112,7 +112,7 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({
             </div>
         </nav>
         <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-        <main id="about" className="w-full min-h-screen flex flex-col items-center justify-center px-6 py-20">
+        <main id="about" className="w-full h-screen flex flex-col items-center justify-center px-6">
             <div className="max-w-6xl mx-auto text-center">
                 <div className="mb-8 animate-fade-in">
                     <h1 className="md:text-6xl lg:text-7xl leading-[1.1] text-5xl font-light text-foreground tracking-tight mb-4">
