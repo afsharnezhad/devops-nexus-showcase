@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import autoopsLogo from "@/assets/autoops-logo-new.png";
 import { LiquidButton } from "@/components/ui/liquid-glass-button";
+import FancyButton from "@/components/ui/shiny-button";
 
 const PreLanding = () => {
   const navigate = useNavigate();
@@ -35,11 +36,11 @@ const PreLanding = () => {
   };
 
   const socialLinks = [
-    { icon: <Linkedin className="w-6 h-6" />, href: "https://linkedin.com/in/afsharnezhad", label: "LinkedIn", color: "#0077b5" },
-    { icon: <Github className="w-6 h-6" />, href: "https://github.com/afsharnezhad", label: "GitHub", color: "#333" },
-    { icon: <Send className="w-6 h-6" />, href: "https://t.me/eafshar", label: "Telegram", color: "#0088cc" },
-    { icon: <Mail className="w-6 h-6" />, href: "mailto:mo.afsharnezhad@gmail.com", label: "Email", color: "#ea4335" },
-    { icon: <Phone className="w-6 h-6" />, href: "tel:+989126626282", label: "Phone", color: "#34a853" },
+    { icon: <Linkedin className="w-6 h-6" />, href: "https://linkedin.com/in/afsharnezhad", label: "LinkedIn", variant: "indigo" as const },
+    { icon: <Github className="w-6 h-6" />, href: "https://github.com/afsharnezhad", label: "GitHub", variant: "default" as const },
+    { icon: <Send className="w-6 h-6" />, href: "https://t.me/eafshar", label: "Telegram", variant: "indigo" as const },
+    { icon: <Mail className="w-6 h-6" />, href: "mailto:mo.afsharnezhad@gmail.com", label: "Email", variant: "red" as const },
+    { icon: <Phone className="w-6 h-6" />, href: "tel:+989126626282", label: "Phone", variant: "green" as const },
   ];
 
   const portfolioData = {
@@ -76,13 +77,15 @@ const PreLanding = () => {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative w-16 h-16 bg-card/30 backdrop-blur-md border border-border hover:border-primary/50 rounded-2xl flex items-center justify-center transition-all hover:scale-110 hover:shadow-lg"
+                className="group relative"
                 aria-label={link.label}
               >
-                <div className="text-muted-foreground group-hover:text-foreground transition-colors">
-                  {link.icon}
-                </div>
-                <span className="absolute left-20 text-sm text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                <FancyButton 
+                  icon={link.icon}
+                  variant={link.variant}
+                  ariaLabel={link.label}
+                />
+                <span className="absolute left-20 top-1/2 -translate-y-1/2 text-sm text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                   {link.label}
                 </span>
               </a>
