@@ -3,7 +3,7 @@ import { Linkedin, Github, Send, Mail, Phone, Moon, Sun } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import autoopsLogo from "@/assets/autoops-logo-new.png";
-import { LiquidButton } from "@/components/ui/liquid-glass-button";
+import { GradientButton } from "@/components/ui/gradient-button";
 import FancyButton from "@/components/ui/shiny-button";
 
 const PreLanding = () => {
@@ -122,12 +122,9 @@ const PreLanding = () => {
             </div>
           </div>
 
-          {/* Right Side - Photo and Logo */}
-          <div className="flex flex-col items-center gap-6">
-            <div className="w-24 h-24 rounded-full border-2 border-primary/30 bg-background/50 backdrop-blur-sm flex items-center justify-center p-3 shadow-lg">
-              <img src={autoopsLogo} alt="AutoOps Logo" className="w-full h-full object-contain" />
-            </div>
-            <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-primary/20 shadow-lg hover:scale-105 transition-transform duration-300">
+          {/* Right Side - Photo */}
+          <div className="flex flex-col items-center">
+            <div className="w-56 h-72 rounded-2xl overflow-hidden border-4 border-primary/20 shadow-lg hover:scale-105 transition-transform duration-300">
               <img 
                 src="/professional-photo.png" 
                 alt="Mohammad Sadegh Afsharnezhad Mehrabi"
@@ -143,12 +140,12 @@ const PreLanding = () => {
     ctaButtons: {
       primary: {
         label: (
-          <LiquidButton 
+          <GradientButton 
             onClick={() => navigate('/home')}
             className="text-lg font-semibold"
           >
             Enter My Website / ورود به سایت من
-          </LiquidButton>
+          </GradientButton>
         ),
       },
     },
