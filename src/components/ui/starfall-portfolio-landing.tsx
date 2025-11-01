@@ -202,7 +202,7 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({
                 <div className="hidden md:flex items-center space-x-8">
                     {navLinks.map(link => <a key={link.label} href={link.href} className="text-muted-foreground hover:text-foreground transition-colors text-sm">{link.label}</a>)}
                 </div>
-                {resume}
+                {resume && <button onClick={resume.onClick} className="bg-card/30 backdrop-blur-md border border-border hover:bg-card/50 transition-all text-sm font-medium text-foreground rounded-lg px-6 py-3">{resume.label}</button>}
             </div>
         </nav>
         <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
