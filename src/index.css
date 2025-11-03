@@ -37,25 +37,25 @@
 
   @property --color-2 {
     syntax: '<color>';
-    initial-value: #08012c;
+    initial-value: #1a0a00;
     inherits: false;
   }
 
   @property --color-3 {
     syntax: '<color>';
-    initial-value: #4e1e40;
+    initial-value: #4a2600;
     inherits: false;
   }
 
   @property --color-4 {
     syntax: '<color>';
-    initial-value: #70464e;
+    initial-value: #7c3a00;
     inherits: false;
   }
 
   @property --color-5 {
     syntax: '<color>';
-    initial-value: #88394c;
+    initial-value: #b85500;
     inherits: false;
   }
 
@@ -67,13 +67,13 @@
 
   @property --border-color-1 {
     syntax: '<color>';
-    initial-value: hsla(340, 75%, 60%, 0.2);
+    initial-value: hsla(35, 85%, 60%, 0.3);
     inherits: true;
   }
 
   @property --border-color-2 {
     syntax: '<color>';
-    initial-value: hsla(340, 75%, 40%, 0.75);
+    initial-value: hsla(35, 85%, 50%, 0.8);
     inherits: true;
   }
 
@@ -561,14 +561,14 @@
     --pos-y: 91.51%;
     --spread-x: 120.24%;
     --spread-y: 103.18%;
-    --color-1: #c96287;
-    --color-2: #c66c64;
-    --color-3: #cc7d23;
-    --color-4: #37140a;
+    --color-1: #fbbf24;
+    --color-2: #fb923c;
+    --color-3: #f97316;
+    --color-4: #ea580c;
     --color-5: #000;
     --border-angle: 190deg;
-    --border-color-1: hsla(340, 78%, 90%, 0.1);
-    --border-color-2: hsla(340, 75%, 90%, 0.6);
+    --border-color-1: hsla(35, 88%, 80%, 0.2);
+    --border-color-2: hsla(35, 88%, 70%, 0.8);
     --stop-1: 0%;
     --stop-2: 8.8%;
     --stop-3: 21.44%;
@@ -577,13 +577,13 @@
   }
 
   .gradient-button-variant {
-    --color-1: #000022;
-    --color-2: #1f3f6d;
-    --color-3: #469396;
-    --color-4: #f1ffa5;
+    --color-1: #000;
+    --color-2: #78350f;
+    --color-3: #b45309;
+    --color-4: #fde047;
     --border-angle: 200deg;
-    --border-color-1: hsla(320, 75%, 90%, 0.6);
-    --border-color-2: hsla(320, 50%, 90%, 0.15);
+    --border-color-1: hsla(45, 90%, 70%, 0.6);
+    --border-color-2: hsla(45, 90%, 60%, 0.2);
   }
 
   .gradient-button-variant:hover {
@@ -591,10 +591,10 @@
     --pos-y: 95.51%;
     --spread-x: 110.24%;
     --spread-y: 110.2%;
-    --color-1: #000020;
-    --color-2: #f1ffa5;
-    --color-3: #469396;
-    --color-4: #1f3f6d;
+    --color-1: #000;
+    --color-2: #fde047;
+    --color-3: #fb923c;
+    --color-4: #78350f;
     --color-5: #000;
     --stop-1: 0%;
     --stop-2: 10%;
@@ -602,7 +602,7 @@
     --stop-4: 71.34%;
     --stop-5: 90.76%;
     --border-angle: 210deg;
-    --border-color-1: hsla(320, 75%, 90%, 0.2);
-    --border-color-2: hsla(320, 50%, 90%, 0.75);
+    --border-color-1: hsla(45, 90%, 70%, 0.3);
+    --border-color-2: hsla(45, 90%, 60%, 0.8);
   }
 }
