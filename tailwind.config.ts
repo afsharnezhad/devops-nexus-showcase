@@ -78,6 +78,7 @@ export default {
       },
       fontFamily: {
         'vazirmatn': ['Vazirmatn', 'system-ui', '-apple-system', 'sans-serif'],
+        'space': ['Space Grotesk', 'system-ui', 'sans-serif'],
         'sans': ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
       },
       transitionTimingFunction: {

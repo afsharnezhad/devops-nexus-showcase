@@ -379,21 +379,21 @@ const Hero: React.FC<HeroProps> = ({
       />
       
       {/* Hero Content Overlay */}
-      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-foreground">
+      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center">
         {/* Trust Badge */}
         {trustBadge && (
           <div className="mb-8 animate-fade-in-down">
-            <div className="flex items-center gap-2 px-6 py-3 bg-primary/10 backdrop-blur-md border border-primary/30 rounded-full text-sm">
+            <div className="flex items-center gap-2 px-6 py-3 bg-amber-500/10 backdrop-blur-md border border-amber-400/30 rounded-full text-sm shadow-lg shadow-amber-500/5">
               {trustBadge.icons && (
                 <div className="flex">
                   {trustBadge.icons.map((icon, index) => (
-                    <span key={index} className="text-primary">
+                    <span key={index} className="text-amber-300 text-lg">
                       {icon}
                     </span>
                   ))}
                 </div>
               )}
-              <span className="text-foreground/90">{trustBadge.text}</span>
+              <span className="text-amber-50/90 font-space font-medium">{trustBadge.text}</span>
             </div>
           </div>
         )}
@@ -401,17 +401,17 @@ const Hero: React.FC<HeroProps> = ({
         <div className="text-center space-y-6 max-w-5xl mx-auto px-4">
           {/* Main Heading with Animation */}
           <div className="space-y-2">
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent animate-fade-in-up animation-delay-200">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold font-space bg-gradient-to-r from-amber-200 via-orange-300 to-amber-400 bg-clip-text text-transparent animate-fade-in-up animation-delay-200 drop-shadow-[0_0_30px_rgba(251,191,36,0.3)]">
               {headline.line1}
             </h1>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-primary/60 via-primary/80 to-primary bg-clip-text text-transparent animate-fade-in-up animation-delay-400">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold font-vazirmatn bg-gradient-to-r from-orange-300 via-amber-300 to-yellow-300 bg-clip-text text-transparent animate-fade-in-up animation-delay-400 drop-shadow-[0_0_30px_rgba(251,191,36,0.3)]">
               {headline.line2}
             </h1>
           </div>
           
           {/* Subtitle with Animation */}
           <div className="max-w-3xl mx-auto animate-fade-in-up animation-delay-600">
-            <p className="text-lg md:text-xl lg:text-2xl text-foreground/80 font-light leading-relaxed">
+            <p className="text-lg md:text-xl lg:text-2xl text-amber-100/90 font-light leading-relaxed font-space">
               {subtitle}
             </p>
           </div>
