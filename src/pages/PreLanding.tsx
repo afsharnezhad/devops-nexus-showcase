@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { GradientButton } from "@/components/ui/gradient-button";
 import FancyButton from "@/components/ui/shiny-button";
+import TechIconsCarousel from "@/components/ui/tech-icons-carousel";
 const PreLanding = () => {
   const navigate = useNavigate();
   const [darkMode, setDarkMode] = useState(true);
@@ -86,9 +87,15 @@ const PreLanding = () => {
         subtitle="Helping people solve technical problems and build smarter systems | به افراد کمک می‌کنم مشکلات فنی‌شان را حل کنند و سیستم‌های هوشمندتری بسازند"
         buttons={{
           primary: (
-            <GradientButton onClick={() => navigate('/home')} className="text-lg font-semibold">
-              Enter My Website / ورود به سایت من
-            </GradientButton>
+            <>
+              <GradientButton onClick={() => navigate('/home')} className="text-lg font-semibold">
+                Enter My Website / ورود به سایت من
+              </GradientButton>
+              {/* Tech Icons Carousel */}
+              <div className="mt-6 w-full max-w-3xl mx-auto">
+                <TechIconsCarousel />
+              </div>
+            </>
           ),
           secondary: (
             <div className="flex gap-3">
