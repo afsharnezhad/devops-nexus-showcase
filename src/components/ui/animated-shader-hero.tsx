@@ -382,43 +382,43 @@ const Hero: React.FC<HeroProps> = ({
       <div className="absolute inset-0 z-10 flex flex-col items-center justify-center">
         {/* Trust Badge */}
         {trustBadge && (
-          <div className="mb-8 animate-fade-in-down">
-            <div className="flex items-center gap-2 px-6 py-3 bg-amber-500/10 backdrop-blur-md border border-amber-400/30 rounded-full text-sm shadow-lg shadow-amber-500/5">
+          <div className="mb-4 sm:mb-6 animate-fade-in-down px-4">
+            <div className="flex items-center gap-2 px-3 sm:px-6 py-2 sm:py-3 bg-amber-500/10 backdrop-blur-md border border-amber-400/30 rounded-full text-xs sm:text-sm shadow-lg shadow-amber-500/5 max-w-full">
               {trustBadge.icons && (
-                <div className="flex">
+                <div className="flex flex-shrink-0">
                   {trustBadge.icons.map((icon, index) => (
-                    <span key={index} className="text-amber-300 text-lg">
+                    <span key={index} className="text-amber-300 text-base sm:text-lg">
                       {icon}
                     </span>
                   ))}
                 </div>
               )}
-              <span className="text-amber-50/90 font-space font-medium">{trustBadge.text}</span>
+              <span className="text-amber-50/90 font-space font-medium truncate">{trustBadge.text}</span>
             </div>
           </div>
         )}
 
-        <div className="text-center space-y-6 max-w-5xl mx-auto px-4">
+        <div className="text-center space-y-4 sm:space-y-6 max-w-5xl mx-auto px-4">
           {/* Main Heading with Animation */}
-          <div className="space-y-2">
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold font-space bg-gradient-to-r from-amber-200 via-orange-300 to-amber-400 bg-clip-text text-transparent animate-fade-in-up animation-delay-200 drop-shadow-[0_0_30px_rgba(251,191,36,0.3)]">
+          <div className="space-y-1 sm:space-y-2">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold font-space bg-gradient-to-r from-amber-200 via-orange-300 to-amber-400 bg-clip-text text-transparent animate-fade-in-up animation-delay-200 drop-shadow-[0_0_30px_rgba(251,191,36,0.3)]">
               {headline.line1}
             </h1>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold font-vazirmatn bg-gradient-to-r from-orange-300 via-amber-300 to-yellow-300 bg-clip-text text-transparent animate-fade-in-up animation-delay-400 drop-shadow-[0_0_30px_rgba(251,191,36,0.3)]">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold font-vazirmatn bg-gradient-to-r from-orange-300 via-amber-300 to-yellow-300 bg-clip-text text-transparent animate-fade-in-up animation-delay-400 drop-shadow-[0_0_30px_rgba(251,191,36,0.3)]">
               {headline.line2}
             </h1>
           </div>
           
           {/* Subtitle with Animation */}
           <div className="max-w-3xl mx-auto animate-fade-in-up animation-delay-600">
-            <p className="text-lg md:text-xl lg:text-2xl text-amber-100/90 font-light leading-relaxed font-space">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-amber-100/90 font-light leading-relaxed font-space">
               {subtitle}
             </p>
           </div>
           
           {/* CTA Buttons with Animation */}
           {buttons && (
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10 animate-fade-in-up animation-delay-800">
+            <div className="flex flex-col gap-3 sm:gap-4 justify-center items-center mt-6 sm:mt-8 animate-fade-in-up animation-delay-800">
               {buttons.primary}
               {buttons.secondary}
             </div>

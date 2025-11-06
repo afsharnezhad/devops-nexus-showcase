@@ -87,38 +87,38 @@ const PreLanding = () => {
         subtitle="Helping people solve technical problems and build smarter systems | به افراد کمک می‌کنم مشکلات فنی‌شان را حل کنند و سیستم‌های هوشمندتری بسازند"
         buttons={{
           primary: (
+            <GradientButton onClick={() => navigate('/home')} className="text-base sm:text-lg font-semibold">
+              Enter My Website / ورود به سایت من
+            </GradientButton>
+          ),
+          secondary: (
             <>
-              <GradientButton onClick={() => navigate('/home')} className="text-lg font-semibold">
-                Enter My Website / ورود به سایت من
-              </GradientButton>
+              <div className="flex flex-wrap gap-2 sm:gap-3 justify-center">
+                {socialLinks.map(link => (
+                  <a 
+                    key={link.label} 
+                    href={link.href} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="group relative" 
+                    aria-label={link.label}
+                  >
+                    <FancyButton 
+                      icon={link.icon} 
+                      variant={link.variant} 
+                      ariaLabel={link.label} 
+                    />
+                    <span className="absolute left-1/2 -translate-x-1/2 top-full mt-2 text-xs text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                      {link.label}
+                    </span>
+                  </a>
+                ))}
+              </div>
               {/* Tech Icons Carousel */}
               <div className="mt-6 w-full max-w-3xl mx-auto">
                 <TechIconsCarousel />
               </div>
             </>
-          ),
-          secondary: (
-            <div className="flex gap-3">
-              {socialLinks.map(link => (
-                <a 
-                  key={link.label} 
-                  href={link.href} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="group relative" 
-                  aria-label={link.label}
-                >
-                  <FancyButton 
-                    icon={link.icon} 
-                    variant={link.variant} 
-                    ariaLabel={link.label} 
-                  />
-                  <span className="absolute left-1/2 -translate-x-1/2 top-full mt-2 text-xs text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                    {link.label}
-                  </span>
-                </a>
-              ))}
-            </div>
           )
         }}
       />
