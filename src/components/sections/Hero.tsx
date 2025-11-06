@@ -88,13 +88,13 @@ const Hero = () => {
             
             <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-4' : 'space-x-4'}`}>
               <Button variant="ghost" size="lg" className="text-foreground hover:text-foreground hover:bg-foreground/10 p-3" asChild>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <a href="https://linkedin.com/in/afsharnezhad" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                   <Linkedin className="h-6 w-6" />
                 </a>
               </Button>
               
               <Button variant="ghost" size="lg" className="text-foreground hover:text-foreground hover:bg-foreground/10 p-3" asChild>
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <a href="https://github.com/afsharnezhad" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                   <Github className="h-6 w-6" />
                 </a>
               </Button>

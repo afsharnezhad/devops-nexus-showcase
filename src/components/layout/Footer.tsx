@@ -28,7 +28,7 @@ const Footer = () => {
                   asChild
                 >
                   <a
-                    href="https://linkedin.com"
+                    href="https://linkedin.com/in/afsharnezhad"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="LinkedIn"
@@ -43,7 +43,7 @@ const Footer = () => {
                   asChild
                 >
                   <a
-                    href="https://github.com"
+                    href="https://github.com/afsharnezhad"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="GitHub"
@@ -58,7 +58,7 @@ const Footer = () => {
                   asChild
                 >
                   <a
-                    href="mailto:info@mysite.com"
+                    href="mailto:mo.afsharnezhad@gmail.com"
                     aria-label="Email"
                   >
                     <Mail className="h-5 w-5" />

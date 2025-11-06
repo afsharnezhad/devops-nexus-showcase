@@ -27,37 +27,37 @@ const Contact = () => {
       icon: <SiLinkedin />, 
       color: 'blue', 
       label: 'LinkedIn',
-      href: 'https://linkedin.com/in/yourprofile'
+      href: 'https://linkedin.com/in/afsharnezhad'
     },
     { 
       icon: <SiGithub />, 
       color: 'purple', 
       label: 'GitHub',
-      href: 'https://github.com/yourusername'
+      href: 'https://github.com/afsharnezhad'
     },
     { 
       icon: <SiX />, 
       color: 'indigo', 
       label: 'X / Twitter',
-      href: 'https://x.com/yourusername'
+      href: 'https://x.com/autoopsai'
     },
     { 
       icon: <SiInstagram />, 
       color: 'red', 
       label: 'Instagram',
-      href: 'https://instagram.com/yourusername'
+      href: '#'
     },
     { 
       icon: <SiYoutube />, 
       color: 'orange', 
       label: 'YouTube',
-      href: 'https://youtube.com/@yourchannel'
+      href: '#'
     },
     { 
       icon: <Mail />, 
       color: 'green', 
       label: 'Email',
-      href: 'mailto:info@mysite.com'
+      href: 'mailto:mo.afsharnezhad@gmail.com'
     },
   ];
 
@@ -148,10 +148,10 @@ const Contact = () => {
                       <div>
                         <p className="font-semibold text-foreground">{t('email')}</p>
                         <a 
-                          href="mailto:info@mysite.com" 
+                          href="mailto:mo.afsharnezhad@gmail.com" 
                           className="text-muted-foreground hover:text-primary transition-colors duration-200"
                         >
-                          info@mysite.com
+                          mo.afsharnezhad@gmail.com
                         </a>
                       </div>
                     </div>

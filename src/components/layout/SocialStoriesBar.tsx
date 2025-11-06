@@ -19,7 +19,7 @@ const socialStories: SocialStory[] = [
   {
     id: "linkedin",
     platform: "LinkedIn",
-    url: "https://linkedin.com/in/YOUR_PROFILE",
+    url: "https://linkedin.com/in/afsharnezhad",
     icon: <FaLinkedin className="w-8 h-8 text-[#0077B5]" />,
     gradientStart: "#0077B5",
     gradientEnd: "#00A0DC",
@@ -29,7 +29,7 @@ const socialStories: SocialStory[] = [
   {
     id: "github",
     platform: "GitHub",
-    url: "https://github.com/YOUR_PROFILE",
+    url: "https://github.com/afsharnezhad",
     icon: <FaGithub className="w-8 h-8 text-[#333] dark:text-white" />,
     gradientStart: "#333",
     gradientEnd: "#6e5494",
@@ -39,7 +39,7 @@ const socialStories: SocialStory[] = [
   {
     id: "twitter",
     platform: "X (Twitter)",
-    url: "https://twitter.com/YOUR_PROFILE",
+    url: "https://x.com/autoopsai",
     icon: <FaXTwitter className="w-7 h-7 text-[#000] dark:text-white" />,
     gradientStart: "#1DA1F2",
     gradientEnd: "#14171A",
@@ -48,7 +48,7 @@ const socialStories: SocialStory[] = [
   {
     id: "instagram",
     platform: "Instagram",
-    url: "https://instagram.com/YOUR_PROFILE",
+    url: "#",
     icon: <FaInstagram className="w-8 h-8 text-[#E1306C]" />,
     gradientStart: "#833AB4",
     gradientEnd: "#FD1D1D",
@@ -57,7 +57,7 @@ const socialStories: SocialStory[] = [
   {
     id: "youtube",
     platform: "YouTube",
-    url: "https://youtube.com/@YOUR_CHANNEL",
+    url: "#",
     icon: <FaYoutube className="w-9 h-9 text-[#FF0000]" />,
     gradientStart: "#FF0000",
     gradientEnd: "#CC0000",
