@@ -17,29 +17,27 @@ const ShaderBackground = () => {
     uniform vec2 iResolution;
     uniform float iTime;
 
-    const float overallSpeed = 0.2;
-    const float gridSmoothWidth = 0.015;
-    const float axisWidth = 0.05;
-    const float majorLineWidth = 0.025;
-    const float minorLineWidth = 0.0125;
-    const float majorLineFrequency = 5.0;
-    const float minorLineFrequency = 1.0;
-    const vec4 gridColor = vec4(0.5);
-    const float scale = 5.0;
-    const vec4 lineColor = vec4(0.4, 0.2, 0.8, 1.0);
-    const float minLineWidth = 0.01;
-    const float maxLineWidth = 0.2;
-    const float lineSpeed = 1.0 * overallSpeed;
-    const float lineAmplitude = 1.0;
-    const float lineFrequency = 0.2;
-    const float warpSpeed = 0.2 * overallSpeed;
-    const float warpFrequency = 0.5;
-    const float warpAmplitude = 1.0;
-    const offsetFrequency = 0.5;
-    const float offsetSpeed = 1.33 * overallSpeed;
-    const float minOffsetSpread = 0.6;
-    const float maxOffsetSpread = 2.0;
-    const int linesPerGroup = 16;
+    #define overallSpeed 0.2
+    #define gridSmoothWidth 0.015
+    #define axisWidth 0.05
+    #define majorLineWidth 0.025
+    #define minorLineWidth 0.0125
+    #define majorLineFrequency 5.0
+    #define minorLineFrequency 1.0
+    #define scale 5.0
+    #define minLineWidth 0.01
+    #define maxLineWidth 0.2
+    #define lineSpeed 0.2
+    #define lineAmplitude 1.0
+    #define lineFrequency 0.2
+    #define warpSpeed 0.04
+    #define warpFrequency 0.5
+    #define warpAmplitude 1.0
+    #define offsetFrequency 0.5
+    #define offsetSpeed 0.266
+    #define minOffsetSpread 0.6
+    #define maxOffsetSpread 2.0
+    #define linesPerGroup 16
 
     #define drawCircle(pos, radius, coord) smoothstep(radius + gridSmoothWidth, radius, length(coord - (pos)))
     #define drawSmoothLine(pos, halfWidth, t) smoothstep(halfWidth, 0.0, abs(pos - (t)))
@@ -79,6 +77,7 @@ const ShaderBackground = () => {
       vec4 lines = vec4(0.0);
       vec4 bgColor1 = vec4(0.1, 0.1, 0.3, 1.0);
       vec4 bgColor2 = vec4(0.3, 0.1, 0.5, 1.0);
+      vec4 lineColor = vec4(0.4, 0.2, 0.8, 1.0);
 
       for(int l = 0; l < linesPerGroup; l++) {
         float normalizedLineIndex = float(l) / float(linesPerGroup);
@@ -226,7 +225,7 @@ const ShaderBackground = () => {
         cancelAnimationFrame(animationId);
       }
     };
-  }, []);
+  }, [vsSource, fsSource]);
 
   return (
     <canvas ref={canvasRef} className="fixed top-0 left-0 w-full h-full -z-10" />
