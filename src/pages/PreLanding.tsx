@@ -90,8 +90,7 @@ const PreLanding = () => {
         </h1>
 
         {/* Subtitle */}
-        <p className="text-sm sm:text-base md:text-lg lg:text-xl text-center text-foreground/80 mb-8 sm:mb-12 max-w-3xl animate-fade-in-up px-4">Helping people solve technical problems and build smarter systems
- 💡 Docker | Kubernetes | Linux | Cloud Infrastructure | CI/CD Pipelines | Network Automation</p>
+        <p className="text-sm sm:text-base md:text-lg lg:text-xl text-center text-foreground/80 mb-8 sm:mb-12 max-w-3xl animate-fade-in-up px-4"> 💡 Docker | Kubernetes | Linux | Cloud Infrastructure | CI/CD Pipelines | Network Automation</p>
 
         {/* CTA Buttons */}
         <div className="flex flex-col items-center gap-6 sm:gap-8 w-full max-w-4xl animate-fade-in-up">
