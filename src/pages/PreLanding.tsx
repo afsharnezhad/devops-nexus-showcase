@@ -58,22 +58,13 @@ const PreLanding = () => {
     label: "Phone",
     variant: "green" as const
   }];
-  return (
-    <div className="relative min-h-screen w-full overflow-hidden">
+  return <div className="relative min-h-screen w-full overflow-hidden">
       {/* Shader Background */}
       <ShaderBackground />
       
       {/* Dark Mode Toggle */}
-      <button 
-        onClick={toggleDarkMode} 
-        className="fixed top-6 right-6 z-50 w-12 h-12 bg-card/30 backdrop-blur-md border border-border hover:bg-card/50 transition-all rounded-full flex items-center justify-center group" 
-        aria-label="Toggle dark mode"
-      >
-        {darkMode ? (
-          <Sun className="w-5 h-5 text-foreground group-hover:rotate-45 transition-transform duration-300" />
-        ) : (
-          <Moon className="w-5 h-5 text-foreground group-hover:-rotate-12 transition-transform duration-300" />
-        )}
+      <button onClick={toggleDarkMode} className="fixed top-6 right-6 z-50 w-12 h-12 bg-card/30 backdrop-blur-md border border-border hover:bg-card/50 transition-all rounded-full flex items-center justify-center group" aria-label="Toggle dark mode">
+        {darkMode ? <Sun className="w-5 h-5 text-foreground group-hover:rotate-45 transition-transform duration-300" /> : <Moon className="w-5 h-5 text-foreground group-hover:-rotate-12 transition-transform duration-300" />}
       </button>
 
       {/* Content */}
@@ -99,41 +90,24 @@ const PreLanding = () => {
         </h1>
 
         {/* Subtitle */}
-        <p className="text-sm sm:text-base md:text-lg lg:text-xl text-center text-foreground/80 mb-8 sm:mb-12 max-w-3xl animate-fade-in-up px-4">
-          Helping people solve technical problems and build smarter systems | به افراد کمک می‌کنم مشکلات فنی‌شان را حل کنند و سیستم‌های هوشمندتری بسازند
-        </p>
+        <p className="text-sm sm:text-base md:text-lg lg:text-xl text-center text-foreground/80 mb-8 sm:mb-12 max-w-3xl animate-fade-in-up px-4">Helping people solve technical problems and build smarter systems
+ 💡 Docker | Kubernetes | Linux | Cloud Infrastructure | CI/CD Pipelines | Network Automation</p>
 
         {/* CTA Buttons */}
         <div className="flex flex-col items-center gap-6 sm:gap-8 w-full max-w-4xl animate-fade-in-up">
           {/* Primary Button */}
-          <GradientButton 
-            onClick={() => navigate('/home')} 
-            className="text-base sm:text-lg font-semibold"
-          >
+          <GradientButton onClick={() => navigate('/home')} className="text-base sm:text-lg font-semibold">
             Enter My Website
           </GradientButton>
 
           {/* Social Links */}
           <div className="flex flex-wrap gap-2 sm:gap-3 justify-center">
-            {socialLinks.map(link => (
-              <a 
-                key={link.label} 
-                href={link.href} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="group relative" 
-                aria-label={link.label}
-              >
-                <FancyButton 
-                  icon={link.icon} 
-                  variant={link.variant} 
-                  ariaLabel={link.label} 
-                />
+            {socialLinks.map(link => <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer" className="group relative" aria-label={link.label}>
+                <FancyButton icon={link.icon} variant={link.variant} ariaLabel={link.label} />
                 <span className="absolute left-1/2 -translate-x-1/2 top-full mt-2 text-xs text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                   {link.label}
                 </span>
-              </a>
-            ))}
+              </a>)}
           </div>
 
           {/* Tech Icons Carousel */}
@@ -142,7 +116,6 @@ const PreLanding = () => {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
 export default PreLanding;
