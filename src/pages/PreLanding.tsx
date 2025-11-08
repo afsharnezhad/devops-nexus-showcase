@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { GradientButton } from "@/components/ui/gradient-button";
 import FancyButton from "@/components/ui/shiny-button";
 import TechIconsCarousel from "@/components/ui/tech-icons-carousel";
+import { RevealText } from "@/components/ui/reveal-text";
 const PreLanding = () => {
   const navigate = useNavigate();
   const [darkMode, setDarkMode] = useState(true);
@@ -79,8 +80,22 @@ const PreLanding = () => {
           </div>
         </div>
 
+        {/* Brand Name with RevealText */}
+        <div className="mb-8 sm:mb-12 animate-fade-in-up">
+          <RevealText 
+            text="AUTOOPS"
+            textColor="text-foreground"
+            overlayColor="text-primary"
+            fontSize="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl"
+            letterDelay={0.08}
+            overlayDelay={0.05}
+            overlayDuration={0.4}
+            springDuration={600}
+          />
+        </div>
+
         {/* Headline */}
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-center mb-4 sm:mb-6 animate-fade-in-up">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4 sm:mb-6 animate-fade-in-up">
           <div className="bg-gradient-to-r from-primary via-purple-400 to-primary bg-clip-text text-transparent">
             Mohammad Sadegh Afsharnezhad
           </div>
