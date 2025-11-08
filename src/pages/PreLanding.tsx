@@ -87,15 +87,6 @@ const PreLanding = () => {
             overlayDelay={0.05} 
             overlayDuration={0.4} 
             springDuration={600}
-            letterImages={[
-              "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=2070&q=80", // A - Docker containers
-              "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=2070&q=80", // U - Server racks
-              "https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=2070&q=80", // T - Kubernetes/Cloud
-              "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=2070&q=80", // O - Network/Globe
-              "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=2070&q=80", // O - Code terminal
-              "https://images.unsplash.com/photo-1639322537228-f710d846310a?w=2070&q=80", // P - CI/CD Pipeline
-              "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=2070&q=80", // S - Cloud infrastructure
-            ]}
           />
         </div>
 
