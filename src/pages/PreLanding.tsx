@@ -6,6 +6,7 @@ import { GradientButton } from "@/components/ui/gradient-button";
 import FancyButton from "@/components/ui/shiny-button";
 import TechIconsCarousel from "@/components/ui/tech-icons-carousel";
 import { RevealText } from "@/components/ui/reveal-text";
+import { MatrixText } from "@/components/ui/matrix-text";
 const PreLanding = () => {
   const navigate = useNavigate();
   const [darkMode, setDarkMode] = useState(true);
@@ -81,12 +82,15 @@ const PreLanding = () => {
         </div>
 
         {/* Headline */}
-        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4 sm:mb-6 animate-fade-in-up">
-          <div className="bg-gradient-to-r from-primary via-purple-400 to-primary bg-clip-text text-transparent rounded-sm">
-            Mohammad Sadegh Afsharnezhad
-          </div>
-          
-        </h1>
+        <div className="mb-4 sm:mb-6 animate-fade-in-up">
+          <MatrixText 
+            text="Mohammad Sadegh Afsharnezhad"
+            initialDelay={1500}
+            letterAnimationDuration={500}
+            letterInterval={50}
+            className="text-center"
+          />
+        </div>
 
         {/* Subtitle */}
         <p className="text-sm sm:text-base md:text-lg lg:text-xl text-center text-foreground/80 mb-8 sm:mb-12 max-w-3xl animate-fade-in-up px-4"> 💡 Docker | Kubernetes | Linux | Cloud Infrastructure | CI/CD Pipelines | Network Automation</p>
