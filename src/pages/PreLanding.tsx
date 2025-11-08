@@ -106,6 +106,7 @@ const PreLanding = () => {
             initialDelay={1500}
             letterAnimationDuration={500}
             letterInterval={50}
+            repeatInterval={7000}
             className="text-center"
           />
         </div>

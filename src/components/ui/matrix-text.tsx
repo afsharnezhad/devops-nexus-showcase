@@ -16,6 +16,7 @@ interface MatrixTextProps {
     initialDelay?: number;
     letterAnimationDuration?: number;
     letterInterval?: number;
+    repeatInterval?: number;
 }
 
 export const MatrixText = ({
@@ -24,6 +25,7 @@ export const MatrixText = ({
     initialDelay = 200,
     letterAnimationDuration = 500,
     letterInterval = 100,
+    repeatInterval,
 }: MatrixTextProps) => {
     const [letters, setLetters] = useState<LetterState[]>(() =>
         text.split("").map((char) => ({
@@ -94,8 +96,17 @@ export const MatrixText = ({
 
     useEffect(() => {
         const timer = setTimeout(startAnimation, initialDelay);
-        return () => clearTimeout(timer);
-    }, []);
+        
+        let intervalId: NodeJS.Timeout | undefined;
+        if (repeatInterval) {
+            intervalId = setInterval(startAnimation, repeatInterval);
+        }
+        
+        return () => {
+            clearTimeout(timer);
+            if (intervalId) clearInterval(intervalId);
+        };
+    }, [startAnimation, initialDelay, repeatInterval]);
 
     const motionVariants = useMemo(
         () => ({
