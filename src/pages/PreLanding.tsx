@@ -72,36 +72,20 @@ const PreLanding = () => {
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
         {/* Trust Badge */}
         <div className="mb-6 sm:mb-8 animate-fade-in">
-          <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-sm">
-            <span className="text-lg sm:text-xl">✨</span>
-            <span className="text-xs sm:text-sm text-foreground/90 font-medium text-center">
-              متخصص پشتیبانی فناوری اطلاعات و علاقه‌مند به DevOps | IT Support & DevOps Professional
-            </span>
-          </div>
+          
         </div>
 
         {/* Brand Name with RevealText */}
         <div className="mb-8 sm:mb-12 animate-fade-in-up">
-          <RevealText 
-            text="AUTOOPS"
-            textColor="text-foreground"
-            overlayColor="text-primary"
-            fontSize="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl"
-            letterDelay={0.08}
-            overlayDelay={0.05}
-            overlayDuration={0.4}
-            springDuration={600}
-          />
+          <RevealText text="AUTOOPS" textColor="text-foreground" overlayColor="text-primary" fontSize="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl" letterDelay={0.08} overlayDelay={0.05} overlayDuration={0.4} springDuration={600} />
         </div>
 
         {/* Headline */}
         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4 sm:mb-6 animate-fade-in-up">
-          <div className="bg-gradient-to-r from-primary via-purple-400 to-primary bg-clip-text text-transparent">
+          <div className="bg-gradient-to-r from-primary via-purple-400 to-primary bg-clip-text text-transparent rounded-sm">
             Mohammad Sadegh Afsharnezhad
           </div>
-          <div className="mt-2 bg-gradient-to-r from-primary via-purple-400 to-primary bg-clip-text text-transparent">
-            محمدصادق افشارنژاد
-          </div>
+          
         </h1>
 
         {/* Subtitle */}
