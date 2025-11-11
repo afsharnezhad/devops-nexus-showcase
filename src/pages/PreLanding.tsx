@@ -79,7 +79,7 @@ const PreLanding = () => {
         {/* Brand Name with RevealText */}
         <div className="mb-8 sm:mb-12 animate-fade-in-up">
           <RevealText 
-            text="AUTO::OPS" 
+            text="AUTO|OPS" 
             textColor="text-foreground" 
             overlayColor="text-primary" 
             fontSize="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl" 
