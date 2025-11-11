@@ -7,6 +7,7 @@ import FancyButton from "@/components/ui/shiny-button";
 import TechIconsCarousel from "@/components/ui/tech-icons-carousel";
 import { RevealText } from "@/components/ui/reveal-text";
 import { MatrixText } from "@/components/ui/matrix-text";
+import codeBackground from "@/assets/code-background.jpg";
 const PreLanding = () => {
   const navigate = useNavigate();
   const [darkMode, setDarkMode] = useState(true);
@@ -87,6 +88,7 @@ const PreLanding = () => {
             overlayDelay={0.05} 
             overlayDuration={0.4} 
             springDuration={600}
+            letterImages={Array(8).fill(codeBackground)}
           />
         </div>
 
