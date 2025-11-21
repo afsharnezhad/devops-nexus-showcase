@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useTranslation } from "@/hooks/useTranslation";
 import { Language } from "@/lib/i18n";
+import { useNavigate } from "react-router-dom";
 
 interface NavigationProps {
   darkMode: boolean;
@@ -15,6 +16,7 @@ const Navigation = ({ darkMode, toggleDarkMode }: NavigationProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const { language, setLanguage } = useLanguage();
   const { t, isRTL } = useTranslation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,6 +33,7 @@ const Navigation = ({ darkMode, toggleDarkMode }: NavigationProps) => {
     { name: t('clients'), href: "#clients" },
     { name: t('blog'), href: "#blog" },
     { name: t('contact'), href: "#contact" },
+    { name: 'Login', href: "/login", isRoute: true },
   ];
 
   const toggleLanguage = () => {
@@ -38,10 +41,14 @@ const Navigation = ({ darkMode, toggleDarkMode }: NavigationProps) => {
     setLanguage(newLanguage);
   };
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+  const handleMenuClick = (href: string, isRoute?: boolean) => {
+    if (isRoute) {
+      navigate(href);
+    } else {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     }
     setIsOpen(false);
   };
@@ -69,7 +76,7 @@ const Navigation = ({ darkMode, toggleDarkMode }: NavigationProps) => {
               {menuItems.map((item) => (
                 <button
                   key={item.name}
-                  onClick={() => scrollToSection(item.href)}
+                  onClick={() => handleMenuClick(item.href, item.isRoute)}
                   className="text-foreground hover:text-primary transition-colors duration-200 px-3 py-2 text-sm font-medium"
                 >
                   {item.name}
@@ -140,7 +147,7 @@ const Navigation = ({ darkMode, toggleDarkMode }: NavigationProps) => {
             {menuItems.map((item) => (
               <button
                 key={item.name}
-                onClick={() => scrollToSection(item.href)}
+                onClick={() => handleMenuClick(item.href, item.isRoute)}
                 className={`text-foreground hover:text-primary hover:bg-muted block px-3 py-2 text-base font-medium w-full rounded-md transition-colors duration-200 ${isRTL ? 'text-right' : 'text-left'}`}
               >
                 {item.name}
