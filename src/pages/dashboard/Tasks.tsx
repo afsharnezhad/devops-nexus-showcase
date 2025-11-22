@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -9,55 +9,100 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Plus, ChevronDown, ChevronRight } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Badge } from '@/components/ui/badge';
+import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface Task {
   id: string;
   title: string;
-  description: string;
-  status: 'todo' | 'in-progress' | 'done';
-  deadline: string;
+  description: string | null;
+  status: string;
+  deadline: string | null;
 }
 
 const Tasks = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [expandedSections, setExpandedSections] = useState({
     todo: true,
     'in-progress': true,
     done: true,
   });
   const { toast } = useToast();
+  const { user } = useAuth();
 
   const [formData, setFormData] = useState({
     title: '',
     description: '',
-    status: 'todo' as Task['status'],
+    status: 'todo',
     deadline: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  useEffect(() => {
+    if (user) {
+      fetchTasks();
+    }
+  }, [user]);
+
+  const fetchTasks = async () => {
+    setIsLoading(true);
+    const { data, error } = await supabase
+      .from('tasks')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      toast({
+        title: "Error fetching tasks",
+        description: error.message,
+        variant: "destructive",
+      });
+    } else {
+      setTasks(data || []);
+    }
+    setIsLoading(false);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    const newTask: Task = {
-      ...formData,
-      id: Date.now().toString(),
-    };
-    
-    setTasks([...tasks, newTask]);
-    toast({
-      title: "Task created",
-      description: "New task has been added to your roadmap.",
-    });
+    if (!user) return;
 
-    setFormData({ title: '', description: '', status: 'todo', deadline: '' });
-    setIsDialogOpen(false);
+    const { data, error } = await supabase
+      .from('tasks')
+      .insert([{
+        user_id: user.id,
+        title: formData.title,
+        description: formData.description || null,
+        status: formData.status,
+        deadline: formData.deadline || null,
+      }])
+      .select()
+      .single();
+
+    if (error) {
+      toast({
+        title: "Error creating task",
+        description: error.message,
+        variant: "destructive",
+      });
+    } else {
+      setTasks([data, ...tasks]);
+      toast({
+        title: "Task created",
+        description: "New task has been added to your roadmap.",
+      });
+      setFormData({ title: '', description: '', status: 'todo', deadline: '' });
+      setIsDialogOpen(false);
+    }
   };
 
   const toggleSection = (status: keyof typeof expandedSections) => {
     setExpandedSections(prev => ({ ...prev, [status]: !prev[status] }));
   };
 
-  const getTasksByStatus = (status: Task['status']) => {
+  const getTasksByStatus = (status: string) => {
     return tasks.filter(task => task.status === status);
   };
 
@@ -109,16 +154,16 @@ const Tasks = () => {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="status">Status</Label>
-                <Select value={formData.status} onValueChange={(value) => setFormData({ ...formData, status: value as Task['status'] })}>
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="todo">To Do</SelectItem>
-                    <SelectItem value="in-progress">In Progress</SelectItem>
-                    <SelectItem value="done">Done</SelectItem>
-                  </SelectContent>
-                </Select>
+                  <Select value={formData.status} onValueChange={(value) => setFormData({ ...formData, status: value })}>
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="todo">To Do</SelectItem>
+                      <SelectItem value="in-progress">In Progress</SelectItem>
+                      <SelectItem value="done">Done</SelectItem>
+                    </SelectContent>
+                  </Select>
               </div>
               <div className="space-y-2">
                 <Label htmlFor="deadline">Deadline</Label>
@@ -143,9 +188,16 @@ const Tasks = () => {
       </div>
 
       <div className="space-y-4">
-        {sections.map((section) => {
-          const sectionTasks = getTasksByStatus(section.key as Task['status']);
-          const isExpanded = expandedSections[section.key];
+        {isLoading ? (
+          <Card>
+            <CardContent className="p-12 text-center">
+              <p className="text-muted-foreground">Loading tasks...</p>
+            </CardContent>
+          </Card>
+        ) : (
+          sections.map((section) => {
+            const sectionTasks = getTasksByStatus(section.key);
+            const isExpanded = expandedSections[section.key];
 
           return (
             <Card key={section.key}>
@@ -194,7 +246,8 @@ const Tasks = () => {
               )}
             </Card>
           );
-        })}
+        })
+        )}
       </div>
     </div>
   );

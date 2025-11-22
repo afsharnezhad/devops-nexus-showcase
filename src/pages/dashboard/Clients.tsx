@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -7,21 +7,25 @@ import { Textarea } from '@/components/ui/textarea';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Plus, Edit, Trash2, Mail, Phone } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface Client {
   id: string;
   name: string;
-  company: string;
-  email: string;
-  phone: string;
-  notes: string;
+  company: string | null;
+  email: string | null;
+  phone: string | null;
+  notes: string | null;
 }
 
 const Clients = () => {
   const [clients, setClients] = useState<Client[]>([]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editingClient, setEditingClient] = useState<Client | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const { toast } = useToast();
+  const { user } = useAuth();
 
   const [formData, setFormData] = useState({
     name: '',
@@ -31,29 +35,92 @@ const Clients = () => {
     notes: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (editingClient) {
-      setClients(clients.map(c => 
-        c.id === editingClient.id 
-          ? { ...formData, id: editingClient.id }
-          : c
-      ));
+  useEffect(() => {
+    if (user) {
+      fetchClients();
+    }
+  }, [user]);
+
+  const fetchClients = async () => {
+    setIsLoading(true);
+    const { data, error } = await supabase
+      .from('clients')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) {
       toast({
-        title: "Client updated",
-        description: "Client information has been updated successfully.",
+        title: "Error fetching clients",
+        description: error.message,
+        variant: "destructive",
       });
     } else {
-      const newClient: Client = {
-        ...formData,
-        id: Date.now().toString(),
-      };
-      setClients([...clients, newClient]);
-      toast({
-        title: "Client added",
-        description: "New client has been added successfully.",
-      });
+      setClients(data || []);
+    }
+    setIsLoading(false);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!user) return;
+
+    if (editingClient) {
+      const { error } = await supabase
+        .from('clients')
+        .update({
+          name: formData.name,
+          company: formData.company || null,
+          email: formData.email || null,
+          phone: formData.phone || null,
+          notes: formData.notes || null,
+        })
+        .eq('id', editingClient.id);
+
+      if (error) {
+        toast({
+          title: "Error updating client",
+          description: error.message,
+          variant: "destructive",
+        });
+      } else {
+        setClients(clients.map(c => 
+          c.id === editingClient.id 
+            ? { ...formData, id: editingClient.id }
+            : c
+        ));
+        toast({
+          title: "Client updated",
+          description: "Client information has been updated successfully.",
+        });
+      }
+    } else {
+      const { data, error } = await supabase
+        .from('clients')
+        .insert([{
+          user_id: user.id,
+          name: formData.name,
+          company: formData.company || null,
+          email: formData.email || null,
+          phone: formData.phone || null,
+          notes: formData.notes || null,
+        }])
+        .select()
+        .single();
+
+      if (error) {
+        toast({
+          title: "Error adding client",
+          description: error.message,
+          variant: "destructive",
+        });
+      } else {
+        setClients([data, ...clients]);
+        toast({
+          title: "Client added",
+          description: "New client has been added successfully.",
+        });
+      }
     }
 
     setFormData({ name: '', company: '', email: '', phone: '', notes: '' });
@@ -63,16 +130,35 @@ const Clients = () => {
 
   const handleEdit = (client: Client) => {
     setEditingClient(client);
-    setFormData(client);
+    setFormData({
+      name: client.name,
+      company: client.company || '',
+      email: client.email || '',
+      phone: client.phone || '',
+      notes: client.notes || '',
+    });
     setIsDialogOpen(true);
   };
 
-  const handleDelete = (id: string) => {
-    setClients(clients.filter(c => c.id !== id));
-    toast({
-      title: "Client deleted",
-      description: "Client has been removed successfully.",
-    });
+  const handleDelete = async (id: string) => {
+    const { error } = await supabase
+      .from('clients')
+      .delete()
+      .eq('id', id);
+
+    if (error) {
+      toast({
+        title: "Error deleting client",
+        description: error.message,
+        variant: "destructive",
+      });
+    } else {
+      setClients(clients.filter(c => c.id !== id));
+      toast({
+        title: "Client deleted",
+        description: "Client has been removed successfully.",
+      });
+    }
   };
 
   const handleDialogClose = () => {
@@ -165,7 +251,13 @@ const Clients = () => {
         </Dialog>
       </div>
 
-      {clients.length === 0 ? (
+      {isLoading ? (
+        <Card>
+          <CardContent className="flex flex-col items-center justify-center py-16">
+            <p className="text-muted-foreground">Loading clients...</p>
+          </CardContent>
+        </Card>
+      ) : clients.length === 0 ? (
         <Card>
           <CardContent className="flex flex-col items-center justify-center py-16">
             <p className="text-muted-foreground mb-4">No clients yet</p>

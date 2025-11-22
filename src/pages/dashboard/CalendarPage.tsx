@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Calendar } from '@/components/ui/calendar';
@@ -8,52 +8,93 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Plus } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface Event {
   id: string;
   title: string;
-  description: string;
-  date: Date;
+  description: string | null;
+  event_date: string;
 }
 
 const CalendarPage = () => {
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [events, setEvents] = useState<Event[]>([]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const { toast } = useToast();
+  const { user } = useAuth();
 
   const [formData, setFormData] = useState({
     title: '',
     description: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  useEffect(() => {
+    if (user) {
+      fetchEvents();
+    }
+  }, [user]);
+
+  const fetchEvents = async () => {
+    setIsLoading(true);
+    const { data, error } = await supabase
+      .from('calendar_events')
+      .select('*')
+      .order('event_date', { ascending: true });
+
+    if (error) {
+      toast({
+        title: "Error fetching events",
+        description: error.message,
+        variant: "destructive",
+      });
+    } else {
+      setEvents(data || []);
+    }
+    setIsLoading(false);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!date) return;
+    if (!date || !user) return;
 
-    const newEvent: Event = {
-      id: Date.now().toString(),
-      title: formData.title,
-      description: formData.description,
-      date: date,
-    };
+    const { data, error } = await supabase
+      .from('calendar_events')
+      .insert([{
+        user_id: user.id,
+        title: formData.title,
+        description: formData.description || null,
+        event_date: date.toISOString(),
+      }])
+      .select()
+      .single();
 
-    setEvents([...events, newEvent]);
-    toast({
-      title: "Event created",
-      description: "New event has been added to your calendar.",
-    });
-
-    setFormData({ title: '', description: '' });
-    setIsDialogOpen(false);
+    if (error) {
+      toast({
+        title: "Error creating event",
+        description: error.message,
+        variant: "destructive",
+      });
+    } else {
+      setEvents([...events, data]);
+      toast({
+        title: "Event created",
+        description: "New event has been added to your calendar.",
+      });
+      setFormData({ title: '', description: '' });
+      setIsDialogOpen(false);
+    }
   };
 
   const getEventsForDate = (date: Date | undefined) => {
     if (!date) return [];
-    return events.filter(event => 
-      event.date.toDateString() === date.toDateString()
-    );
+    return events.filter(event => {
+      const eventDate = new Date(event.event_date);
+      return eventDate.toDateString() === date.toDateString();
+    });
   };
 
   const selectedDateEvents = getEventsForDate(date);
@@ -128,7 +169,9 @@ const CalendarPage = () => {
             <h3 className="font-semibold mb-4">
               Events for {date?.toLocaleDateString()}
             </h3>
-            {selectedDateEvents.length === 0 ? (
+            {isLoading ? (
+              <p className="text-muted-foreground text-sm">Loading events...</p>
+            ) : selectedDateEvents.length === 0 ? (
               <p className="text-muted-foreground text-sm">No events scheduled</p>
             ) : (
               <div className="space-y-3">
@@ -154,12 +197,14 @@ const CalendarPage = () => {
       <Card>
         <CardContent className="p-6">
           <h3 className="font-semibold mb-4">All Upcoming Events</h3>
-          {events.length === 0 ? (
+          {isLoading ? (
+            <p className="text-muted-foreground">Loading events...</p>
+          ) : events.length === 0 ? (
             <p className="text-muted-foreground">No events scheduled</p>
           ) : (
             <div className="space-y-3">
               {events
-                .sort((a, b) => a.date.getTime() - b.date.getTime())
+                .sort((a, b) => new Date(a.event_date).getTime() - new Date(b.event_date).getTime())
                 .map((event) => (
                   <div
                     key={event.id}
@@ -173,7 +218,7 @@ const CalendarPage = () => {
                         </p>
                       )}
                       <p className="text-xs text-muted-foreground">
-                        {event.date.toLocaleDateString()}
+                        {new Date(event.event_date).toLocaleDateString()}
                       </p>
                     </div>
                   </div>
