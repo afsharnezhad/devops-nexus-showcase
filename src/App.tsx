@@ -5,8 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import { ProtectedRoute } from "./components/ProtectedRoute";
-import PreLanding from "./pages/PreLanding";
-import Index from "./pages/Index";
+import CorporateDevOps from "./pages/CorporateDevOps";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import DashboardLayout from "./components/dashboard/DashboardLayout";
@@ -26,8 +25,7 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<PreLanding />} />
-            <Route path="/home" element={<Index />} />
+            <Route path="/" element={<CorporateDevOps />} />
             <Route path="/login" element={<Login />} />
             <Route
               path="/dashboard"
