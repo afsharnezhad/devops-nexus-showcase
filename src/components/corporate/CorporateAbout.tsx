@@ -46,7 +46,7 @@ const CorporateAbout = () => {
         >
           <span className="text-primary font-semibold text-sm uppercase tracking-wider">Who We Are</span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6">
-            About <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Corporate DevOps</span>
+            About <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Auto Ops</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
             We are a team of passionate technologists dedicated to delivering enterprise-grade solutions 
@@ -65,7 +65,7 @@ const CorporateAbout = () => {
             <h3 className="text-2xl font-bold mb-6 text-foreground">Our Story</h3>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                Founded in 2014, Corporate DevOps started with a simple mission: bridge the gap between 
+                Founded in 2014, Auto Ops started with a simple mission: bridge the gap between 
                 development and operations to help businesses move faster and more securely.
               </p>
               <p>

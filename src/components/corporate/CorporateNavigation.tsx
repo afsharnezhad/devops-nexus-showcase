@@ -58,8 +58,7 @@ const CorporateNavigation = ({ darkMode, toggleDarkMode }: CorporateNavigationPr
               <Shield className="w-6 h-6 text-primary-foreground" />
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-bold text-foreground">Corporate</span>
-              <span className="text-xs text-primary font-semibold -mt-1">DevOps</span>
+              <span className="text-xl font-bold text-foreground">AUTO<span className="text-primary">|</span>OPS</span>
             </div>
           </motion.a>
 
