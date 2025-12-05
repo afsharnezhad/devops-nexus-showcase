@@ -36,9 +36,9 @@ const CorporateContact = () => {
   };
 
   const contactInfo = [
-    { icon: Mail, label: "Email", value: "hello@corporatedevops.com", href: "mailto:hello@corporatedevops.com" },
-    { icon: Phone, label: "Phone", value: "+1 (555) 123-4567", href: "tel:+15551234567" },
-    { icon: MapPin, label: "Location", value: "San Francisco, CA", href: "#" },
+    { icon: Mail, label: "Email", value: "mo.afsharnezhad@gmail.com", href: "mailto:mo.afsharnezhad@gmail.com" },
+    { icon: Phone, label: "Phone", value: "+98 912 XXX XXXX", href: "tel:+98912XXXXXXX" },
+    { icon: MapPin, label: "Location", value: "Tehran, Iran", href: "#" },
   ];
 
   return (

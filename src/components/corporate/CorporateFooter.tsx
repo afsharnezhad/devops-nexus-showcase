@@ -35,7 +35,7 @@ const CorporateFooter = () => {
     { icon: Github, href: "https://github.com", label: "GitHub" },
     { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
     { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
-    { icon: Mail, href: "mailto:hello@corporatedevops.com", label: "Email" },
+    { icon: Mail, href: "mailto:mo.afsharnezhad@gmail.com", label: "Email" },
   ];
 
   return (
@@ -73,8 +73,7 @@ const CorporateFooter = () => {
                 <Shield className="w-6 h-6 text-primary-foreground" />
               </div>
               <div>
-                <span className="text-lg font-bold text-foreground">Corporate</span>
-                <span className="text-xs text-primary font-semibold block -mt-1">DevOps</span>
+                <span className="text-lg font-bold text-foreground">AUTO<span className="text-primary">|</span>OPS</span>
               </div>
             </div>
             <p className="text-sm text-muted-foreground mb-4">
@@ -119,10 +118,10 @@ const CorporateFooter = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-border flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Corporate DevOps. All rights reserved.
+            © {new Date().getFullYear()} Auto Ops. All rights reserved.
           </p>
           <p className="text-sm text-muted-foreground flex items-center gap-1">
-            Built with <Heart className="w-4 h-4 text-red-500 fill-red-500" /> by Corporate DevOps Team
+            Built with <Heart className="w-4 h-4 text-red-500 fill-red-500" /> by Auto Ops Team
           </p>
         </div>
       </div>
