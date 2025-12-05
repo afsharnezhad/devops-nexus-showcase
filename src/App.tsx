@@ -7,6 +7,7 @@ import { AuthProvider } from "./contexts/AuthContext";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import PreLanding from "./pages/PreLanding";
 import CorporateDevOps from "./pages/CorporateDevOps";
+import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import DashboardLayout from "./components/dashboard/DashboardLayout";
@@ -27,6 +28,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<PreLanding />} />
+            <Route path="/home" element={<Index />} />
             <Route path="/corporate" element={<CorporateDevOps />} />
             <Route path="/login" element={<Login />} />
             <Route

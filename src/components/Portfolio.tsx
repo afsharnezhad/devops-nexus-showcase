@@ -7,6 +7,9 @@ import About from "@/components/sections/About";
 import Services from "@/components/sections/Services";
 import TechStack from "@/components/sections/TechStack";
 import Clients from "@/components/sections/Clients";
+import CaseStudies from "@/components/sections/CaseStudies";
+import LearningHub from "@/components/sections/LearningHub";
+import Testimonials from "@/components/sections/Testimonials";
 import Blog from "@/components/sections/Blog";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/layout/Footer";
@@ -62,6 +65,15 @@ const Portfolio = () => {
           </section>
           <section id="clients">
             <Clients />
+          </section>
+          <section id="case-studies">
+            <CaseStudies />
+          </section>
+          <section id="testimonials">
+            <Testimonials />
+          </section>
+          <section id="learning">
+            <LearningHub />
           </section>
           <section id="blog">
             <Blog />

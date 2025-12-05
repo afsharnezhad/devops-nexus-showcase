@@ -30,6 +30,8 @@ const NavigationBubble = ({ darkMode, toggleDarkMode }: NavigationBubbleProps) =
     { name: t('about'), href: "#about", id: "about" },
     { name: t('services'), href: "#services", id: "services" },
     { name: t('clients'), href: "#clients", id: "clients" },
+    { name: "Case Studies", href: "#case-studies", id: "case-studies" },
+    { name: "Learning", href: "#learning", id: "learning" },
     { name: t('blog'), href: "#blog", id: "blog" },
     { name: t('contact'), href: "#contact", id: "contact" },
   ];
