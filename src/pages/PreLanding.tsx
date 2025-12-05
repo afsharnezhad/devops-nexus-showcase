@@ -130,10 +130,15 @@ const PreLanding = () => {
 
         {/* CTA Buttons */}
         <div className="flex flex-col items-center gap-6 sm:gap-8 w-full max-w-4xl animate-fade-in-up">
-          {/* Primary Button */}
-          <GradientButton onClick={() => navigate('/home')} className="text-base sm:text-lg font-semibold">
-            Enter My Website
-          </GradientButton>
+          {/* Primary Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4">
+            <GradientButton onClick={() => navigate('/home')} className="text-base sm:text-lg font-semibold">
+              Enter My Website
+            </GradientButton>
+            <GradientButton onClick={() => navigate('/corporate')} className="text-base sm:text-lg font-semibold bg-card/30 hover:bg-card/50 border border-border">
+              Corporate Services
+            </GradientButton>
+          </div>
 
           {/* Social Links */}
           <div className="flex flex-wrap gap-2 sm:gap-3 justify-center">
