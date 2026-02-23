@@ -14,9 +14,9 @@ export default function TechIconsCarousel() {
         {repeatedIcons(ICONS_ROW1, 3).map((Icon, i) => (
           <div 
             key={i} 
-            className="h-10 w-10 sm:h-12 sm:w-12 flex-shrink-0 rounded-full bg-gradient-to-br from-amber-500/20 to-orange-600/20 backdrop-blur-sm border border-amber-400/30 shadow-lg shadow-amber-900/20 flex items-center justify-center hover:scale-110 transition-transform"
+            className="h-10 w-10 sm:h-12 sm:w-12 flex-shrink-0 rounded-full bg-gradient-to-br from-cyan-500/20 to-blue-600/20 backdrop-blur-sm border border-cyan-400/30 shadow-lg shadow-cyan-900/20 flex items-center justify-center hover:scale-110 transition-transform"
           >
-            <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-amber-400" />
+            <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-cyan-400" />
           </div>
         ))}
       </div>
@@ -26,9 +26,9 @@ export default function TechIconsCarousel() {
         {repeatedIcons(ICONS_ROW2, 3).map((Icon, i) => (
           <div 
             key={i} 
-            className="h-10 w-10 sm:h-12 sm:w-12 flex-shrink-0 rounded-full bg-gradient-to-br from-orange-500/20 to-yellow-600/20 backdrop-blur-sm border border-orange-400/30 shadow-lg shadow-orange-900/20 flex items-center justify-center hover:scale-110 transition-transform"
+            className="h-10 w-10 sm:h-12 sm:w-12 flex-shrink-0 rounded-full bg-gradient-to-br from-blue-500/20 to-cyan-600/20 backdrop-blur-sm border border-blue-400/30 shadow-lg shadow-blue-900/20 flex items-center justify-center hover:scale-110 transition-transform"
           >
-            <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-orange-400" />
+            <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-blue-400" />
           </div>
         ))}
       </div>

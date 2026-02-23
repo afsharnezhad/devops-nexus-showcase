@@ -14,7 +14,7 @@ const gradientButtonVariants = cva(
     "font-space font-bold",
     "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring",
     "disabled:pointer-events-none disabled:opacity-50",
-    "shadow-lg shadow-amber-900/30 hover:shadow-xl hover:shadow-amber-600/40",
+    "shadow-lg shadow-cyan-900/30 hover:shadow-xl hover:shadow-cyan-600/40",
     "transition-shadow duration-300",
   ],
   {

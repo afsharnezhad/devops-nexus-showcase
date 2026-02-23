@@ -572,14 +572,14 @@
     --pos-y: 91.51%;
     --spread-x: 120.24%;
     --spread-y: 103.18%;
-    --color-1: #fbbf24;
-    --color-2: #fb923c;
-    --color-3: #f97316;
-    --color-4: #ea580c;
+    --color-1: #22d3ee;
+    --color-2: #06b6d4;
+    --color-3: #0891b2;
+    --color-4: #3b82f6;
     --color-5: #000;
     --border-angle: 190deg;
-    --border-color-1: hsla(35, 88%, 80%, 0.2);
-    --border-color-2: hsla(35, 88%, 70%, 0.8);
+    --border-color-1: hsla(190, 85%, 70%, 0.2);
+    --border-color-2: hsla(220, 75%, 65%, 0.8);
     --stop-1: 0%;
     --stop-2: 8.8%;
     --stop-3: 21.44%;
@@ -589,12 +589,12 @@
 
   .gradient-button-variant {
     --color-1: #000;
-    --color-2: #78350f;
-    --color-3: #b45309;
-    --color-4: #fde047;
+    --color-2: #0e7490;
+    --color-3: #0891b2;
+    --color-4: #22d3ee;
     --border-angle: 200deg;
-    --border-color-1: hsla(45, 90%, 70%, 0.6);
-    --border-color-2: hsla(45, 90%, 60%, 0.2);
+    --border-color-1: hsla(190, 85%, 60%, 0.6);
+    --border-color-2: hsla(190, 85%, 50%, 0.2);
   }
 
   .gradient-button-variant:hover {
@@ -603,9 +603,9 @@
     --spread-x: 110.24%;
     --spread-y: 110.2%;
     --color-1: #000;
-    --color-2: #fde047;
-    --color-3: #fb923c;
-    --color-4: #78350f;
+    --color-2: #22d3ee;
+    --color-3: #06b6d4;
+    --color-4: #0e7490;
     --color-5: #000;
     --stop-1: 0%;
     --stop-2: 10%;
