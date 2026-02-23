@@ -1,7 +1,7 @@
 import { useState } from "react";
 import CorporateNavigation from "@/components/corporate/CorporateNavigation";
 import CorporateHero from "@/components/corporate/CorporateHero";
-import CorporateServices from "@/components/corporate/CorporateServices";
+
 import CorporateClients from "@/components/corporate/CorporateClients";
 import CorporateCaseStudies from "@/components/corporate/CorporateCaseStudies";
 import CorporateAbout from "@/components/corporate/CorporateAbout";
@@ -21,7 +21,7 @@ const CorporateDevOps = () => {
       <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
         <CorporateNavigation darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
         <CorporateHero />
-        <CorporateServices />
+        
         <CorporateClients />
         <CorporateCaseStudies />
         <CorporateAbout />
