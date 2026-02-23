@@ -135,9 +135,6 @@ const PreLanding = () => {
             <GradientButton onClick={() => navigate('/home')} className="text-base sm:text-lg font-semibold">
               Enter My Website
             </GradientButton>
-            <GradientButton onClick={() => navigate('/corporate')} className="text-base sm:text-lg font-semibold bg-card/30 hover:bg-card/50 border border-border">
-              Corporate Services
-            </GradientButton>
           </div>
 
           {/* Social Links */}
