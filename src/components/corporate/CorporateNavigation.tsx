@@ -25,6 +25,8 @@ const CorporateNavigation = ({ darkMode, toggleDarkMode }: CorporateNavigationPr
     { label: "Services", href: "#services" },
     { label: "Clients", href: "#clients" },
     { label: "Case Studies", href: "#case-studies" },
+    { label: "Learning Hub", href: "#learning" },
+    { label: "Blog", href: "#blog" },
     { label: "About", href: "#about" },
     { label: "Contact", href: "#contact" },
   ];

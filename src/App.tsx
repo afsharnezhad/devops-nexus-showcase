@@ -7,6 +7,9 @@ import { AuthProvider } from "./contexts/AuthContext";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import PreLanding from "./pages/PreLanding";
 import CorporateDevOps from "./pages/CorporateDevOps";
+import CaseStudyDetail from "./pages/CaseStudyDetail";
+import LearningDetail from "./pages/LearningDetail";
+import BlogPost from "./pages/BlogPost";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
@@ -30,6 +33,9 @@ const App = () => (
             <Route path="/" element={<PreLanding />} />
             <Route path="/home" element={<Index />} />
             <Route path="/corporate" element={<CorporateDevOps />} />
+            <Route path="/case-study/:slug" element={<CaseStudyDetail />} />
+            <Route path="/learning/:id" element={<LearningDetail />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/login" element={<Login />} />
             <Route
               path="/dashboard"
