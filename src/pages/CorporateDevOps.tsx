@@ -1,9 +1,10 @@
 import { useState } from "react";
 import CorporateNavigation from "@/components/corporate/CorporateNavigation";
 import CorporateHero from "@/components/corporate/CorporateHero";
-
 import CorporateClients from "@/components/corporate/CorporateClients";
 import CorporateCaseStudies from "@/components/corporate/CorporateCaseStudies";
+import CorporateLearningHub from "@/components/corporate/CorporateLearningHub";
+import CorporateBlog from "@/components/corporate/CorporateBlog";
 import CorporateAbout from "@/components/corporate/CorporateAbout";
 import CorporateContact from "@/components/corporate/CorporateContact";
 import CorporateFooter from "@/components/corporate/CorporateFooter";
@@ -21,9 +22,10 @@ const CorporateDevOps = () => {
       <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
         <CorporateNavigation darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
         <CorporateHero />
-        
         <CorporateClients />
         <CorporateCaseStudies />
+        <CorporateLearningHub />
+        <CorporateBlog />
         <CorporateAbout />
         <CorporateContact />
         <CorporateFooter />
