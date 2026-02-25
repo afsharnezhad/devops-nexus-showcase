@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { Menu, X, Sun, Moon, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -11,6 +12,7 @@ interface CorporateNavigationProps {
 const CorporateNavigation = ({ darkMode, toggleDarkMode }: CorporateNavigationProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const nav = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,15 +26,20 @@ const CorporateNavigation = ({ darkMode, toggleDarkMode }: CorporateNavigationPr
     { label: "Home", href: "#home" },
     { label: "Services", href: "#services" },
     { label: "Clients", href: "#clients" },
-    { label: "Case Studies", href: "#case-studies" },
+    { label: "DevOps", href: "/devops", isRoute: true },
+    { label: "IT Support", href: "/it-support", isRoute: true },
     { label: "Learning Hub", href: "#learning" },
     { label: "Blog", href: "#blog" },
     { label: "About", href: "#about" },
     { label: "Contact", href: "#contact" },
   ];
 
-  const handleNavClick = (href: string) => {
+  const handleNavClick = (href: string, isRoute?: boolean) => {
     setIsOpen(false);
+    if (isRoute) {
+      nav(href);
+      return;
+    }
     const element = document.querySelector(href);
     element?.scrollIntoView({ behavior: "smooth" });
   };
@@ -69,7 +76,7 @@ const CorporateNavigation = ({ darkMode, toggleDarkMode }: CorporateNavigationPr
             {menuItems.map((item) => (
               <motion.button
                 key={item.label}
-                onClick={() => handleNavClick(item.href)}
+                onClick={() => handleNavClick(item.href, (item as any).isRoute)}
                 className="text-muted-foreground hover:text-foreground transition-colors font-medium"
                 whileHover={{ y: -2 }}
               >
@@ -125,7 +132,7 @@ const CorporateNavigation = ({ darkMode, toggleDarkMode }: CorporateNavigationPr
                 {menuItems.map((item) => (
                   <motion.button
                     key={item.label}
-                    onClick={() => handleNavClick(item.href)}
+                    onClick={() => handleNavClick(item.href, (item as any).isRoute)}
                     className="text-left px-4 py-3 rounded-xl text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
                     whileHover={{ x: 8 }}
                   >

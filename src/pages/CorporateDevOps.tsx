@@ -2,7 +2,7 @@ import { useState } from "react";
 import CorporateNavigation from "@/components/corporate/CorporateNavigation";
 import CorporateHero from "@/components/corporate/CorporateHero";
 import CorporateClients from "@/components/corporate/CorporateClients";
-import CorporateCaseStudies from "@/components/corporate/CorporateCaseStudies";
+
 import CorporateLearningHub from "@/components/corporate/CorporateLearningHub";
 import CorporateBlog from "@/components/corporate/CorporateBlog";
 import CorporateAbout from "@/components/corporate/CorporateAbout";
@@ -23,7 +23,7 @@ const CorporateDevOps = () => {
         <CorporateNavigation darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
         <CorporateHero />
         <CorporateClients />
-        <CorporateCaseStudies />
+        
         <CorporateLearningHub />
         <CorporateBlog />
         <CorporateAbout />
