@@ -7,6 +7,7 @@ import {
   StrapiCaseStudy,
   StrapiLearningResource,
   StrapiBlog,
+  StrapiService,
 } from "@/lib/strapi";
 
 // ===== Clients =====
@@ -91,5 +92,18 @@ export function useBlog(slug: string) {
         "filters[slug][$eq]": slug,
       }),
     enabled: !!slug,
+  });
+}
+
+// ===== Services =====
+export function useServices(category: string) {
+  return useQuery({
+    queryKey: ["strapi-services", category],
+    queryFn: () =>
+      fetchStrapi<StrapiResponse<StrapiService>>("/api/services", {
+        "populate": "*",
+        "filters[category][$eq]": category,
+        "sort": "order:asc",
+      }),
   });
 }

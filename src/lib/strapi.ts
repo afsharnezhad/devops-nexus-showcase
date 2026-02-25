@@ -89,6 +89,19 @@ export interface StrapiBlog {
   publishedAt: string;
 }
 
+export interface StrapiService {
+  title: string;
+  slug: string;
+  category: "DevOps" | "IT Support";
+  description: string;
+  details: any[]; // Strapi rich text blocks
+  icon_name: string;
+  features: string[];
+  cover_image: { data: StrapiItem<StrapiMedia> | null };
+  order: number;
+  publishedAt: string;
+}
+
 // ===== API Helpers =====
 
 export function getStrapiMediaUrl(media: StrapiMedia | null | undefined): string {
