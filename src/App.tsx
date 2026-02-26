@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import PreLanding from "./pages/PreLanding";
-import CorporateDevOps from "./pages/CorporateDevOps";
+
 import LearningDetail from "./pages/LearningDetail";
 import DevOpsPage from "./pages/DevOpsPage";
 import ITSupportPage from "./pages/ITSupportPage";
@@ -33,7 +33,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<PreLanding />} />
             <Route path="/home" element={<Index />} />
-            <Route path="/corporate" element={<CorporateDevOps />} />
+            
             <Route path="/devops" element={<DevOpsPage />} />
             <Route path="/it-support" element={<ITSupportPage />} />
             <Route path="/learning/:id" element={<LearningDetail />} />

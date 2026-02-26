@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Server, GitBranch, Cloud, Container, Shield, Zap } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import CorporateNavigation from "@/components/corporate/CorporateNavigation";
+import ServiceNavigation from "@/components/layout/ServiceNavigation";
 
 const iconMap: Record<string, React.ElementType> = {
   Server, GitBranch, Cloud, Container, Shield, Zap,
@@ -92,7 +92,7 @@ const DevOpsPage = () => {
   return (
     <div className={darkMode ? "dark" : ""}>
     <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
-      <CorporateNavigation darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+      <ServiceNavigation darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       {/* Hero */}
       <section className="relative py-32 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-accent/10" />

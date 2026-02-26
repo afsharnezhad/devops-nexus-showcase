@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Monitor, Wifi, HardDrive, Headphones, ShieldCheck, Settings } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import CorporateNavigation from "@/components/corporate/CorporateNavigation";
+import ServiceNavigation from "@/components/layout/ServiceNavigation";
 
 const iconMap: Record<string, React.ElementType> = {
   Monitor, Wifi, HardDrive, Headphones, ShieldCheck, Settings,
@@ -91,7 +91,7 @@ const ITSupportPage = () => {
   return (
     <div className={darkMode ? "dark" : ""}>
     <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
-      <CorporateNavigation darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+      <ServiceNavigation darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       {/* Hero */}
       <section className="relative py-32 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-background to-primary/10" />

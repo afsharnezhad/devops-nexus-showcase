@@ -4,12 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { Menu, X, Sun, Moon, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-interface CorporateNavigationProps {
+interface ServiceNavigationProps {
   darkMode: boolean;
   toggleDarkMode: () => void;
 }
 
-const CorporateNavigation = ({ darkMode, toggleDarkMode }: CorporateNavigationProps) => {
+const ServiceNavigation = ({ darkMode, toggleDarkMode }: ServiceNavigationProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const nav = useNavigate();
@@ -23,15 +23,9 @@ const CorporateNavigation = ({ darkMode, toggleDarkMode }: CorporateNavigationPr
   }, []);
 
   const menuItems = [
-    { label: "Home", href: "#home" },
-    { label: "Services", href: "#services" },
-    { label: "Clients", href: "#clients" },
+    { label: "Home", href: "/home", isRoute: true },
     { label: "DevOps", href: "/devops", isRoute: true },
     { label: "IT Support", href: "/it-support", isRoute: true },
-    { label: "Learning Hub", href: "#learning" },
-    { label: "Blog", href: "#blog" },
-    { label: "About", href: "#about" },
-    { label: "Contact", href: "#contact" },
   ];
 
   const handleNavClick = (href: string, isRoute?: boolean) => {
@@ -56,10 +50,9 @@ const CorporateNavigation = ({ darkMode, toggleDarkMode }: CorporateNavigationPr
     >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
           <motion.a
-            href="#home"
-            onClick={() => handleNavClick("#home")}
+            href="/home"
+            onClick={(e) => { e.preventDefault(); handleNavClick("/home", true); }}
             className="flex items-center gap-3 cursor-pointer"
             whileHover={{ scale: 1.02 }}
           >
@@ -71,12 +64,11 @@ const CorporateNavigation = ({ darkMode, toggleDarkMode }: CorporateNavigationPr
             </div>
           </motion.a>
 
-          {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
             {menuItems.map((item) => (
               <motion.button
                 key={item.label}
-                onClick={() => handleNavClick(item.href, (item as any).isRoute)}
+                onClick={() => handleNavClick(item.href, item.isRoute)}
                 className="text-muted-foreground hover:text-foreground transition-colors font-medium"
                 whileHover={{ y: -2 }}
               >
@@ -85,7 +77,6 @@ const CorporateNavigation = ({ darkMode, toggleDarkMode }: CorporateNavigationPr
             ))}
           </div>
 
-          {/* Actions */}
           <div className="flex items-center gap-4">
             <Button
               variant="ghost"
@@ -93,21 +84,9 @@ const CorporateNavigation = ({ darkMode, toggleDarkMode }: CorporateNavigationPr
               onClick={toggleDarkMode}
               className="rounded-xl"
             >
-              {darkMode ? (
-                <Sun className="h-5 w-5" />
-              ) : (
-                <Moon className="h-5 w-5" />
-              )}
+              {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </Button>
 
-            <Button
-              className="hidden sm:flex bg-gradient-to-r from-primary to-accent hover:opacity-90 text-primary-foreground rounded-xl"
-              onClick={() => handleNavClick("#contact")}
-            >
-              Get Started
-            </Button>
-
-            {/* Mobile Menu Button */}
             <Button
               variant="ghost"
               size="icon"
@@ -119,7 +98,6 @@ const CorporateNavigation = ({ darkMode, toggleDarkMode }: CorporateNavigationPr
           </div>
         </div>
 
-        {/* Mobile Menu */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
@@ -132,19 +110,13 @@ const CorporateNavigation = ({ darkMode, toggleDarkMode }: CorporateNavigationPr
                 {menuItems.map((item) => (
                   <motion.button
                     key={item.label}
-                    onClick={() => handleNavClick(item.href, (item as any).isRoute)}
+                    onClick={() => handleNavClick(item.href, item.isRoute)}
                     className="text-left px-4 py-3 rounded-xl text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
                     whileHover={{ x: 8 }}
                   >
                     {item.label}
                   </motion.button>
                 ))}
-                <Button
-                  className="mt-2 bg-gradient-to-r from-primary to-accent text-primary-foreground rounded-xl"
-                  onClick={() => handleNavClick("#contact")}
-                >
-                  Get Started
-                </Button>
               </div>
             </motion.div>
           )}
@@ -154,4 +126,4 @@ const CorporateNavigation = ({ darkMode, toggleDarkMode }: CorporateNavigationPr
   );
 };
 
-export default CorporateNavigation;
+export default ServiceNavigation;
