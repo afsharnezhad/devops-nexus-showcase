@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { useServices } from "@/hooks/useStrapi";
 import ContentSkeleton from "@/components/strapi/ContentSkeleton";
@@ -7,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Monitor, Wifi, HardDrive, Headphones, ShieldCheck, Settings } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import CorporateNavigation from "@/components/corporate/CorporateNavigation";
 
 const iconMap: Record<string, React.ElementType> = {
   Monitor, Wifi, HardDrive, Headphones, ShieldCheck, Settings,
@@ -15,6 +17,11 @@ const iconMap: Record<string, React.ElementType> = {
 const ITSupportPage = () => {
   const { data, isLoading, error, refetch } = useServices("IT Support");
   const navigate = useNavigate();
+  const [darkMode, setDarkMode] = useState(true);
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    document.documentElement.classList.toggle("dark");
+  };
 
   const fallbackServices = [
     {
@@ -82,13 +89,15 @@ const ITSupportPage = () => {
   const services = data?.data?.length ? data.data : fallbackServices;
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className={darkMode ? "dark" : ""}>
+    <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
+      <CorporateNavigation darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       {/* Hero */}
       <section className="relative py-32 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-background to-primary/10" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <Button variant="ghost" onClick={() => navigate(-1)} className="mb-8 gap-2">
-            <ArrowLeft className="w-4 h-4" /> بازگشت
+            <ArrowLeft className="w-4 h-4" /> Back
           </Button>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -155,6 +164,7 @@ const ITSupportPage = () => {
           )}
         </div>
       </section>
+    </div>
     </div>
   );
 };
