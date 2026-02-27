@@ -12,7 +12,6 @@ import DevOpsPage from "./pages/DevOpsPage";
 import ITSupportPage from "./pages/ITSupportPage";
 import BlogPost from "./pages/BlogPost";
 import Index from "./pages/Index";
-import HorizontalMap from "./pages/HorizontalMap";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import DashboardLayout from "./components/dashboard/DashboardLayout";
@@ -33,7 +32,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<PreLanding />} />
-            <Route path="/home" element={<HorizontalMap />} />
+            <Route path="/home" element={<Index />} />
             
             <Route path="/devops" element={<DevOpsPage />} />
             <Route path="/it-support" element={<ITSupportPage />} />
