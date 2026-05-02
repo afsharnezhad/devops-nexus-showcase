@@ -4,24 +4,16 @@ import SocialStoriesBar from "@/components/layout/SocialStoriesBar";
 import NavigationBubble from "@/components/layout/NavigationBubble";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
-import Services from "@/components/sections/Services";
-import TechStack from "@/components/sections/TechStack";
 import Clients from "@/components/sections/Clients";
-
-import LearningHub from "@/components/sections/LearningHub";
-import Testimonials from "@/components/sections/Testimonials";
-import Blog from "@/components/sections/Blog";
-import Contact from "@/components/sections/Contact";
+import BlogCtaBanner from "@/components/sections/BlogCtaBanner";
 import Footer from "@/components/layout/Footer";
 
 const Portfolio = () => {
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
-    // Check for saved dark mode preference or default to light mode
     const savedMode = localStorage.getItem("darkMode");
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    
     if (savedMode) {
       setDarkMode(savedMode === "true");
     } else {
@@ -30,20 +22,15 @@ const Portfolio = () => {
   }, []);
 
   useEffect(() => {
-    // Apply dark mode to document
     if (darkMode) {
       document.documentElement.classList.add("dark");
     } else {
       document.documentElement.classList.remove("dark");
     }
-    
-    // Save preference
     localStorage.setItem("darkMode", darkMode.toString());
   }, [darkMode]);
 
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
+  const toggleDarkMode = () => setDarkMode(!darkMode);
 
   return (
     <LanguageProvider>
@@ -54,29 +41,14 @@ const Portfolio = () => {
           <section id="home">
             <Hero />
           </section>
-          <section id="about">
-            <About />
-          </section>
-          <section id="services">
-            <Services />
-          </section>
-          <section id="tech-stack">
-            <TechStack />
-          </section>
           <section id="clients">
             <Clients />
           </section>
-          <section id="testimonials">
-            <Testimonials />
+          <section id="about">
+            <About />
           </section>
-          <section id="learning">
-            <LearningHub />
-          </section>
-          <section id="blog">
-            <Blog />
-          </section>
-          <section id="contact">
-            <Contact />
+          <section id="blog-cta">
+            <BlogCtaBanner />
           </section>
         </main>
         <Footer />

@@ -1,23 +1,26 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useServices } from "@/hooks/useStrapi";
-import { getMediaFromField } from "@/lib/strapi";
 import ContentSkeleton from "@/components/strapi/ContentSkeleton";
 import ErrorState from "@/components/strapi/ErrorState";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Server, GitBranch, Cloud, Container, Shield, Zap } from "lucide-react";
+import { ArrowLeft, Server, GitBranch, Cloud, Container, Shield, Zap, Sparkles } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import ServiceNavigation from "@/components/layout/ServiceNavigation";
+import { LanguageProvider } from "@/contexts/LanguageContext";
+import { useTranslation } from "@/hooks/useTranslation";
+import BlogCtaBanner from "@/components/sections/BlogCtaBanner";
 
 const iconMap: Record<string, React.ElementType> = {
   Server, GitBranch, Cloud, Container, Shield, Zap,
 };
 
-const DevOpsPage = () => {
+const DevOpsPageInner = () => {
   const { data, isLoading, error, refetch } = useServices("DevOps");
   const navigate = useNavigate();
+  const { t, isRTL } = useTranslation();
   const [darkMode, setDarkMode] = useState(true);
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -90,29 +93,47 @@ const DevOpsPage = () => {
   const services = data?.data?.length ? data.data : fallbackServices;
 
   return (
-    <div className={darkMode ? "dark" : ""}>
+    <div className={darkMode ? "dark" : ""} dir={isRTL ? "rtl" : "ltr"}>
     <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
       <ServiceNavigation darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-      {/* Hero */}
-      <section className="relative py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-accent/10" />
+
+      {/* Hero Banner — rich gradient */}
+      <section className="relative pt-40 pb-24 overflow-hidden">
+        {/* Layered gradients */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-accent/20" />
+        <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-primary/30 blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-40 -left-40 w-[600px] h-[600px] rounded-full bg-accent/30 blur-3xl pointer-events-none" />
+        {/* Grid pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.04]"
+          style={{
+            backgroundImage:
+              "linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)",
+            backgroundSize: "48px 48px",
+          }}
+        />
+
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <Button variant="ghost" onClick={() => navigate(-1)} className="mb-8 gap-2">
-            <ArrowLeft className="w-4 h-4" /> Back
+            <ArrowLeft className={`w-4 h-4 ${isRTL ? "rotate-180" : ""}`} /> {t("backBtn")}
           </Button>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-3xl"
+            transition={{ duration: 0.7 }}
+            className="max-w-4xl"
           >
-            <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">DevOps Services</Badge>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">DevOps</span>{" "}
-              Solutions
+            <Badge className="mb-5 bg-primary/15 text-primary border-primary/30 gap-1.5 px-3 py-1.5">
+              <Sparkles className="w-3.5 h-3.5" />
+              {t("devopsBannerTag")}
+            </Badge>
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6 leading-tight">
+              <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+                {t("devopsBannerTitle")}
+              </span>
             </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl">
-              End-to-end DevOps consulting, CI/CD automation, infrastructure as code, container orchestration and cloud architecture.
+            <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl leading-relaxed">
+              {t("devopsBannerSubtitle")}
             </p>
           </motion.div>
         </div>
@@ -165,9 +186,18 @@ const DevOpsPage = () => {
           )}
         </div>
       </section>
+
+      {/* Blog CTA Banner */}
+      <BlogCtaBanner />
     </div>
     </div>
   );
 };
+
+const DevOpsPage = () => (
+  <LanguageProvider>
+    <DevOpsPageInner />
+  </LanguageProvider>
+);
 
 export default DevOpsPage;

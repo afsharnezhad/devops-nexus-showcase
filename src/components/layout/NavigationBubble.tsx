@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Moon, Sun, Globe } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useTranslation } from "@/hooks/useTranslation";
@@ -16,6 +17,7 @@ const NavigationBubble = ({ darkMode, toggleDarkMode }: NavigationBubbleProps) =
   const [activeItem, setActiveItem] = useState('home');
   const { language, setLanguage } = useLanguage();
   const { t, isRTL } = useTranslation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,13 +29,10 @@ const NavigationBubble = ({ darkMode, toggleDarkMode }: NavigationBubbleProps) =
 
   const menuItems = [
     { name: t('home'), href: "#home", id: "home" },
-    { name: t('about'), href: "#about", id: "about" },
-    { name: t('services'), href: "#services", id: "services" },
+    { name: t('itSupportNav'), href: "/it-support", id: "it-support", isRoute: true },
+    { name: t('devopsNav'), href: "/devops", id: "devops", isRoute: true },
     { name: t('clients'), href: "#clients", id: "clients" },
-    { name: "Case Studies", href: "#case-studies", id: "case-studies" },
-    { name: "Learning", href: "#learning", id: "learning" },
-    { name: t('blog'), href: "#blog", id: "blog" },
-    { name: t('contact'), href: "#contact", id: "contact" },
+    { name: t('about'), href: "#about", id: "about" },
   ];
 
   const toggleLanguage = () => {
@@ -41,7 +40,12 @@ const NavigationBubble = ({ darkMode, toggleDarkMode }: NavigationBubbleProps) =
     setLanguage(newLanguage);
   };
 
-  const scrollToSection = (href: string, id: string) => {
+  const scrollToSection = (href: string, id: string, isRoute?: boolean) => {
+    if (isRoute) {
+      navigate(href);
+      setIsOpen(false);
+      return;
+    }
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -64,7 +68,7 @@ const NavigationBubble = ({ darkMode, toggleDarkMode }: NavigationBubbleProps) =
           {menuItems.map((item, index) => (
             <button
               key={item.name}
-              onClick={() => scrollToSection(item.href, item.id)}
+              onClick={() => scrollToSection(item.href, item.id, (item as any).isRoute)}
               className={`
                 relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-500
                 hover:scale-110 hover:-translate-y-1 group
@@ -132,7 +136,7 @@ const NavigationBubble = ({ darkMode, toggleDarkMode }: NavigationBubbleProps) =
             {menuItems.map((item) => (
               <button
                 key={item.name}
-                onClick={() => scrollToSection(item.href, item.id)}
+                onClick={() => scrollToSection(item.href, item.id, (item as any).isRoute)}
                 className="block w-full text-left px-4 py-3 rounded-xl text-sm font-medium text-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300"
               >
                 {item.name}

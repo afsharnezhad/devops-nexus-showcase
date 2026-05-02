@@ -4,11 +4,28 @@ export const translations = {
   en: {
     // Navigation
     home: 'Home',
-    about: 'About',
+    about: 'About Me',
     services: 'Services',
-    clients: 'Clients',
+    clients: 'Customers',
     blog: 'Blog',
     contact: 'Contact',
+    itSupportNav: 'IT Support',
+    devopsNav: 'DevOps',
+
+    // Page Banners
+    devopsBannerTag: 'DevOps Engineering',
+    devopsBannerTitle: 'Automate. Scale. Deliver.',
+    devopsBannerSubtitle: 'End-to-end DevOps consulting — CI/CD pipelines, Infrastructure as Code, Kubernetes orchestration and multi-cloud architecture engineered for velocity and reliability.',
+    itBannerTag: 'IT Support Services',
+    itBannerTitle: 'Reliable IT. Anywhere. Anytime.',
+    itBannerSubtitle: 'Enterprise-grade IT support covering networks, server hardening, 24/7 help desk and endpoint security — keeping your business resilient and productive.',
+
+    // Blog CTA Banner
+    blogCtaTag: 'Knowledge Hub',
+    blogCtaTitle: 'Read the latest articles',
+    blogCtaSubtitle: 'Insights, tutorials and deep dives on DevOps, cloud architecture and IT engineering.',
+    blogCtaButton: 'Read Articles',
+    backBtn: 'Back',
     
     // Hero Section
     heroTitle: 'DevOps Engineer & IT Consultant',
@@ -79,6 +96,23 @@ export const translations = {
     clients: 'مشتریان',
     blog: 'وبلاگ',
     contact: 'تماس با من',
+    itSupportNav: 'پشتیبانی IT',
+    devopsNav: 'DevOps',
+
+    // Page Banners
+    devopsBannerTag: 'مهندسی DevOps',
+    devopsBannerTitle: 'اتوماسیون. مقیاس‌پذیری. تحویل سریع.',
+    devopsBannerSubtitle: 'مشاوره جامع DevOps — پایپ‌لاین‌های CI/CD، زیرساخت به‌عنوان کد، ارکستراسیون Kubernetes و معماری چندابری برای سرعت و پایداری بالا.',
+    itBannerTag: 'خدمات پشتیبانی IT',
+    itBannerTitle: 'آی‌تی پایدار. در هر زمان و مکان.',
+    itBannerSubtitle: 'پشتیبانی IT در سطح سازمانی شامل شبکه، سخت‌سازی سرور، میز خدمت ۲۴/۷ و امنیت endpoint — برای کسب‌وکاری مقاوم و بهره‌ور.',
+
+    // Blog CTA Banner
+    blogCtaTag: 'مرکز دانش',
+    blogCtaTitle: 'مقالات تازه را بخوانید',
+    blogCtaSubtitle: 'بینش‌ها، آموزش‌ها و تحلیل‌های عمیق درباره DevOps، معماری ابری و مهندسی IT.',
+    blogCtaButton: 'مطالعه مقالات',
+    backBtn: 'بازگشت',
     
     // Hero Section
     heroTitle: 'مهندس DevOps و مشاور IT',

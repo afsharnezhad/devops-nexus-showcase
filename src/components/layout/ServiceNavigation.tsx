@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { Menu, X, Sun, Moon, Shield } from "lucide-react";
+import { Menu, X, Sun, Moon, Shield, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { useTranslation } from "@/hooks/useTranslation";
+import { Language } from "@/lib/i18n";
 
 interface ServiceNavigationProps {
   darkMode: boolean;
@@ -13,29 +16,39 @@ const ServiceNavigation = ({ darkMode, toggleDarkMode }: ServiceNavigationProps)
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const nav = useNavigate();
+  const { language, setLanguage } = useLanguage();
+  const { t } = useTranslation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const menuItems = [
-    { label: "Home", href: "/home", isRoute: true },
-    { label: "DevOps", href: "/devops", isRoute: true },
-    { label: "IT Support", href: "/it-support", isRoute: true },
+    { label: t("home"), href: "/home", isRoute: true, hash: "" },
+    { label: t("itSupportNav"), href: "/it-support", isRoute: true, hash: "" },
+    { label: t("devopsNav"), href: "/devops", isRoute: true, hash: "" },
+    { label: t("clients"), href: "/home", isRoute: true, hash: "#clients" },
+    { label: t("about"), href: "/home", isRoute: true, hash: "#about" },
   ];
 
-  const handleNavClick = (href: string, isRoute?: boolean) => {
+  const toggleLanguage = () => {
+    const newLanguage: Language = language === "en" ? "fa" : "en";
+    setLanguage(newLanguage);
+  };
+
+  const handleNavClick = (item: typeof menuItems[number]) => {
     setIsOpen(false);
-    if (isRoute) {
-      nav(href);
+    if (item.hash) {
+      nav(item.href);
+      setTimeout(() => {
+        const el = document.querySelector(item.hash);
+        el?.scrollIntoView({ behavior: "smooth" });
+      }, 80);
       return;
     }
-    const element = document.querySelector(href);
-    element?.scrollIntoView({ behavior: "smooth" });
+    nav(item.href);
   };
 
   return (
@@ -52,7 +65,7 @@ const ServiceNavigation = ({ darkMode, toggleDarkMode }: ServiceNavigationProps)
         <div className="flex items-center justify-between h-20">
           <motion.a
             href="/home"
-            onClick={(e) => { e.preventDefault(); handleNavClick("/home", true); }}
+            onClick={(e) => { e.preventDefault(); nav("/home"); }}
             className="flex items-center gap-3 cursor-pointer"
             whileHover={{ scale: 1.02 }}
           >
@@ -68,7 +81,7 @@ const ServiceNavigation = ({ darkMode, toggleDarkMode }: ServiceNavigationProps)
             {menuItems.map((item) => (
               <motion.button
                 key={item.label}
-                onClick={() => handleNavClick(item.href, item.isRoute)}
+                onClick={() => handleNavClick(item)}
                 className="text-muted-foreground hover:text-foreground transition-colors font-medium"
                 whileHover={{ y: -2 }}
               >
@@ -77,13 +90,13 @@ const ServiceNavigation = ({ darkMode, toggleDarkMode }: ServiceNavigationProps)
             ))}
           </div>
 
-          <div className="flex items-center gap-4">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleDarkMode}
-              className="rounded-xl"
-            >
+          <div className="flex items-center gap-2">
+            <Button variant="ghost" size="sm" onClick={toggleLanguage} className="gap-1.5">
+              <Globe className="h-4 w-4" />
+              <span className="text-xs font-medium">{language.toUpperCase()}</span>
+            </Button>
+
+            <Button variant="ghost" size="icon" onClick={toggleDarkMode} className="rounded-xl">
               {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </Button>
 
@@ -110,7 +123,7 @@ const ServiceNavigation = ({ darkMode, toggleDarkMode }: ServiceNavigationProps)
                 {menuItems.map((item) => (
                   <motion.button
                     key={item.label}
-                    onClick={() => handleNavClick(item.href, item.isRoute)}
+                    onClick={() => handleNavClick(item)}
                     className="text-left px-4 py-3 rounded-xl text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
                     whileHover={{ x: 8 }}
                   >

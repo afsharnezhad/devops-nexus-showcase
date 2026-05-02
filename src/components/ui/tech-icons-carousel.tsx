@@ -1,7 +1,7 @@
 import React from "react";
-import { SiLinux, SiDocker, SiKubernetes, SiAmazonwebservices, SiGooglecloud, SiTerraform, SiAnsible, SiJenkins, SiGitlab, SiPrometheus, SiGrafana } from "react-icons/si";
+import { SiLinux, SiDocker, SiKubernetes, SiGooglecloud, SiTerraform, SiAnsible, SiJenkins, SiGitlab, SiPrometheus, SiGrafana } from "react-icons/si";
 
-const ICONS_ROW1 = [SiLinux, SiDocker, SiKubernetes, SiAmazonwebservices, SiGooglecloud, SiTerraform];
+const ICONS_ROW1 = [SiLinux, SiDocker, SiKubernetes, SiGooglecloud, SiTerraform];
 const ICONS_ROW2 = [SiAnsible, SiJenkins, SiGitlab, SiPrometheus, SiGrafana, SiDocker];
 
 const repeatedIcons = (icons: any[], repeat = 3) => Array.from({ length: repeat }).flatMap(() => icons);
