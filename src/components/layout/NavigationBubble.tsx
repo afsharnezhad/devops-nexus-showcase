@@ -68,7 +68,7 @@ const NavigationBubble = ({ darkMode, toggleDarkMode }: NavigationBubbleProps) =
           {menuItems.map((item, index) => (
             <button
               key={item.name}
-              onClick={() => scrollToSection(item.href, item.id)}
+              onClick={() => scrollToSection(item.href, item.id, (item as any).isRoute)}
               className={`
                 relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-500
                 hover:scale-110 hover:-translate-y-1 group
@@ -136,7 +136,7 @@ const NavigationBubble = ({ darkMode, toggleDarkMode }: NavigationBubbleProps) =
             {menuItems.map((item) => (
               <button
                 key={item.name}
-                onClick={() => scrollToSection(item.href, item.id)}
+                onClick={() => scrollToSection(item.href, item.id, (item as any).isRoute)}
                 className="block w-full text-left px-4 py-3 rounded-xl text-sm font-medium text-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300"
               >
                 {item.name}
