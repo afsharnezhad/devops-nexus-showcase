@@ -96,6 +96,23 @@ export const translations = {
     clients: 'مشتریان',
     blog: 'وبلاگ',
     contact: 'تماس با من',
+    itSupportNav: 'پشتیبانی IT',
+    devopsNav: 'DevOps',
+
+    // Page Banners
+    devopsBannerTag: 'مهندسی DevOps',
+    devopsBannerTitle: 'اتوماسیون. مقیاس‌پذیری. تحویل سریع.',
+    devopsBannerSubtitle: 'مشاوره جامع DevOps — پایپ‌لاین‌های CI/CD، زیرساخت به‌عنوان کد، ارکستراسیون Kubernetes و معماری چندابری برای سرعت و پایداری بالا.',
+    itBannerTag: 'خدمات پشتیبانی IT',
+    itBannerTitle: 'آی‌تی پایدار. در هر زمان و مکان.',
+    itBannerSubtitle: 'پشتیبانی IT در سطح سازمانی شامل شبکه، سخت‌سازی سرور، میز خدمت ۲۴/۷ و امنیت endpoint — برای کسب‌وکاری مقاوم و بهره‌ور.',
+
+    // Blog CTA Banner
+    blogCtaTag: 'مرکز دانش',
+    blogCtaTitle: 'مقالات تازه را بخوانید',
+    blogCtaSubtitle: 'بینش‌ها، آموزش‌ها و تحلیل‌های عمیق درباره DevOps، معماری ابری و مهندسی IT.',
+    blogCtaButton: 'مطالعه مقالات',
+    backBtn: 'بازگشت',
     
     // Hero Section
     heroTitle: 'مهندس DevOps و مشاور IT',
