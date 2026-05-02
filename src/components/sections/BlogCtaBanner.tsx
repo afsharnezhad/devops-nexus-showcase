@@ -39,8 +39,7 @@ const BlogCtaBanner = () => {
               size="lg"
               className="gap-2 group bg-gradient-to-r from-primary to-accent text-primary-foreground hover:opacity-90 shadow-lg shadow-primary/30 px-8"
               onClick={() => {
-                const el = document.querySelector("#blog");
-                el?.scrollIntoView({ behavior: "smooth" });
+                window.scrollTo({ top: 0, behavior: "smooth" });
               }}
             >
               {t("blogCtaButton")}
