@@ -17,9 +17,10 @@ const iconMap: Record<string, React.ElementType> = {
   Monitor, Wifi, HardDrive, Headphones, ShieldCheck, Settings,
 };
 
-const ITSupportPage = () => {
+const ITSupportPageInner = () => {
   const { data, isLoading, error, refetch } = useServices("IT Support");
   const navigate = useNavigate();
+  const { t, isRTL } = useTranslation();
   const [darkMode, setDarkMode] = useState(true);
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
