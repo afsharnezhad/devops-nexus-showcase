@@ -1,6 +1,6 @@
 import React from "react";
 import { Mail } from "lucide-react";
-import { SiLinkedinb, SiGithub, SiTelegram, SiX, SiInstagram, SiYoutube } from "react-icons/si";
+import { FaLinkedin, SiGithub, SiTelegram, SiX, SiInstagram, SiYoutube } from "react-icons/si";
 
 // Types
 interface SocialLink {
@@ -21,7 +21,7 @@ const defaultSocialLinks: SocialLink[] = [
   {
     name: "LinkedIn",
     href: "https://linkedin.com/in/afsharnezhad",
-    icon: SiLinkedinb,
+    icon: FaLinkedin,
     gradient: "from-[#0077B5] to-[#00A0DC]",
     hoverText: "Professional Network"
   },

@@ -2,12 +2,12 @@ import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ShaderAnimation } from "@/components/ui/shader-lines";
 import {
-  SiLinux, SiDocker, SiKubernetes, SiAmazon, SiGooglecloud,
+  SiLinux, SiDocker, SiKubernetes, SiGooglecloud,
   SiTerraform, SiAnsible, SiJenkins, SiGitlab, SiPrometheus, SiGrafana,
 } from "react-icons/si";
 import { useMemo } from "react";
 
-const backgroundIcons = [SiLinux, SiDocker, SiKubernetes, SiAmazon, SiGooglecloud, SiTerraform, SiAnsible, SiJenkins, SiGitlab, SiPrometheus, SiGrafana];
+const backgroundIcons = [SiLinux, SiDocker, SiKubernetes, SiGooglecloud, SiTerraform, SiAnsible, SiJenkins, SiGitlab, SiPrometheus, SiGrafana];
 
 const MapHome = () => {
   const iconPositions = useMemo(() =>
