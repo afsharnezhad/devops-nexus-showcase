@@ -1,6 +1,7 @@
 import React from "react";
 import { Mail } from "lucide-react";
-import { FaLinkedin, SiGithub, SiTelegram, SiX, SiInstagram, SiYoutube } from "react-icons/si";
+import { SiGithub, SiTelegram, SiX, SiInstagram, SiYoutube } from "react-icons/si";
+import { FaLinkedin } from "react-icons/fa";
 
 // Types
 interface SocialLink {
