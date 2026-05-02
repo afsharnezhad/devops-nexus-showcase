@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useServices } from "@/hooks/useStrapi";
-import { getMediaFromField } from "@/lib/strapi";
 import ContentSkeleton from "@/components/strapi/ContentSkeleton";
 import ErrorState from "@/components/strapi/ErrorState";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Server, GitBranch, Cloud, Container, Shield, Zap } from "lucide-react";
+import { ArrowLeft, Server, GitBranch, Cloud, Container, Shield, Zap, Sparkles } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import ServiceNavigation from "@/components/layout/ServiceNavigation";
+import { LanguageProvider } from "@/contexts/LanguageContext";
+import { useTranslation } from "@/hooks/useTranslation";
+import BlogCtaBanner from "@/components/sections/BlogCtaBanner";
 
 const iconMap: Record<string, React.ElementType> = {
   Server, GitBranch, Cloud, Container, Shield, Zap,
