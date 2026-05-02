@@ -97,7 +97,7 @@ export const MatrixText = ({
     useEffect(() => {
         const timer = setTimeout(startAnimation, initialDelay);
         
-        let intervalId: NodeJS.Timeout | undefined;
+        let intervalId: ReturnType<typeof setInterval> | undefined;
         if (repeatInterval) {
             intervalId = setInterval(startAnimation, repeatInterval);
         }
