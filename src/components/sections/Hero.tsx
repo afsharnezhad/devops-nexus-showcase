@@ -1,7 +1,7 @@
 import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "@/hooks/useTranslation";
-import { SiLinux, SiDocker, SiKubernetes, SiAmazonwebservices, SiGooglecloud, SiTerraform, SiAnsible, SiJenkins, SiGitlab, SiPrometheus, SiGrafana } from "react-icons/si";
+import { SiLinux, SiDocker, SiKubernetes, SiAmazon, SiGooglecloud, SiTerraform, SiAnsible, SiJenkins, SiGitlab, SiPrometheus, SiGrafana } from "react-icons/si";
 import { ShaderAnimation } from "@/components/ui/shader-lines";
 const Hero = () => {
   const {
@@ -18,7 +18,7 @@ const Hero = () => {
   };
 
   // Background pattern icons
-  const backgroundIcons = [SiLinux, SiDocker, SiKubernetes, SiAmazonwebservices, SiGooglecloud, SiTerraform, SiAnsible, SiJenkins, SiGitlab, SiPrometheus, SiGrafana];
+  const backgroundIcons = [SiLinux, SiDocker, SiKubernetes, SiAmazon, SiGooglecloud, SiTerraform, SiAnsible, SiJenkins, SiGitlab, SiPrometheus, SiGrafana];
 
   // Generate random positions for background icons
   const generateIconPositions = () => {

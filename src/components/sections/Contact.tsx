@@ -9,7 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { GlassIcons } from "@/components/ui/glass-icons";
-import { SiLinkedin, SiGithub, SiX, SiInstagram, SiYoutube } from "react-icons/si";
+import { SiLinkedinb, SiGithub, SiX, SiInstagram, SiYoutube } from "react-icons/si";
 
 const Contact = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -24,7 +24,7 @@ const Contact = () => {
 
   const socialIcons = [
     { 
-      icon: <SiLinkedin />, 
+      icon: <SiLinkedinb />, 
       color: 'blue', 
       label: 'LinkedIn',
       href: 'https://linkedin.com/in/afsharnezhad'
