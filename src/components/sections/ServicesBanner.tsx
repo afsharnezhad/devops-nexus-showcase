@@ -66,12 +66,13 @@ const ServicesBanner = () => {
               <motion.button
                 key={c.key}
                 onClick={() => navigate(c.route)}
+                aria-label={`${c.title} — ${t("readMore")}`}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.5 }}
                 whileHover={{ y: -6 }}
-                className={`group relative overflow-hidden rounded-3xl border border-border/50 ${c.borderHover} bg-card/50 backdrop-blur-sm p-8 sm:p-10 text-${isRTL ? "right" : "left"} transition-all hover:shadow-2xl`}
+                className={`group relative overflow-hidden rounded-3xl border border-border/50 ${c.borderHover} bg-card/50 backdrop-blur-sm p-8 sm:p-10 text-${isRTL ? "right" : "left"} transition-all hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background`}
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${c.gradient} opacity-60`} />
                 <div className={`absolute -top-24 ${isRTL ? "-left-24" : "-right-24"} w-72 h-72 rounded-full ${c.blob} blur-3xl opacity-50 group-hover:opacity-80 transition-opacity`} />
@@ -84,11 +85,11 @@ const ServicesBanner = () => {
                   }}
                 />
 
-                <div className="relative z-10">
+                <div className="relative z-10 flex flex-col h-full">
                   <div className={`w-16 h-16 rounded-2xl ${c.bgIcon} flex items-center justify-center mb-6 transition-colors`}>
                     <Icon className={`w-8 h-8 ${c.iconColor}`} />
                   </div>
-                  <Badge variant="outline" className="mb-4">
+                  <Badge variant="outline" className="mb-4 self-start">
                     {c.tag}
                   </Badge>
                   <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-4 leading-tight">
@@ -97,13 +98,13 @@ const ServicesBanner = () => {
                   <p className="text-muted-foreground mb-8 leading-relaxed line-clamp-3">
                     {c.subtitle}
                   </p>
-                  <Button
-                    variant="ghost"
-                    className={`gap-2 ${c.iconColor} hover:bg-transparent p-0 h-auto font-semibold`}
+                  <span
+                    role="presentation"
+                    className={`mt-auto inline-flex items-center gap-2 self-start rounded-full border border-border/60 bg-background/70 backdrop-blur-md px-5 py-2.5 text-sm font-semibold ${c.iconColor} shadow-sm transition-all group-hover:border-transparent group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-accent group-hover:text-primary-foreground group-hover:shadow-lg group-hover:shadow-primary/30`}
                   >
                     {t("readMore")}
-                    <ArrowRight className={`w-4 h-4 transition-transform group-hover:translate-x-1 ${isRTL ? "rotate-180 group-hover:-translate-x-1" : ""}`} />
-                  </Button>
+                    <ArrowRight className={`w-4 h-4 transition-transform group-hover:translate-x-1 ${isRTL ? "rotate-180 group-hover:-translate-x-1 group-hover:translate-x-0" : ""}`} />
+                  </span>
                 </div>
               </motion.button>
             );
