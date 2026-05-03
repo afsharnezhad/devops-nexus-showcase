@@ -5,6 +5,7 @@ import NavigationBubble from "@/components/layout/NavigationBubble";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import Clients from "@/components/sections/Clients";
+import ServicesBanner from "@/components/sections/ServicesBanner";
 import BlogCtaBanner from "@/components/sections/BlogCtaBanner";
 import Footer from "@/components/layout/Footer";
 
