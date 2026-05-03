@@ -42,6 +42,9 @@ const Portfolio = () => {
           <section id="home">
             <Hero />
           </section>
+          <section id="services">
+            <ServicesBanner />
+          </section>
           <section id="clients">
             <Clients />
           </section>
