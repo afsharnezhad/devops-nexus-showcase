@@ -4,6 +4,7 @@ import { ArrowRight, Server, Headphones, Sparkles } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "@/hooks/useTranslation";
+import devopsPipeline from "@/assets/devops-pipeline.png";
 
 const ServicesBanner = () => {
   const navigate = useNavigate();
