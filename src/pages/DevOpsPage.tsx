@@ -12,6 +12,7 @@ import ServiceNavigation from "@/components/layout/ServiceNavigation";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { useTranslation } from "@/hooks/useTranslation";
 import BlogCtaBanner from "@/components/sections/BlogCtaBanner";
+import devopsPipeline from "@/assets/devops-pipeline.png";
 
 const iconMap: Record<string, React.ElementType> = {
   Server, GitBranch, Cloud, Container, Shield, Zap,
