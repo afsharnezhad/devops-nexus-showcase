@@ -91,6 +91,17 @@ const ServicesBanner = () => {
                   <div className={`w-16 h-16 rounded-2xl ${c.bgIcon} flex items-center justify-center mb-6 transition-colors`}>
                     <Icon className={`w-8 h-8 ${c.iconColor}`} />
                   </div>
+                  {(c as any).image && (
+                    <div className="relative mb-6 rounded-2xl overflow-hidden border border-border/50 bg-gradient-to-br from-primary/5 to-accent/5">
+                      <img
+                        src={(c as any).image}
+                        alt={c.title}
+                        loading="lazy"
+                        className="w-full h-44 sm:h-52 object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-card/60 via-transparent to-transparent" />
+                    </div>
+                  )}
                   <Badge variant="outline" className="mb-4 self-start">
                     {c.tag}
                   </Badge>
