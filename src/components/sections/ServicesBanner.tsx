@@ -31,6 +31,7 @@ const ServicesBanner = () => {
       subtitle: t("devopsBannerSubtitle"),
       icon: Server,
       route: "/devops",
+      image: devopsPipeline,
       gradient: "from-primary/30 via-background to-accent/20",
       iconColor: "text-primary",
       borderHover: "hover:border-primary/60",
