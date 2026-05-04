@@ -12,6 +12,7 @@ import ServiceNavigation from "@/components/layout/ServiceNavigation";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { useTranslation } from "@/hooks/useTranslation";
 import BlogCtaBanner from "@/components/sections/BlogCtaBanner";
+import devopsPipeline from "@/assets/devops-pipeline.png";
 
 const iconMap: Record<string, React.ElementType> = {
   Server, GitBranch, Cloud, Container, Shield, Zap,
@@ -97,15 +98,15 @@ const DevOpsPageInner = () => {
     <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
       <ServiceNavigation darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
 
-      {/* Hero Banner — rich gradient */}
-      <section className="relative pt-40 pb-24 overflow-hidden">
-        {/* Layered gradients */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-accent/20" />
-        <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-primary/30 blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-40 -left-40 w-[600px] h-[600px] rounded-full bg-accent/30 blur-3xl pointer-events-none" />
+      {/* Hero Banner — DevOps pipeline themed (cool blue/slate) */}
+      <section className="relative pt-40 pb-24 overflow-hidden bg-gradient-to-b from-slate-100 via-background to-background dark:from-slate-950 dark:via-background dark:to-background">
+        {/* Layered gradients matching pipeline image palette */}
+        <div className="absolute inset-0 bg-gradient-to-br from-sky-500/15 via-background to-blue-600/10" />
+        <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-sky-500/25 blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-40 -left-40 w-[600px] h-[600px] rounded-full bg-blue-600/20 blur-3xl pointer-events-none" />
         {/* Grid pattern */}
         <div
-          className="absolute inset-0 opacity-[0.04]"
+          className="absolute inset-0 opacity-[0.05]"
           style={{
             backgroundImage:
               "linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)",
@@ -117,25 +118,42 @@ const DevOpsPageInner = () => {
           <Button variant="ghost" onClick={() => navigate(-1)} className="mb-8 gap-2">
             <ArrowLeft className={`w-4 h-4 ${isRTL ? "rotate-180" : ""}`} /> {t("backBtn")}
           </Button>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="max-w-4xl"
-          >
-            <Badge className="mb-5 bg-primary/15 text-primary border-primary/30 gap-1.5 px-3 py-1.5">
-              <Sparkles className="w-3.5 h-3.5" />
-              {t("devopsBannerTag")}
-            </Badge>
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6 leading-tight">
-              <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-                {t("devopsBannerTitle")}
-              </span>
-            </h1>
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl leading-relaxed">
-              {t("devopsBannerSubtitle")}
-            </p>
-          </motion.div>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+            >
+              <Badge className="mb-5 bg-sky-500/15 text-sky-600 dark:text-sky-400 border-sky-500/30 gap-1.5 px-3 py-1.5">
+                <Sparkles className="w-3.5 h-3.5" />
+                {t("devopsBannerTag")}
+              </Badge>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                <span className="bg-gradient-to-r from-sky-500 via-blue-500 to-indigo-500 bg-clip-text text-transparent">
+                  {t("devopsBannerTitle")}
+                </span>
+              </h1>
+              <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl leading-relaxed">
+                {t("devopsBannerSubtitle")}
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative"
+            >
+              <div className="absolute -inset-4 bg-gradient-to-br from-sky-500/30 to-blue-600/20 blur-2xl rounded-3xl" />
+              <div className="relative rounded-3xl overflow-hidden border border-border/50 bg-card/40 backdrop-blur-sm shadow-2xl">
+                <img
+                  src={devopsPipeline}
+                  alt="DevOps pipeline — Plan, Build, Test, Release, Deploy, Operate, Monitor"
+                  className="w-full h-auto object-contain"
+                />
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
