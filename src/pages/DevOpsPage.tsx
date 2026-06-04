@@ -1,213 +1,445 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { useServices } from "@/hooks/useStrapi";
-import ContentSkeleton from "@/components/strapi/ContentSkeleton";
-import ErrorState from "@/components/strapi/ErrorState";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { ArrowLeft, Server, GitBranch, Cloud, Container, Shield, Zap, Sparkles } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import {
+  ArrowLeft, Cloud, Server, GitBranch, Activity, Bot, ShieldCheck,
+  GitCommit, Hammer, FlaskConical, Package, Rocket, Sparkles,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
 import ServiceNavigation from "@/components/layout/ServiceNavigation";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { useTranslation } from "@/hooks/useTranslation";
 import BlogCtaBanner from "@/components/sections/BlogCtaBanner";
-import devopsPipeline from "@/assets/devops-pipeline.png";
+import DevOpsScene from "@/components/devops/DevOpsScene";
+import devopsOffice from "@/assets/devops-office.png";
 
-const iconMap: Record<string, React.ElementType> = {
-  Server, GitBranch, Cloud, Container, Shield, Zap,
-};
+const techIcons = [
+  { i: "🐳", n: "Docker" }, { i: "⎈", n: "Kubernetes" }, { i: "🌍", n: "Terraform" },
+  { i: "▲", n: "AWS" }, { i: "☁️", n: "Azure" }, { i: "🐧", n: "Linux" },
+  { i: "📜", n: "Ansible" }, { i: "⚙️", n: "GitHub Actions" }, { i: "🤵", n: "Jenkins" },
+  { i: "🔥", n: "Prometheus" },
+];
 
 const DevOpsPageInner = () => {
-  const { data, isLoading, error, refetch } = useServices("DevOps");
   const navigate = useNavigate();
-  const { t, isRTL } = useTranslation();
+  const { t, isRTL, formatNum } = useTranslation();
   const [darkMode, setDarkMode] = useState(true);
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
     document.documentElement.classList.toggle("dark");
   };
 
-  const fallbackServices = [
-    {
-      id: 1,
-      attributes: {
-        title: "CI/CD Pipelines",
-        slug: "cicd",
-        category: "DevOps" as const,
-        description: "Automated build, test and deploy pipelines using GitHub Actions, GitLab CI, Jenkins and ArgoCD.",
-        details: [],
-        icon_name: "GitBranch",
-        features: ["Automated Testing", "Blue-Green Deployments", "Rollback Strategies", "Multi-Environment"],
-        cover_image: { data: null },
-        order: 1,
-        publishedAt: new Date().toISOString(),
-      },
-    },
-    {
-      id: 2,
-      attributes: {
-        title: "Infrastructure as Code",
-        slug: "iac",
-        category: "DevOps" as const,
-        description: "Terraform, Pulumi and Ansible-based infrastructure automation for reproducible environments.",
-        details: [],
-        icon_name: "Server",
-        features: ["Terraform Modules", "State Management", "Drift Detection", "Multi-Cloud"],
-        cover_image: { data: null },
-        order: 2,
-        publishedAt: new Date().toISOString(),
-      },
-    },
-    {
-      id: 3,
-      attributes: {
-        title: "Container Orchestration",
-        slug: "containers",
-        category: "DevOps" as const,
-        description: "Kubernetes and Docker-based microservice deployments with auto-scaling and monitoring.",
-        details: [],
-        icon_name: "Container",
-        features: ["Kubernetes Clusters", "Helm Charts", "Service Mesh", "Auto-scaling"],
-        cover_image: { data: null },
-        order: 3,
-        publishedAt: new Date().toISOString(),
-      },
-    },
-    {
-      id: 4,
-      attributes: {
-        title: "Cloud Architecture",
-        slug: "cloud",
-        category: "DevOps" as const,
-        description: "AWS, Azure and GCP cloud architecture design, migration and optimization.",
-        details: [],
-        icon_name: "Cloud",
-        features: ["Multi-Cloud Strategy", "Cost Optimization", "High Availability", "Disaster Recovery"],
-        cover_image: { data: null },
-        order: 4,
-        publishedAt: new Date().toISOString(),
-      },
-    },
+  // Force dark mode on this page for proper visibility
+  useEffect(() => {
+    document.documentElement.classList.add("dark");
+  }, []);
+
+  const services = [
+    { icon: Cloud, t: t("nxSrvCloudT"), d: t("nxSrvCloudD") },
+    { icon: Server, t: t("nxSrvK8sT"), d: t("nxSrvK8sD") },
+    { icon: GitBranch, t: t("nxSrvCICDT"), d: t("nxSrvCICDD") },
+    { icon: Activity, t: t("nxSrvObsT"), d: t("nxSrvObsD") },
+    { icon: Bot, t: t("nxSrvAIT"), d: t("nxSrvAID") },
+    { icon: ShieldCheck, t: t("nxSrvSecT"), d: t("nxSrvSecD") },
   ];
 
-  const services = data?.data?.length ? data.data : fallbackServices;
+  const stages = [
+    { icon: GitCommit, label: t("nxStageCommit") },
+    { icon: Hammer, label: t("nxStageBuild") },
+    { icon: FlaskConical, label: t("nxStageTest") },
+    { icon: Package, label: t("nxStagePackage") },
+    { icon: Rocket, label: t("nxStageDeploy") },
+  ];
+
+  // Pipeline state
+  const [activeStage, setActiveStage] = useState(-1);
+  const [passedStages, setPassedStages] = useState<Set<number>>(new Set());
+  const pipeRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    let intervalIds: ReturnType<typeof setTimeout>[] = [];
+    const run = () => {
+      if (cancelled) return;
+      setPassedStages(new Set());
+      setActiveStage(-1);
+      stages.forEach((_, i) => {
+        intervalIds.push(setTimeout(() => {
+          if (cancelled) return;
+          setActiveStage(i);
+          setPassedStages((prev) => {
+            const ns = new Set(prev);
+            if (i > 0) ns.add(i - 1);
+            return ns;
+          });
+        }, i * 1300 + 300));
+      });
+      intervalIds.push(setTimeout(() => {
+        if (cancelled) return;
+        setPassedStages((prev) => new Set([...prev, stages.length - 1]));
+        setActiveStage(-1);
+      }, stages.length * 1300 + 600));
+      intervalIds.push(setTimeout(run, stages.length * 1300 + 2800));
+    };
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { run(); io.disconnect(); }
+    });
+    if (pipeRef.current) io.observe(pipeRef.current);
+    return () => { cancelled = true; intervalIds.forEach(clearTimeout); io.disconnect(); };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const metrics = [
+    { val: 99.99, suffix: "%", lbl: t("nxMetricUptime"), w: 99 },
+    { val: 420, suffix: "+", lbl: t("nxMetricDeploys"), w: 84 },
+    { val: 38, suffix: "ms", lbl: t("nxMetricLatency"), w: 72 },
+    { val: 12, suffix: "k", lbl: t("nxMetricPods"), w: 90 },
+  ];
+
+  const projects = [
+    { tag: t("nxProj1Tag"), title: t("nxProj1T"), desc: t("nxProj1D"), s1: t("nxProj1S1"), s2: t("nxProj1S2") },
+    { tag: t("nxProj2Tag"), title: t("nxProj2T"), desc: t("nxProj2D"), s1: t("nxProj2S1"), s2: t("nxProj2S2") },
+    { tag: t("nxProj3Tag"), title: t("nxProj3T"), desc: t("nxProj3D"), s1: t("nxProj3S1"), s2: t("nxProj3S2") },
+  ];
 
   return (
-    <div className={darkMode ? "dark" : ""} dir={isRTL ? "rtl" : "ltr"}>
-    <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
-      <ServiceNavigation darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+    <div className="dark" dir={isRTL ? "rtl" : "ltr"}>
+      <div className="relative min-h-screen text-[#dbe7ff] overflow-x-hidden" style={{ background: "#05070f" }}>
+        {/* Three.js animated background */}
+        <DevOpsScene />
 
-      {/* Hero Banner — DevOps pipeline themed (cool blue/slate) */}
-      <section className="relative pt-40 pb-24 overflow-hidden bg-gradient-to-b from-slate-100 via-background to-background dark:from-slate-950 dark:via-background dark:to-background">
-        {/* Layered gradients matching pipeline image palette */}
-        <div className="absolute inset-0 bg-gradient-to-br from-sky-500/15 via-background to-blue-600/10" />
-        <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-sky-500/25 blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-40 -left-40 w-[600px] h-[600px] rounded-full bg-blue-600/20 blur-3xl pointer-events-none" />
-        {/* Grid pattern */}
+        {/* Vignette overlay */}
         <div
-          className="absolute inset-0 opacity-[0.05]"
-          style={{
-            backgroundImage:
-              "linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)",
-            backgroundSize: "48px 48px",
-          }}
+          className="fixed inset-0 z-[1] pointer-events-none"
+          style={{ background: "radial-gradient(circle at 50% 0%, transparent 60%, rgba(0,0,0,.6) 100%)" }}
         />
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <Button variant="ghost" onClick={() => navigate(-1)} className="mb-8 gap-2">
-            <ArrowLeft className={`w-4 h-4 ${isRTL ? "rotate-180" : ""}`} /> {t("backBtn")}
-          </Button>
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="relative z-[2]">
+          <ServiceNavigation darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+
+          {/* HERO */}
+          <section className="relative pt-40 pb-28 px-[8vw] min-h-screen flex flex-col justify-center">
+            <Button
+              variant="ghost"
+              onClick={() => navigate(-1)}
+              className="mb-8 gap-2 w-fit text-[#7e8bb0] hover:text-white hover:bg-white/5"
+            >
+              <ArrowLeft className={`w-4 h-4 ${isRTL ? "rotate-180" : ""}`} /> {t("backBtn")}
+            </Button>
+
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
+              className="flex items-center gap-3 text-xs tracking-[4px] uppercase text-[#00e5ff] mb-5"
             >
-              <Badge className="mb-5 bg-sky-500/15 text-sky-600 dark:text-sky-400 border-sky-500/30 gap-1.5 px-3 py-1.5">
-                <Sparkles className="w-3.5 h-3.5" />
-                {t("devopsBannerTag")}
-              </Badge>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                <span className="bg-gradient-to-r from-sky-500 via-blue-500 to-indigo-500 bg-clip-text text-transparent">
-                  {t("devopsBannerTitle")}
-                </span>
-              </h1>
-              <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl leading-relaxed">
-                {t("devopsBannerSubtitle")}
-              </p>
+              <span className="w-9 h-px bg-[#00e5ff] shadow-[0_0_8px_#00e5ff]" />
+              {t("nxEyebrow")}
             </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="font-extrabold leading-[1.04] tracking-tight"
+              style={{ fontSize: "clamp(40px,6vw,82px)" }}
+            >
+              {t("nxHeroTitlePre")}{" "}
+              <span
+                className="bg-clip-text text-transparent"
+                style={{ backgroundImage: "linear-gradient(120deg,#00e5ff,#7c5cff,#19ffd0)" }}
+              >
+                {t("nxHeroTitleAccent")}
+              </span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="max-w-[620px] text-[#7e8bb0] text-lg mt-6"
+            >
+              {t("nxHeroLead")}
+            </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.4 }}
+              className="flex gap-4 mt-10 flex-wrap"
             >
-              <div className="absolute -inset-4 bg-gradient-to-br from-sky-500/30 to-blue-600/20 blur-2xl rounded-3xl" />
-              <div className="relative rounded-3xl overflow-hidden border border-border/50 bg-card/40 backdrop-blur-sm shadow-2xl">
-                <img
-                  src={devopsPipeline}
-                  alt="DevOps pipeline — Plan, Build, Test, Release, Deploy, Operate, Monitor"
-                  className="w-full h-auto object-contain"
-                />
-              </div>
+              <button
+                className="px-7 py-4 rounded-2xl font-semibold text-[15px] text-[#04101a] transition-all hover:-translate-y-1"
+                style={{
+                  background: "linear-gradient(135deg,#00e5ff,#7c5cff)",
+                  boxShadow: "0 0 30px rgba(0,229,255,.35)",
+                }}
+              >
+                {t("nxEnterHub")}
+              </button>
+              <button className="px-7 py-4 rounded-2xl font-semibold text-[15px] border border-[rgba(120,160,255,.18)] text-white hover:bg-white/5 transition-all hover:-translate-y-1">
+                {t("nxViewCases")}
+              </button>
             </motion.div>
-          </div>
-        </div>
-      </section>
 
-      {/* Services Grid */}
-      <section className="py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          {isLoading ? (
-            <div className="grid md:grid-cols-2 gap-8">
-              {[1, 2, 3, 4].map((i) => (
-                <ContentSkeleton key={i} variant="card" />
+            {/* Hero image with metrics overlay */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.5 }}
+              className="mt-14 relative rounded-3xl overflow-hidden border border-[rgba(120,160,255,.18)] max-w-[1100px]"
+              style={{ boxShadow: "0 40px 120px rgba(0,229,255,.15)" }}
+            >
+              <img src={devopsOffice} alt="DevOps command center" className="w-full h-auto object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#05070f] via-[#05070f]/40 to-transparent" />
+            </motion.div>
+
+            {/* Metrics */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-14 max-w-[880px]">
+              {metrics.map((m, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="p-5 rounded-2xl border border-[rgba(120,160,255,.18)] backdrop-blur-xl"
+                  style={{ background: "rgba(18,26,48,.45)" }}
+                >
+                  <div className="text-3xl font-extrabold text-white">
+                    {formatNum(m.val)}<span className="text-[#00e5ff]">{m.suffix}</span>
+                  </div>
+                  <div className="text-[11px] text-[#7e8bb0] mt-1.5 tracking-widest">{m.lbl}</div>
+                  <div className="h-1 rounded-full bg-white/5 mt-3 overflow-hidden">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: `${m.w}%` }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1.4, delay: i * 0.1 }}
+                      className="h-full rounded-full"
+                      style={{ background: "linear-gradient(90deg,#00e5ff,#19ffd0)" }}
+                    />
+                  </div>
+                </motion.div>
               ))}
             </div>
-          ) : error && !fallbackServices.length ? (
-            <ErrorState message="خطا در بارگذاری سرویس‌ها" onRetry={refetch} />
-          ) : (
-            <div className="grid md:grid-cols-2 gap-8">
-              {services.map((service, index) => {
-                const s = service.attributes;
-                const IconComp = iconMap[s.icon_name] || Server;
+          </section>
+
+          {/* SERVICES */}
+          <section className="py-32 px-[8vw]">
+            <div className="flex items-center gap-3 text-xs tracking-[4px] uppercase text-[#00e5ff] mb-5">
+              <span className="w-9 h-px bg-[#00e5ff] shadow-[0_0_8px_#00e5ff]" />
+              {t("nxServicesEyebrow")}
+            </div>
+            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">{t("nxServicesTitle")}</h2>
+            <p className="text-[#7e8bb0] max-w-2xl">{t("nxServicesLead")}</p>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+              {services.map((s, i) => {
+                const Icon = s.icon;
                 return (
                   <motion.div
-                    key={service.id}
+                    key={i}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
+                    transition={{ delay: i * 0.08 }}
+                    whileHover={{ y: -8 }}
+                    className="group p-8 rounded-2xl border border-[rgba(120,160,255,.18)] backdrop-blur-xl transition-all hover:border-[rgba(0,229,255,.4)] relative overflow-hidden"
+                    style={{ background: "rgba(18,26,48,.45)" }}
                   >
-                    <Card className="h-full bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/50 transition-all hover:shadow-lg group">
-                      <CardContent className="p-8">
-                        <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
-                          <IconComp className="w-7 h-7 text-primary" />
-                        </div>
-                        <h3 className="text-xl font-bold text-foreground mb-3">{s.title}</h3>
-                        <p className="text-muted-foreground mb-6">{s.description}</p>
-                        <div className="flex flex-wrap gap-2">
-                          {(s.features || []).map((f) => (
-                            <Badge key={f} variant="outline" className="text-xs">
-                              {f}
-                            </Badge>
-                          ))}
-                        </div>
-                      </CardContent>
-                    </Card>
+                    <div
+                      className="w-14 h-14 rounded-2xl grid place-items-center mb-5 border border-[rgba(120,160,255,.18)]"
+                      style={{ background: "linear-gradient(135deg,rgba(0,229,255,.18),rgba(124,92,255,.18))" }}
+                    >
+                      <Icon className="w-7 h-7 text-[#00e5ff]" />
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-2.5">{s.t}</h3>
+                    <p className="text-[#7e8bb0] text-sm">{s.d}</p>
                   </motion.div>
                 );
               })}
             </div>
-          )}
-        </div>
-      </section>
+          </section>
 
-      {/* Blog CTA Banner */}
-      <BlogCtaBanner />
-    </div>
+          {/* PIPELINE */}
+          <section className="py-32 px-[8vw]" ref={pipeRef}>
+            <div className="flex items-center gap-3 text-xs tracking-[4px] uppercase text-[#00e5ff] mb-5">
+              <span className="w-9 h-px bg-[#00e5ff] shadow-[0_0_8px_#00e5ff]" />
+              {t("nxPipeEyebrow")}
+            </div>
+            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-12">{t("nxPipeTitle")}</h2>
+
+            <div
+              className="p-8 md:p-10 rounded-3xl border border-[rgba(120,160,255,.18)] backdrop-blur-xl"
+              style={{ background: "rgba(18,26,48,.45)" }}
+            >
+              <div className="flex items-center gap-2 flex-wrap" dir="ltr">
+                {stages.map((s, i) => {
+                  const Icon = s.icon;
+                  const active = activeStage === i;
+                  const passed = passedStages.has(i);
+                  const status = passed ? t("nxStatusPassed") : active ? t("nxStatusRunning") : t("nxStatusQueued");
+                  return (
+                    <div key={i} className="flex items-center flex-1 min-w-[100px]">
+                      <div className="flex-1 text-center">
+                        <div
+                          className={`w-14 h-14 rounded-full mx-auto mb-3 grid place-items-center border-2 transition-all duration-500 ${
+                            active || passed
+                              ? "border-[#00e5ff] shadow-[0_0_26px_rgba(0,229,255,.6)]"
+                              : "border-[rgba(120,160,255,.18)]"
+                          }`}
+                          style={{
+                            background: active || passed
+                              ? "linear-gradient(135deg,rgba(0,229,255,.25),rgba(124,92,255,.2))"
+                              : "rgba(10,18,38,.8)",
+                          }}
+                        >
+                          <Icon className={`w-5 h-5 ${active || passed ? "text-[#19ffd0]" : "text-[#7e8bb0]"}`} />
+                        </div>
+                        <div className="text-sm font-semibold text-white">{s.label}</div>
+                        <div className={`text-[11px] mt-0.5 ${active || passed ? "text-[#19ffd0]" : "text-[#7e8bb0]"}`}>
+                          {status}
+                        </div>
+                      </div>
+                      {i < stages.length - 1 && (
+                        <div className="w-[60px] h-[3px] rounded-full bg-white/5 relative overflow-hidden mb-9 mx-1">
+                          <div
+                            className="absolute inset-y-0 left-0 rounded-full transition-[width] duration-1000"
+                            style={{
+                              width: passed ? "100%" : "0%",
+                              background: "linear-gradient(90deg,#00e5ff,#19ffd0)",
+                              boxShadow: "0 0 12px #00e5ff",
+                            }}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Cluster pods */}
+            <div className="grid md:grid-cols-2 gap-6 mt-8">
+              {[t("nxCluster1"), t("nxCluster2")].map((name, idx) => (
+                <div
+                  key={idx}
+                  className="p-7 rounded-3xl border border-[rgba(120,160,255,.18)] backdrop-blur-xl"
+                  style={{ background: "rgba(18,26,48,.45)" }}
+                >
+                  <h4 className="text-xs text-[#7e8bb0] tracking-[2px] uppercase mb-5">{name}</h4>
+                  <div className="grid grid-cols-6 gap-2.5">
+                    {Array.from({ length: 18 }).map((_, i) => (
+                      <div
+                        key={i}
+                        className="aspect-square rounded-lg border border-[rgba(120,160,255,.18)] relative overflow-hidden"
+                        style={{ background: "rgba(0,229,255,.06)" }}
+                      >
+                        <div
+                          className="absolute inset-0 rounded-lg"
+                          style={{
+                            background: "linear-gradient(135deg,#00e5ff,#19ffd0)",
+                            animation: `nxPod 4s infinite`,
+                            animationDelay: `${Math.random() * 4}s`,
+                          }}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* PORTFOLIO */}
+          <section className="py-32 px-[8vw]">
+            <div className="flex items-center gap-3 text-xs tracking-[4px] uppercase text-[#00e5ff] mb-5">
+              <span className="w-9 h-px bg-[#00e5ff] shadow-[0_0_8px_#00e5ff]" />
+              {t("nxWorkEyebrow")}
+            </div>
+            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-12">{t("nxWorkTitle")}</h2>
+            <div className="grid md:grid-cols-3 gap-6">
+              {projects.map((p, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  whileHover={{ y: -8 }}
+                  className="p-8 rounded-3xl border border-[rgba(120,160,255,.18)] backdrop-blur-xl cursor-pointer hover:border-[rgba(0,229,255,.4)] transition-all"
+                  style={{ background: "rgba(18,26,48,.45)" }}
+                >
+                  <div className="text-[11px] text-[#00e5ff] tracking-[2px] uppercase">{p.tag}</div>
+                  <h3 className="text-xl font-bold text-white mt-3 mb-3">{p.title}</h3>
+                  <p className="text-[#7e8bb0] text-sm">{p.desc}</p>
+                  <div className="flex gap-4 mt-5 text-xs text-[#19ffd0] font-semibold">
+                    <span>{p.s1}</span>
+                    <span>{p.s2}</span>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </section>
+
+          {/* TECH STACK */}
+          <section className="py-32 px-[8vw] text-center">
+            <div className="flex items-center justify-center gap-3 text-xs tracking-[4px] uppercase text-[#00e5ff] mb-5">
+              <span className="w-9 h-px bg-[#00e5ff] shadow-[0_0_8px_#00e5ff]" />
+              {t("nxStackEyebrow")}
+              <span className="w-9 h-px bg-[#00e5ff] shadow-[0_0_8px_#00e5ff]" />
+            </div>
+            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">{t("nxStackTitle")}</h2>
+            <p className="text-[#7e8bb0] max-w-xl mx-auto">{t("nxStackLead")}</p>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-5 mt-14">
+              {techIcons.map((tk, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.05 }}
+                  whileHover={{ y: -8, scale: 1.05 }}
+                  className="p-6 rounded-2xl border border-[rgba(120,160,255,.18)] backdrop-blur-xl transition-all hover:border-[rgba(0,229,255,.45)]"
+                  style={{ background: "rgba(18,26,48,.45)" }}
+                >
+                  <div className="text-3xl mb-3">{tk.i}</div>
+                  <div className="text-sm font-semibold text-white">{tk.n}</div>
+                </motion.div>
+              ))}
+            </div>
+          </section>
+
+          {/* Final CTA */}
+          <section className="py-28 px-[8vw] text-center">
+            <Sparkles className="w-8 h-8 text-[#00e5ff] mx-auto mb-4" />
+            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 text-white">
+              {t("nxFooterTitle")}
+            </h2>
+            <p className="text-[#7e8bb0] mb-8">{t("nxFooterLead")}</p>
+            <button
+              className="px-8 py-4 rounded-2xl font-semibold text-[15px] text-[#04101a]"
+              style={{
+                background: "linear-gradient(135deg,#00e5ff,#7c5cff)",
+                boxShadow: "0 0 30px rgba(0,229,255,.35)",
+              }}
+            >
+              {t("nxFooterCTA")}
+            </button>
+          </section>
+
+          <BlogCtaBanner />
+        </div>
+
+        <style>{`
+          @keyframes nxPod {
+            0%, 100% { opacity: 0; transform: scale(.6); }
+            50% { opacity: .5; transform: scale(1); }
+          }
+        `}</style>
+      </div>
     </div>
   );
 };
