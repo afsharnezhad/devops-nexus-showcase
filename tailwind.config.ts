@@ -79,7 +79,18 @@ export default {
       fontFamily: {
         'vazirmatn': ['Vazirmatn', 'system-ui', '-apple-system', 'sans-serif'],
         'space': ['Space Grotesk', 'system-ui', 'sans-serif'],
+        'almarai': ['Almarai', 'system-ui', '-apple-system', 'sans-serif'],
+        'serif': ['"Instrument Serif"', 'serif'],
         'sans': ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+      },
+      textColor: {
+        'cream': '#E1E0CC',
+      },
+      backgroundColor: {
+        'cream': '#DEDBC8',
+        'cinema': '#05070f',
+        'cinema-card': '#101010',
+        'cinema-card-2': '#212121',
       },
       transitionTimingFunction: {
         'smooth': 'cubic-bezier(0.4, 0, 0.2, 1)',
