@@ -56,14 +56,12 @@ const HeroCinematic = () => {
         {/* Hero content */}
         <div className="absolute bottom-0 inset-x-0 p-6 md:p-10 lg:p-14 z-10">
           <div className="grid grid-cols-12 gap-4 md:gap-8 items-end">
-            <div className="col-span-12 lg:col-span-8">
+            <div className="col-span-12 lg:col-span-8" style={{ color: "#E1E0CC" }}>
               <WordsPullUp
                 text={t("cmBrand")}
                 showAsterisk
                 className="font-medium leading-[0.85] tracking-[-0.07em] text-[22vw] sm:text-[20vw] md:text-[18vw] lg:text-[17vw] xl:text-[16vw]"
-                wordClassName=""
               />
-              <style>{`section :where(.cinema-cream-text){color:#E1E0CC}`}</style>
             </div>
 
             <div className="col-span-12 lg:col-span-4 flex flex-col gap-5">
@@ -93,8 +91,6 @@ const HeroCinematic = () => {
           </div>
         </div>
 
-        {/* Cinema brand text uses inline color via global rule */}
-        <style>{`section .inline-flex span{color:#E1E0CC}`}</style>
       </div>
     </section>
   );
