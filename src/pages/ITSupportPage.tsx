@@ -140,9 +140,8 @@ const ITSupportInner = () => {
           <FlutedGlass
             style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
             angle={31}
-            frequency={8}
+            size={0.4}
             shape="wave"
-            softness={1}
             speed={0.15}
           />
           <PaperTexture
