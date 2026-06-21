@@ -11,6 +11,7 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 import { useTranslation } from "@/hooks/useTranslation";
 import BlogCtaBanner from "@/components/sections/BlogCtaBanner";
 import DevOpsScene from "@/components/devops/DevOpsScene";
+import CinematicHero from "@/components/devops/CinematicHero";
 import devopsOffice from "@/assets/devops-office.png";
 
 const techIcons = [
@@ -117,8 +118,12 @@ const DevOpsPageInner = () => {
         <div className="relative z-[2]">
           <ServiceNavigation darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
 
-          {/* HERO */}
-          <section className="relative pt-40 pb-28 px-[8vw] min-h-screen flex flex-col justify-center">
+          {/* CINEMATIC HERO */}
+          <CinematicHero />
+
+          {/* LEGACY HERO META */}
+          <section className="relative pt-20 pb-28 px-[8vw] flex flex-col justify-center">
+
             <Button
               variant="ghost"
               onClick={() => navigate(-1)}
