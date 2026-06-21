@@ -132,72 +132,18 @@ const DevOpsPageInner = () => {
               <ArrowLeft className={`w-4 h-4 ${isRTL ? "rotate-180" : ""}`} /> {t("backBtn")}
             </Button>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-              className="flex items-center gap-3 text-xs tracking-[4px] uppercase text-[#00e5ff] mb-5"
-            >
-              <span className="w-9 h-px bg-[#00e5ff] shadow-[0_0_8px_#00e5ff]" />
-              {t("nxEyebrow")}
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              className="font-extrabold leading-[1.04] tracking-tight"
-              style={{ fontSize: "clamp(40px,6vw,82px)" }}
-            >
-              {t("nxHeroTitlePre")}{" "}
-              <span
-                className="bg-clip-text text-transparent"
-                style={{ backgroundImage: "linear-gradient(120deg,#00e5ff,#7c5cff,#19ffd0)" }}
-              >
-                {t("nxHeroTitleAccent")}
-              </span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="max-w-[620px] text-[#7e8bb0] text-lg mt-6"
-            >
-              {t("nxHeroLead")}
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.4 }}
-              className="flex gap-4 mt-10 flex-wrap"
-            >
-              <button
-                className="px-7 py-4 rounded-2xl font-semibold text-[15px] text-[#04101a] transition-all hover:-translate-y-1"
-                style={{
-                  background: "linear-gradient(135deg,#00e5ff,#7c5cff)",
-                  boxShadow: "0 0 30px rgba(0,229,255,.35)",
-                }}
-              >
-                {t("nxEnterHub")}
-              </button>
-              <button className="px-7 py-4 rounded-2xl font-semibold text-[15px] border border-[rgba(120,160,255,.18)] text-white hover:bg-white/5 transition-all hover:-translate-y-1">
-                {t("nxViewCases")}
-              </button>
-            </motion.div>
-
-            {/* Hero image with metrics overlay */}
+            {/* Hero supporting image */}
             <motion.div
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.5 }}
-              className="mt-14 relative rounded-3xl overflow-hidden border border-[rgba(120,160,255,.18)] max-w-[1100px]"
+              transition={{ duration: 1, delay: 0.2 }}
+              className="mt-6 relative rounded-3xl overflow-hidden border border-[rgba(120,160,255,.18)] max-w-[1100px]"
               style={{ boxShadow: "0 40px 120px rgba(0,229,255,.15)" }}
             >
               <img src={devopsOffice} alt="DevOps command center" className="w-full h-auto object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#05070f] via-[#05070f]/40 to-transparent" />
             </motion.div>
+
 
             {/* Metrics */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-14 max-w-[880px]">
