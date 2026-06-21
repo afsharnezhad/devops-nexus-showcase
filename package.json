@@ -13,6 +13,7 @@
   "dependencies": {
     "@fontsource/almarai": "^5.2.8",
     "@fontsource/instrument-serif": "^5.2.8",
+    "@fontsource/plus-jakarta-sans": "^5.2.8",
     "@hookform/resolvers": "^3.10.0",
     "@paper-design/shaders-react": "^0.0.76",
     "@radix-ui/react-accordion": "^1.2.11",
@@ -50,6 +51,7 @@
     "date-fns": "^3.6.0",
     "embla-carousel-react": "^8.6.0",
     "framer-motion": "^12.23.16",
+    "hls.js": "^1.6.16",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.462.0",
     "motion": "^12.23.24",
