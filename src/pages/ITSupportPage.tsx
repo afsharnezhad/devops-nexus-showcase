@@ -72,20 +72,19 @@ const useLondonTime = () => {
 const ITSupportInner = () => {
   const { isRTL } = useTranslation();
   const navigate = useNavigate();
-  const time = useLondonTime();
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
   const fa = isRTL;
 
-  const navItems = [
-    { label: fa ? "خانه" : "Home", to: "/home" },
-    { label: fa ? "DevOps" : "DevOps", to: "/devops" },
-    { label: fa ? "پشتیبانی IT" : "IT Support", to: "/it-support" },
-    { label: fa ? "ارتباط" : "Contact", to: "/home#contact" },
-  ];
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    document.documentElement.classList.toggle("dark");
+  };
+
+  useEffect(() => {
+    document.documentElement.classList.add("dark");
+  }, []);
 
   const t = {
-    pitch: fa ? "پذیرش پروژه‌های Q1 ۲۰۲۶" : "Taking on projects for Q1 2026",
-    book: fa ? "رزرو جلسه فنی" : "Book a strategy call",
     brand: fa ? "AUTO|OPS — پشتیبانی فناوری" : "AUTO|OPS — IT Support",
     heroL1: fa ? "زیرساخت IT پایدار طراحی می‌کنیم" : "We engineer reliable IT infrastructure",
     heroL2: fa ? "برای کسب‌وکارهایی که آماده‌ی" : "for businesses ready to scale",
@@ -93,8 +92,6 @@ const ITSupportInner = () => {
     start: fa ? "شروع پروژه" : "Start a project",
     badge: fa ? "ISO ۲۷۰۰۱ آماده" : "ISO 27001 Ready",
     soc: fa ? "تأیید شده" : "Verified",
-    menu: fa ? "منو" : "Menu",
-    close: fa ? "بستن" : "Close",
     intro: fa ? "معرفی AUTO|OPS" : "Introducing AUTO|OPS",
     aboutTitle: fa
       ? "تیمی استراتژی‌محور،\nزیرساخت، شبکه و امنیت در یک پکیج."
@@ -119,101 +116,15 @@ const ITSupportInner = () => {
 
   return (
     <div dir={fa ? "rtl" : "ltr"} className={fa ? "font-vazirmatn dark" : "dark"}>
+      <ServiceNavigation darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+
       {/* ===================== HERO ===================== */}
-      <section className="relative min-h-screen flex flex-col bg-[#05070f] overflow-hidden">
-        {/* Shader stack — cyan tinted */}
-        <div className="absolute inset-0 z-10 pointer-events-none">
-          <Swirl
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
-            colors={["#05070f", "#0a1628", "#0e3a52"]}
-          />
-          <Warp
-            style={{
-              position: "absolute",
-              inset: 0,
-              width: "100%",
-              height: "100%",
-              mixBlendMode: "screen",
-              opacity: 0.65,
-            }}
-            colors={["#000814", "#00e5ff", "#0891b2", "#001b2e"]}
-            speed={0.35}
-          />
-          <FlutedGlass
-            style={{
-              position: "absolute",
-              inset: 0,
-              width: "100%",
-              height: "100%",
-              opacity: 0.35,
-            }}
-            angle={31}
-            size={0.45}
-            shape="wave"
-            speed={0.12}
-          />
-          <PaperTexture
-            style={{
-              position: "absolute",
-              inset: 0,
-              width: "100%",
-              height: "100%",
-              opacity: 0.18,
-              mixBlendMode: "overlay",
-            }}
-          />
-          {/* vignette */}
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-transparent to-slate-950/80" />
-        </div>
-
-        {/* Nav */}
-        <div className="relative z-20 mx-auto w-full max-w-[1440px] p-2 sm:p-3">
-          <nav className="rounded-full flex items-center justify-between p-[5px] bg-white/5 backdrop-blur-xl border border-white/10">
-            {/* Left */}
-            <div className="flex items-center gap-6">
-              <button
-                onClick={() => navigate("/home")}
-                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-[0_0_20px_rgba(34,211,238,0.4)]"
-                aria-label="Home"
-              >
-                <span className="text-slate-950 text-[10px] sm:text-[11px] font-bold tracking-tight">
-                  AO
-                </span>
-              </button>
-              <ul className="hidden md:flex items-center gap-6">
-                {navItems.map((n) => (
-                  <li key={n.to}>
-                    <button
-                      onClick={() => navigate(n.to)}
-                      className="text-[14px] text-slate-200 hover:text-cyan-300 transition-colors duration-300"
-                    >
-                      {n.label}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Right */}
-            <div className="hidden md:flex items-center gap-4 lg:gap-5 pr-1">
-              <span className="hidden lg:inline text-[13px] text-slate-400">{t.pitch}</span>
-              <span className="flex items-center gap-1.5 text-[13px] text-slate-400">
-                <Clock size={14} />
-                {time} {fa ? "به وقت لندن" : "in London"}
-              </span>
-              <RollButton variant="cyan">{t.book}</RollButton>
-            </div>
-
-            {/* Mobile toggle */}
-            <button
-              className="md:hidden w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center"
-              onClick={() => setMenuOpen(true)}
-              aria-label={t.menu}
-            >
-              <Menu size={18} />
-            </button>
-          </nav>
-        </div>
+      <section className="relative min-h-screen flex flex-col bg-[#05070f] overflow-hidden pt-24">
+        {/* Dotted surface background */}
+        <DottedSurface className="z-0" color={[34, 211, 238]} />
+        {/* gradient atmosphere */}
+        <div className="absolute inset-0 z-10 pointer-events-none bg-[radial-gradient(ellipse_at_center,_rgba(8,145,178,0.18),_transparent_60%)]" />
+        <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-b from-slate-950/60 via-transparent to-slate-950/90" />
 
         {/* Hero content */}
         <div className="relative z-20 flex-1 flex flex-col justify-end mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12 pb-14 sm:pb-16 lg:pb-20">
@@ -252,51 +163,9 @@ const ITSupportInner = () => {
             </div>
           </div>
         </div>
-
-        {/* Mobile menu */}
-        {menuOpen && (
-          <div className="fixed inset-0 z-50">
-            <div
-              className="absolute inset-0 bg-black/70 backdrop-blur-sm"
-              onClick={() => setMenuOpen(false)}
-            />
-            <div
-              className="absolute left-0 right-0 bottom-0 rounded-2xl mx-3 mb-3 p-6 bg-slate-900 border border-white/10"
-              style={{ animation: "slideUp 0.5s cubic-bezier(0.32,0.72,0,1) forwards" }}
-            >
-              <div className="flex items-center justify-between mb-6">
-                <span className="flex items-center gap-1.5 text-[13px] text-slate-400">
-                  <Clock size={14} /> {time} {fa ? "لندن" : "London"}
-                </span>
-                <button
-                  className="w-9 h-9 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center"
-                  onClick={() => setMenuOpen(false)}
-                  aria-label={t.close}
-                >
-                  <X size={18} />
-                </button>
-              </div>
-              <ul className="flex flex-col gap-3 mb-6">
-                {navItems.map((n) => (
-                  <li key={n.to}>
-                    <button
-                      onClick={() => {
-                        setMenuOpen(false);
-                        navigate(n.to);
-                      }}
-                      className="text-[28px] leading-[32px] font-medium text-slate-100"
-                    >
-                      {n.label}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-              <RollButton variant="cyan">{t.start}</RollButton>
-            </div>
-            <style>{`@keyframes slideUp { from { transform: translateY(100%);} to { transform: translateY(0);} }`}</style>
-          </div>
-        )}
       </section>
+
+
 
       {/* ===================== ABOUT ===================== */}
       <section className="bg-slate-950 pt-16 sm:pt-20 lg:pt-32 pb-12 sm:pb-16 lg:pb-24 overflow-hidden">
