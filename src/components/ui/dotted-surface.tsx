@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils';
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
-type DottedSurfaceProps = Omit<React.HTMLAttributes<HTMLDivElement>, 'ref'> & {
+type DottedSurfaceProps = Omit<React.HTMLAttributes<HTMLDivElement>, 'ref' | 'color'> & {
   /** color of the dots, defaults to cyan */
   color?: [number, number, number];
 };
