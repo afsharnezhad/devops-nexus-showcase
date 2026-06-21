@@ -106,8 +106,6 @@ const DevOpsPageInner = () => {
   return (
     <div className="dark" dir={isRTL ? "rtl" : "ltr"}>
       <div className="relative min-h-screen text-[#dbe7ff] overflow-x-hidden" style={{ background: "#05070f" }}>
-        {/* Three.js animated background */}
-        <DevOpsScene />
 
         {/* Vignette overlay */}
         <div
