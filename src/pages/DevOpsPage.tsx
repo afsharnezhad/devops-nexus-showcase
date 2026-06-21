@@ -10,7 +10,7 @@ import ServiceNavigation from "@/components/layout/ServiceNavigation";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { useTranslation } from "@/hooks/useTranslation";
 import BlogCtaBanner from "@/components/sections/BlogCtaBanner";
-import DevOpsScene from "@/components/devops/DevOpsScene";
+
 import CinematicHero from "@/components/devops/CinematicHero";
 import devopsOffice from "@/assets/devops-office.png";
 
@@ -106,8 +106,6 @@ const DevOpsPageInner = () => {
   return (
     <div className="dark" dir={isRTL ? "rtl" : "ltr"}>
       <div className="relative min-h-screen text-[#dbe7ff] overflow-x-hidden" style={{ background: "#05070f" }}>
-        {/* Three.js animated background */}
-        <DevOpsScene />
 
         {/* Vignette overlay */}
         <div
