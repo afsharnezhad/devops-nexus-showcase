@@ -10,7 +10,7 @@ import ServiceNavigation from "@/components/layout/ServiceNavigation";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { useTranslation } from "@/hooks/useTranslation";
 import BlogCtaBanner from "@/components/sections/BlogCtaBanner";
-import DevOpsScene from "@/components/devops/DevOpsScene";
+
 import CinematicHero from "@/components/devops/CinematicHero";
 import devopsOffice from "@/assets/devops-office.png";
 
