@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Swirl, FlutedGlass, PaperTexture, Warp } from "@paper-design/shaders-react";
-import { ArrowRight, Clock, Menu, X, Link as LinkIcon, ShieldCheck } from "lucide-react";
+import { ArrowRight, Link as LinkIcon, ShieldCheck } from "lucide-react";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { useTranslation } from "@/hooks/useTranslation";
+import ServiceNavigation from "@/components/layout/ServiceNavigation";
+import { DottedSurface } from "@/components/ui/dotted-surface";
 import itNocWide from "@/assets/it-noc-wide.jpg";
 import itEngineer from "@/assets/it-engineer.jpg";
 import itCardNetwork from "@/assets/it-card-network.jpg";
