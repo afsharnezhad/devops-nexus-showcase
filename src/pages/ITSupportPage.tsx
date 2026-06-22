@@ -5,6 +5,7 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 import { useTranslation } from "@/hooks/useTranslation";
 import ServiceNavigation from "@/components/layout/ServiceNavigation";
 import { DottedSurface } from "@/components/ui/dotted-surface";
+import PersianITSections from "@/components/it-support/PersianITSections";
 import itNocWide from "@/assets/it-noc-wide.jpg";
 import itEngineer from "@/assets/it-engineer.jpg";
 import itCardNetwork from "@/assets/it-card-network.jpg";
@@ -299,6 +300,8 @@ const ITSupportInner = () => {
           </div>
         </div>
       </section>
+
+      <PersianITSections />
     </div>
   );
 };
