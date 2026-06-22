@@ -14,6 +14,7 @@ import { useTranslation } from "@/hooks/useTranslation";
 import BlogCtaBanner from "@/components/sections/BlogCtaBanner";
 
 import CinematicHero from "@/components/devops/CinematicHero";
+import PersianDevOpsSections from "@/components/devops/PersianDevOpsSections";
 import devopsOffice from "@/assets/devops-office.png";
 
 const techIcons = [
