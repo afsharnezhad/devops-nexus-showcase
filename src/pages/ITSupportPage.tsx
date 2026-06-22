@@ -300,6 +300,8 @@ const ITSupportInner = () => {
           </div>
         </div>
       </section>
+
+      <PersianITSections />
     </div>
   );
 };
