@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import {
   ArrowLeft, Cloud, Server, GitBranch, Activity, Bot, ShieldCheck,
   GitCommit, Hammer, FlaskConical, Package, Rocket, Sparkles,
+  Zap, TrendingUp, DollarSign, Layers, Search, PenTool, Settings, CheckCircle, LifeBuoy,
+  Container, Code2, Workflow, LineChart, Lock, Check, ChevronDown, Phone, Mail,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ServiceNavigation from "@/components/layout/ServiceNavigation";
@@ -12,6 +14,7 @@ import { useTranslation } from "@/hooks/useTranslation";
 import BlogCtaBanner from "@/components/sections/BlogCtaBanner";
 
 import CinematicHero from "@/components/devops/CinematicHero";
+import PersianDevOpsSections from "@/components/devops/PersianDevOpsSections";
 import devopsOffice from "@/assets/devops-office.png";
 
 const techIcons = [
@@ -361,23 +364,8 @@ const DevOpsPageInner = () => {
             </div>
           </section>
 
-          {/* Final CTA */}
-          <section className="py-28 px-[8vw] text-center">
-            <Sparkles className="w-8 h-8 text-[#00e5ff] mx-auto mb-4" />
-            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 text-white">
-              {t("nxFooterTitle")}
-            </h2>
-            <p className="text-[#7e8bb0] mb-8">{t("nxFooterLead")}</p>
-            <button
-              className="px-8 py-4 rounded-2xl font-semibold text-[15px] text-[#04101a]"
-              style={{
-                background: "linear-gradient(135deg,#00e5ff,#7c5cff)",
-                boxShadow: "0 0 30px rgba(0,229,255,.35)",
-              }}
-            >
-              {t("nxFooterCTA")}
-            </button>
-          </section>
+          {/* ============ PERSIAN DEVOPS CONTENT ============ */}
+          <PersianDevOpsSections />
 
           <BlogCtaBanner />
         </div>
