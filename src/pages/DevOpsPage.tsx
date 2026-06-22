@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import {
   ArrowLeft, Cloud, Server, GitBranch, Activity, Bot, ShieldCheck,
   GitCommit, Hammer, FlaskConical, Package, Rocket, Sparkles,
+  Zap, TrendingUp, DollarSign, Layers, Search, PenTool, Settings, CheckCircle, LifeBuoy,
+  Container, Code2, Workflow, LineChart, Lock, Check, ChevronDown, Phone, Mail,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ServiceNavigation from "@/components/layout/ServiceNavigation";
