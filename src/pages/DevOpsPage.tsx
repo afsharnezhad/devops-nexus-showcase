@@ -363,23 +363,8 @@ const DevOpsPageInner = () => {
             </div>
           </section>
 
-          {/* Final CTA */}
-          <section className="py-28 px-[8vw] text-center">
-            <Sparkles className="w-8 h-8 text-[#00e5ff] mx-auto mb-4" />
-            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 text-white">
-              {t("nxFooterTitle")}
-            </h2>
-            <p className="text-[#7e8bb0] mb-8">{t("nxFooterLead")}</p>
-            <button
-              className="px-8 py-4 rounded-2xl font-semibold text-[15px] text-[#04101a]"
-              style={{
-                background: "linear-gradient(135deg,#00e5ff,#7c5cff)",
-                boxShadow: "0 0 30px rgba(0,229,255,.35)",
-              }}
-            >
-              {t("nxFooterCTA")}
-            </button>
-          </section>
+          {/* ============ PERSIAN DEVOPS CONTENT ============ */}
+          <PersianDevOpsSections />
 
           <BlogCtaBanner />
         </div>
