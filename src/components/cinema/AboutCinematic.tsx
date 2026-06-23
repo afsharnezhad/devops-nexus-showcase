@@ -19,33 +19,34 @@ const AboutCinematic = () => {
   const chars = body.split("");
 
   return (
-    <div className="bg-black">
-      <section className="py-24 md:py-36 px-4">
-        <div ref={ref} className="bg-[#101010] max-w-6xl mx-auto rounded-2xl md:rounded-[2rem] px-6 md:px-12 py-20 md:py-28 text-center">
-          <p className="text-[10px] sm:text-xs uppercase tracking-[0.25em] mb-8" style={{ color: "#DEDBC8" }}>
-            {t("cmAboutTag")}
-          </p>
+    <section className="bg-black py-24 md:py-32 px-4">
+      <div ref={ref} className="bg-[#101010] max-w-6xl mx-auto rounded-2xl md:rounded-[2rem] px-6 md:px-12 py-20 md:py-24 text-center">
+        <p className="text-[10px] sm:text-xs uppercase tracking-[0.25em] mb-8" style={{ color: "#DEDBC8" }}>
+          {t("cmAboutTag")}
+        </p>
 
-          <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl max-w-3xl mx-auto leading-[0.95] sm:leading-[0.9] mb-16" style={{ color: "#E1E0CC" }}>
-            <WordsPullUpMultiStyle
-              segments={[
-                { text: t("cmAboutSeg1"), className: "font-normal" },
-                { text: " " + t("cmAboutSeg2"), className: "italic font-serif" },
-                { text: " " + t("cmAboutSeg3"), className: "font-normal" },
-              ]}
-            />
-          </div>
-
-          <p className="text-xs sm:text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
-            {chars.map((c, i) => (
-              <AnimatedLetter key={i} char={c} index={i} total={chars.length} progress={scrollYProgress} />
-            ))}
-          </p>
+        <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl max-w-3xl mx-auto leading-[0.95] sm:leading-[0.9] mb-12" style={{ color: "#E1E0CC" }}>
+          <WordsPullUpMultiStyle
+            segments={[
+              { text: t("cmAboutSeg1"), className: "font-normal" },
+              { text: " " + t("cmAboutSeg2"), className: "italic font-serif" },
+              { text: " " + t("cmAboutSeg3"), className: "font-normal" },
+            ]}
+          />
         </div>
-      </section>
 
-      <Skiper79 />
-    </div>
+        <p className="text-xs sm:text-sm md:text-base max-w-2xl mx-auto leading-relaxed mb-16">
+          {chars.map((c, i) => (
+            <AnimatedLetter key={i} char={c} index={i} total={chars.length} progress={scrollYProgress} />
+          ))}
+        </p>
+
+        {/* Integrated photo grid */}
+        <div className="-mx-6 md:-mx-12">
+          <Skiper79 />
+        </div>
+      </div>
+    </section>
   );
 };
 
