@@ -68,20 +68,6 @@ const FeaturesCinematic = () => {
       <div className="absolute inset-0 bg-noise opacity-[0.15] pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto">
-        <div className="mb-12 md:mb-16 max-w-4xl">
-          <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal leading-tight">
-            <WordsPullUpMultiStyle
-              segments={[{ text: t("cmFeatHeader1"), className: "" }]}
-              className="!justify-start"
-            />
-          </div>
-          <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal leading-tight text-gray-500 mt-2">
-            <WordsPullUpMultiStyle
-              segments={[{ text: t("cmFeatHeader2"), className: "" }]}
-              className="!justify-start"
-            />
-          </div>
-        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-2 md:gap-1 lg:h-[480px]">
           {/* Card 1 — image hero */}
