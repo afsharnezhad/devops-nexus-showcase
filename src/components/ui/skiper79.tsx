@@ -1,23 +1,15 @@
 import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 import { useRef } from "react";
 
-type Person = { name: string; role: string; src: string };
+export type Person = { name: string; role: string; src: string };
 
-const PEOPLE: Person[] = Array.from({ length: 17 }).map((_, i) => ({
-  src: `https://skiper-ui.com/images/oct25Coll/portraits/p_${i + 1}.png`,
-  name: [
-    "Alex Johnson","Sarah Chen","Marcus Rivera","Emily Watson","David Kim",
-    "Lisa Thompson","James Wilson","Rachel Green","Michael Brown","Anna Davis",
-    "Tom Anderson","Sophie Lee","Chris Taylor","Maya Patel","Ryan O'Connor",
-    "Zoe Martinez","Jordan Smith",
-  ][i],
-  role: [
-    "CEO & Founder","CTO","Lead Designer","Product Manager","Senior Developer",
-    "Marketing Director","UX Researcher","Data Scientist","DevOps Engineer",
-    "Content Strategist","Sales Manager","QA Lead","Backend Developer",
-    "Frontend Developer","Mobile Developer","Design Systems","Product Analyst",
-  ][i],
-}));
+const DEFAULT_PEOPLE: Person[] = [
+  { name: "Ehsan", role: "DevOps Engineer", src: "https://skiper-ui.com/images/oct25Coll/portraits/p_1.png" },
+  { name: "Ehsan", role: "Cloud Architect", src: "https://skiper-ui.com/images/oct25Coll/portraits/p_2.png" },
+  { name: "Ehsan", role: "Infrastructure", src: "https://skiper-ui.com/images/oct25Coll/portraits/p_3.png" },
+  { name: "Ehsan", role: "Automation", src: "https://skiper-ui.com/images/oct25Coll/portraits/p_4.png" },
+  { name: "Ehsan", role: "Platform", src: "https://skiper-ui.com/images/oct25Coll/portraits/p_5.png" },
+];
 
 const Tile = ({
   person,
@@ -25,12 +17,14 @@ const Tile = ({
   start,
   end,
   fromScale = 0.4,
+  className = "",
 }: {
   person: Person;
   progress: MotionValue<number>;
   start: number;
   end: number;
   fromScale?: number;
+  className?: string;
 }) => {
   const scale = useTransform(progress, [start, end], [fromScale, 1]);
   const opacity = useTransform(progress, [start, Math.min(end, start + 0.15)], [0, 1]);
@@ -38,7 +32,7 @@ const Tile = ({
   return (
     <motion.figure
       style={{ scale, opacity }}
-      className="relative overflow-hidden rounded-xl bg-neutral-900 aspect-[3/4] group"
+      className={`relative overflow-hidden rounded-xl bg-neutral-900 group ${className}`}
     >
       <img
         src={person.src}
@@ -54,60 +48,66 @@ const Tile = ({
   );
 };
 
-export const Skiper79 = () => {
+export const Skiper79 = ({
+  people = DEFAULT_PEOPLE,
+  heading,
+  subheading,
+}: {
+  people?: Person[];
+  heading?: React.ReactNode;
+  subheading?: React.ReactNode;
+}) => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
   });
 
-  // Cols pattern across rows for variation
-  const cols = ["grid-cols-2", "grid-cols-3", "grid-cols-4", "grid-cols-3", "grid-cols-5"];
+  const list = people.slice(0, 5);
 
-  // Distribute people into rows
-  const rows: Person[][] = [];
-  let i = 0;
-  const sizes = [2, 3, 4, 3, 5];
-  sizes.forEach((s) => {
-    rows.push(PEOPLE.slice(i, i + s));
-    i += s;
-  });
+  // Asymmetric bento layout for up to 5 tiles
+  const layouts = [
+    "col-span-2 row-span-2 aspect-square",
+    "col-span-1 row-span-1 aspect-[3/4]",
+    "col-span-1 row-span-1 aspect-[3/4]",
+    "col-span-1 row-span-1 aspect-[3/4]",
+    "col-span-1 row-span-1 aspect-[3/4]",
+  ];
 
   return (
-    <section ref={ref} className="relative bg-black text-white py-24 md:py-32 px-4 md:px-8 overflow-hidden">
-      <div className="sticky top-1/3 z-10 pointer-events-none text-center mb-12">
-        <h2
-          className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-semibold tracking-tight"
-          style={{ mixBlendMode: "exclusion", color: "#fff" }}
-        >
-          Speakers
-        </h2>
-        <p className="mt-3 text-xs sm:text-sm uppercase tracking-[0.3em] text-white/60">
-          Oct 22, 2025
-        </p>
-      </div>
+    <section ref={ref} className="relative bg-black text-white py-20 md:py-28 px-4 md:px-8 overflow-hidden">
+      {(heading || subheading) && (
+        <div className="sticky top-1/3 z-10 pointer-events-none text-center mb-12">
+          {heading && (
+            <h2
+              className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-semibold tracking-tight"
+              style={{ mixBlendMode: "exclusion", color: "#fff" }}
+            >
+              {heading}
+            </h2>
+          )}
+          {subheading && (
+            <p className="mt-3 text-xs sm:text-sm uppercase tracking-[0.3em] text-white/60">
+              {subheading}
+            </p>
+          )}
+        </div>
+      )}
 
-      <div className="relative z-0 max-w-7xl mx-auto flex flex-col gap-4 md:gap-6">
-        {rows.map((row, r) => {
-          const rowStart = r / rows.length;
-          const rowEnd = (r + 1) / rows.length;
+      <div className="relative z-0 max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 auto-rows-[140px] sm:auto-rows-[180px] md:auto-rows-[200px] gap-3 md:gap-4">
+        {list.map((p, i) => {
+          const start = (i / list.length) * 0.6;
+          const end = start + 0.25;
           return (
-            <div key={r} className={`grid gap-4 md:gap-6 ${cols[r % cols.length]}`}>
-              {row.map((p, c) => {
-                const localStart = rowStart + (c / row.length) * (rowEnd - rowStart) * 0.6;
-                const localEnd = localStart + 0.25;
-                return (
-                  <Tile
-                    key={p.name}
-                    person={p}
-                    progress={scrollYProgress}
-                    start={localStart}
-                    end={localEnd}
-                    fromScale={0.3 + (c % 3) * 0.1}
-                  />
-                );
-              })}
-            </div>
+            <Tile
+              key={i}
+              person={p}
+              progress={scrollYProgress}
+              start={start}
+              end={end}
+              fromScale={0.3 + (i % 3) * 0.1}
+              className={layouts[i]}
+            />
           );
         })}
       </div>
