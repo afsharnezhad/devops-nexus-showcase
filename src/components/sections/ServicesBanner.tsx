@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "@/hooks/useTranslation";
 import devopsPipeline from "@/assets/devops-pipeline.png";
+import devopsLogo from "@/assets/devops-logo-dark.png";
 
 const ServicesBanner = () => {
   const navigate = useNavigate();
@@ -88,8 +89,12 @@ const ServicesBanner = () => {
                 />
 
                 <div className="relative z-10 flex flex-col h-full">
-                  <div className={`w-16 h-16 rounded-2xl ${c.bgIcon} flex items-center justify-center mb-6 transition-colors`}>
-                    <Icon className={`w-8 h-8 ${c.iconColor}`} />
+                  <div className={`w-16 h-16 rounded-2xl ${c.bgIcon} flex items-center justify-center mb-6 transition-colors p-2`}>
+                    {c.key === "devops" ? (
+                      <img src={devopsLogo} alt="Devops logo" className="w-full h-full object-contain dark:invert" />
+                    ) : (
+                      <Icon className={`w-8 h-8 ${c.iconColor}`} />
+                    )}
                   </div>
                   {(c as any).image && (
                     <div className="relative mb-6 rounded-2xl overflow-hidden border border-border/50 bg-gradient-to-br from-primary/5 to-accent/5">

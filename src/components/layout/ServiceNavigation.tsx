@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { Menu, X, Sun, Moon, Shield, Globe } from "lucide-react";
+import { Menu, X, Sun, Moon, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useTranslation } from "@/hooks/useTranslation";
 import { Language } from "@/lib/i18n";
+import devopsLogo from "@/assets/devops-logo-dark.png";
 
 interface ServiceNavigationProps {
   darkMode: boolean;
@@ -69,11 +70,12 @@ const ServiceNavigation = ({ darkMode, toggleDarkMode }: ServiceNavigationProps)
             className="flex items-center gap-3 cursor-pointer"
             whileHover={{ scale: 1.02 }}
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-              <Shield className="w-6 h-6 text-primary-foreground" />
+            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-primary/15 to-accent/15 border border-primary/30 flex items-center justify-center p-1.5">
+              <img src={devopsLogo} alt="Devops logo" className="w-full h-full object-contain dark:invert" />
             </div>
-            <div className="flex flex-col">
-              <span className="text-xl font-bold text-foreground">AUTO<span className="text-primary">|</span>OPS</span>
+            <div className="flex flex-col leading-none">
+              <span className="text-lg font-bold text-foreground tracking-tight">Devops</span>
+              <span className="text-[10px] uppercase tracking-[2px] text-muted-foreground">Ehsan Afshar</span>
             </div>
           </motion.a>
 

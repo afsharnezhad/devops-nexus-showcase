@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, Menu, X, Cloud } from "lucide-react";
+import { ArrowRight, Menu, X } from "lucide-react";
 import Hls from "hls.js";
 import { useTranslation } from "@/hooks/useTranslation";
+import devopsLogo from "@/assets/devops-logo-white.png";
 
 const VIDEO_SRC = "https://stream.mux.com/tLkHO1qZoaaQOUeVWo8hEBeGQfySP02EPS02BmnNFyXys.m3u8";
 
@@ -109,16 +110,16 @@ const CinematicHero = () => {
       <header className="absolute top-0 inset-x-0 z-30">
         <div className="max-w-[1400px] mx-auto px-6 md:px-10 py-5 flex items-center justify-between">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2.5 group">
+          <a href="#" className="flex items-center gap-3 group">
             <span
-              className="relative w-8 h-8 rounded-lg grid place-items-center"
+              className="relative w-11 h-11 rounded-xl grid place-items-center p-1.5"
               style={{
-                background: "linear-gradient(135deg,rgba(94,210,156,0.2),rgba(0,200,255,0.15))",
+                background: "linear-gradient(135deg,rgba(94,210,156,0.18),rgba(0,200,255,0.12))",
                 border: "1px solid rgba(94,210,156,0.35)",
               }}
             >
-              <Cloud className="w-4 h-4 text-[#5ed29c]" />
-              <span className="absolute inset-0 rounded-lg animate-ping opacity-40" style={{ boxShadow: "0 0 12px #5ed29c" }} />
+              <img src={devopsLogo} alt="Devops" className="w-full h-full object-contain" />
+              <span className="absolute inset-0 rounded-xl animate-ping opacity-30" style={{ boxShadow: "0 0 14px #5ed29c" }} />
             </span>
             <span
               className="text-white font-bold tracking-[3px] text-[13px]"
