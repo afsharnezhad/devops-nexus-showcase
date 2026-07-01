@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "@/hooks/useTranslation";
 import devopsPipeline from "@/assets/devops-pipeline.png";
+import devopsLogo from "@/assets/devops-logo-dark.png";
 
 const ServicesBanner = () => {
   const navigate = useNavigate();
