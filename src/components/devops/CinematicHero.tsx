@@ -1,17 +1,25 @@
-import { useEffect, useRef } from "react";
-import { ArrowRight } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ArrowRight, Menu, X, Cloud } from "lucide-react";
 import Hls from "hls.js";
 import { useTranslation } from "@/hooks/useTranslation";
 
 const VIDEO_SRC = "https://stream.mux.com/tLkHO1qZoaaQOUeVWo8hEBeGQfySP02EPS02BmnNFyXys.m3u8";
 
+const NAV_LINKS = [
+  { label: "SERVICES", href: "#services" },
+  { label: "PROJECTS", href: "#projects" },
+  { label: "TECH STACK", href: "#stack" },
+  { label: "CONTACT", href: "#contact" },
+];
+
 /**
- * Cinematic DevOps command-center hero with HLS background video,
- * liquid-glass status card and gradient grid overlays.
+ * Afshar DevOps — cinematic infrastructure command-center hero.
+ * HLS background video + liquid-glass status card + gradient grid + enterprise nav.
  */
 const CinematicHero = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const { isRTL } = useTranslation();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -55,7 +63,7 @@ const CinematicHero = () => {
         style={{ background: "linear-gradient(0deg,#050807 0%, rgba(5,8,7,0.2) 40%, transparent 100%)" }}
       />
 
-      {/* Vertical grid lines (desktop) */}
+      {/* Vertical grid lines + particles (desktop) */}
       <div className="hidden lg:block absolute inset-0 pointer-events-none">
         {[25, 50, 75].map((p) => (
           <div
@@ -64,8 +72,7 @@ const CinematicHero = () => {
             style={{ left: `${p}%`, background: "rgba(255,255,255,0.1)" }}
           />
         ))}
-        {/* network particles */}
-        {Array.from({ length: 8 }).map((_, i) => (
+        {Array.from({ length: 10 }).map((_, i) => (
           <span
             key={i}
             className="absolute w-1 h-1 rounded-full bg-[#5ed29c] opacity-70"
@@ -98,8 +105,89 @@ const CinematicHero = () => {
         </svg>
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 w-full max-w-[1200px] px-6 md:px-10 flex flex-col items-center text-center">
+      {/* ============ ENTERPRISE NAV ============ */}
+      <header className="absolute top-0 inset-x-0 z-30">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-10 py-5 flex items-center justify-between">
+          {/* Logo */}
+          <a href="#" className="flex items-center gap-2.5 group">
+            <span
+              className="relative w-8 h-8 rounded-lg grid place-items-center"
+              style={{
+                background: "linear-gradient(135deg,rgba(94,210,156,0.2),rgba(0,200,255,0.15))",
+                border: "1px solid rgba(94,210,156,0.35)",
+              }}
+            >
+              <Cloud className="w-4 h-4 text-[#5ed29c]" />
+              <span className="absolute inset-0 rounded-lg animate-ping opacity-40" style={{ boxShadow: "0 0 12px #5ed29c" }} />
+            </span>
+            <span
+              className="text-white font-bold tracking-[3px] text-[13px]"
+              style={{ fontFamily: "'Inter',sans-serif" }}
+            >
+              AFSHAR<span className="text-[#5ed29c]">·</span>DEVOPS
+            </span>
+          </a>
+
+          {/* Desktop links */}
+          <nav className="hidden md:flex items-center gap-9">
+            {NAV_LINKS.map((l) => (
+              <a
+                key={l.label}
+                href={l.href}
+                className="relative text-[13px] tracking-[1.5px] font-medium text-white/80 hover:text-[#5ed29c] transition-colors group"
+                style={{ fontFamily: "'Inter',sans-serif" }}
+              >
+                {l.label}
+                <span className="absolute -bottom-1 left-0 w-0 h-px bg-[#5ed29c] transition-all duration-300 group-hover:w-full" />
+              </a>
+            ))}
+          </nav>
+
+          {/* Mobile toggle */}
+          <button
+            onClick={() => setMobileOpen(true)}
+            aria-label="Open menu"
+            className="md:hidden w-10 h-10 grid place-items-center rounded-lg border border-white/10 text-white"
+          >
+            <Menu className="w-5 h-5" />
+          </button>
+        </div>
+      </header>
+
+      {/* Mobile overlay */}
+      {mobileOpen && (
+        <div
+          className="fixed inset-0 z-[60] flex flex-col items-center justify-center md:hidden"
+          style={{ background: "rgba(5,8,7,0.92)", backdropFilter: "blur(20px)" }}
+        >
+          <button
+            onClick={() => setMobileOpen(false)}
+            aria-label="Close menu"
+            className="absolute top-5 right-6 w-10 h-10 grid place-items-center rounded-lg border border-white/10 text-white"
+          >
+            <X className="w-5 h-5" />
+          </button>
+          <nav className="flex flex-col items-center gap-8">
+            {NAV_LINKS.map((l, i) => (
+              <a
+                key={l.label}
+                href={l.href}
+                onClick={() => setMobileOpen(false)}
+                className="text-white text-2xl font-bold tracking-[3px] hover:text-[#5ed29c] transition-colors"
+                style={{
+                  fontFamily: "'Inter',sans-serif",
+                  animation: `nxFadeUp 0.5s ${i * 0.08}s both`,
+                }}
+              >
+                {l.label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      )}
+
+      {/* ============ CONTENT ============ */}
+      <div className="relative z-10 w-full max-w-[1200px] px-6 md:px-10 flex flex-col items-center text-center pt-24">
         {/* Floating liquid-glass status card */}
         <div
           className="relative w-[200px] h-[200px] rounded-2xl mb-10 -translate-y-[50px] p-5 flex flex-col justify-between"
@@ -122,8 +210,10 @@ const CinematicHero = () => {
             }}
           />
           <div className="relative">
-            <div className="text-[12px] tracking-[2px] text-[#5ed29c] font-semibold">[ LIVE SYSTEM ]</div>
-            <div className="mt-3 text-[18px] text-white font-medium leading-snug">
+            <div className="text-[12px] tracking-[2px] text-[#5ed29c] font-semibold" style={{ fontFamily: "'Inter',sans-serif" }}>
+              [ LIVE SYSTEM ]
+            </div>
+            <div className="mt-3 text-[18px] text-white font-medium leading-snug" style={{ fontFamily: "'Inter',sans-serif" }}>
               Cloud{" "}
               <span style={{ fontFamily: "'Instrument Serif',serif", fontStyle: "italic", fontWeight: 400 }}>
                 Infrastructure
@@ -131,7 +221,7 @@ const CinematicHero = () => {
               Online
             </div>
           </div>
-          <p className="relative text-[11px] leading-relaxed text-white/70">
+          <p className="relative text-[11px] leading-relaxed text-white/70" style={{ fontFamily: "'Inter',sans-serif" }}>
             Kubernetes clusters, CI/CD pipelines, and cloud services monitored in real-time.
           </p>
         </div>
@@ -153,7 +243,7 @@ const CinematicHero = () => {
         </h1>
 
         {/* Description */}
-        <p className="mt-6 text-[14px] leading-relaxed text-white/70 max-w-[512px]">
+        <p className="mt-6 text-[14px] leading-relaxed text-white/70 max-w-[512px]" style={{ fontFamily: "'Inter',sans-serif" }}>
           Design scalable cloud architectures, automate deployments, and engineer resilient
           infrastructure using Kubernetes, CI/CD pipelines, and modern DevOps practices.
         </p>
@@ -181,6 +271,10 @@ const CinematicHero = () => {
           15% { opacity: 0.9; }
           85% { opacity: 0.9; }
           100% { transform: translateY(-80vh); opacity: 0; }
+        }
+        @keyframes nxFadeUp {
+          from { opacity: 0; transform: translateY(14px); }
+          to { opacity: 1; transform: translateY(0); }
         }
       `}</style>
     </section>
