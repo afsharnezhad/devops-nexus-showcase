@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, Menu, X, Cloud } from "lucide-react";
+import { ArrowRight, Menu, X } from "lucide-react";
 import Hls from "hls.js";
 import { useTranslation } from "@/hooks/useTranslation";
+import devopsLogo from "@/assets/devops-logo-white.png";
 
 const VIDEO_SRC = "https://stream.mux.com/tLkHO1qZoaaQOUeVWo8hEBeGQfySP02EPS02BmnNFyXys.m3u8";
 
