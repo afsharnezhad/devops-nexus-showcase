@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { Menu, X, Sun, Moon, Shield, Globe } from "lucide-react";
+import { Menu, X, Sun, Moon, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useTranslation } from "@/hooks/useTranslation";
 import { Language } from "@/lib/i18n";
+import devopsLogo from "@/assets/devops-logo-dark.png";
 
 interface ServiceNavigationProps {
   darkMode: boolean;
