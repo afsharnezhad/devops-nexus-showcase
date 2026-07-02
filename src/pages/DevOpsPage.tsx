@@ -120,9 +120,8 @@ const DevOpsPageInner = () => {
         <div className="relative z-[2]">
           <ServiceNavigation darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
 
-          <div className="space-y-6 md:space-y-10 px-3 sm:px-5 md:px-8 py-6">
           {/* CINEMATIC HERO */}
-          <SectionGlow><CinematicHero /></SectionGlow>
+          <div className="px-3 sm:px-5 md:px-8 pt-6"><SectionGlow><CinematicHero /></SectionGlow></div>
 
           {/* LEGACY HERO META */}
           <section className="relative pt-20 pb-28 px-[8vw] flex flex-col justify-center">
