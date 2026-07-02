@@ -57,3 +57,6 @@ const Portfolio = () => {
     </LanguageProvider>
   );
 };
+
+export default Portfolio;
+
