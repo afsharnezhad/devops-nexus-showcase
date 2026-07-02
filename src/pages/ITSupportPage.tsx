@@ -6,6 +6,7 @@ import { useTranslation } from "@/hooks/useTranslation";
 import ServiceNavigation from "@/components/layout/ServiceNavigation";
 import { DottedSurface } from "@/components/ui/dotted-surface";
 import PersianITSections from "@/components/it-support/PersianITSections";
+import SectionGlow from "@/components/ui/section-glow";
 import itNocWide from "@/assets/it-noc-wide.jpg";
 import itEngineer from "@/assets/it-engineer.jpg";
 import itCardNetwork from "@/assets/it-card-network.jpg";
@@ -301,8 +302,7 @@ const ITSupportInner = () => {
         </div>
       </section>
 
-      <PersianITSections />
-    </div>
+      <div className="px-3 sm:px-5 md:px-8 py-6"><SectionGlow><PersianITSections /></SectionGlow></div>
   );
 };
 
