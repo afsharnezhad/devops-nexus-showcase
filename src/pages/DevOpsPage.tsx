@@ -124,7 +124,7 @@ const DevOpsPageInner = () => {
           <div className="px-3 sm:px-5 md:px-8 pt-6"><SectionGlow><CinematicHero /></SectionGlow></div>
 
           {/* LEGACY HERO META */}
-          <section className="relative pt-20 pb-28 px-[8vw] flex flex-col justify-center">
+          <div className="px-3 sm:px-5 md:px-8"><SectionGlow><section className="relative pt-20 pb-28 px-[8vw] flex flex-col justify-center">
 
             <Button
               variant="ghost"
@@ -176,10 +176,10 @@ const DevOpsPageInner = () => {
                 </motion.div>
               ))}
             </div>
-          </section>
+          </section></SectionGlow></div>
 
           {/* SERVICES */}
-          <section className="py-32 px-[8vw]">
+          <div className="px-3 sm:px-5 md:px-8"><SectionGlow><section className="py-32 px-[8vw]">
             <div className="flex items-center gap-3 text-xs tracking-[4px] uppercase text-[#00e5ff] mb-5">
               <span className="w-9 h-px bg-[#00e5ff] shadow-[0_0_8px_#00e5ff]" />
               {t("nxServicesEyebrow")}
@@ -213,10 +213,10 @@ const DevOpsPageInner = () => {
                 );
               })}
             </div>
-          </section>
+          </section></SectionGlow></div>
 
           {/* PIPELINE */}
-          <section className="py-32 px-[8vw]" ref={pipeRef}>
+          <div className="px-3 sm:px-5 md:px-8"><SectionGlow><section className="py-32 px-[8vw]" ref={pipeRef}>
             <div className="flex items-center gap-3 text-xs tracking-[4px] uppercase text-[#00e5ff] mb-5">
               <span className="w-9 h-px bg-[#00e5ff] shadow-[0_0_8px_#00e5ff]" />
               {t("nxPipeEyebrow")}
@@ -303,10 +303,10 @@ const DevOpsPageInner = () => {
                 </div>
               ))}
             </div>
-          </section>
+          </section></SectionGlow></div>
 
           {/* PORTFOLIO */}
-          <section className="py-32 px-[8vw]">
+          <div className="px-3 sm:px-5 md:px-8"><SectionGlow><section className="py-32 px-[8vw]">
             <div className="flex items-center gap-3 text-xs tracking-[4px] uppercase text-[#00e5ff] mb-5">
               <span className="w-9 h-px bg-[#00e5ff] shadow-[0_0_8px_#00e5ff]" />
               {t("nxWorkEyebrow")}
@@ -334,10 +334,10 @@ const DevOpsPageInner = () => {
                 </motion.div>
               ))}
             </div>
-          </section>
+          </section></SectionGlow></div>
 
           {/* TECH STACK */}
-          <section className="py-32 px-[8vw] text-center">
+          <div className="px-3 sm:px-5 md:px-8"><SectionGlow><section className="py-32 px-[8vw] text-center">
             <div className="flex items-center justify-center gap-3 text-xs tracking-[4px] uppercase text-[#00e5ff] mb-5">
               <span className="w-9 h-px bg-[#00e5ff] shadow-[0_0_8px_#00e5ff]" />
               {t("nxStackEyebrow")}
@@ -363,12 +363,13 @@ const DevOpsPageInner = () => {
                 </motion.div>
               ))}
             </div>
-          </section>
+          </section></SectionGlow></div>
 
           {/* ============ PERSIAN DEVOPS CONTENT ============ */}
-          <PersianDevOpsSections />
-
-          <BlogCtaBanner />
+          <div className="space-y-6 md:space-y-10 px-3 sm:px-5 md:px-8 pb-6">
+            <SectionGlow><PersianDevOpsSections /></SectionGlow>
+            <SectionGlow><BlogCtaBanner /></SectionGlow>
+          </div>
         </div>
 
         <style>{`
