@@ -102,7 +102,7 @@ const ITSupportInner = () => {
       <ServiceNavigation darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
 
       {/* ===================== HERO ===================== */}
-      <section className="relative min-h-screen flex flex-col bg-[#05070f] overflow-hidden pt-24">
+      <div className="px-3 sm:px-5 md:px-8 pt-6"><SectionGlow><section className="relative min-h-screen flex flex-col bg-[#05070f] overflow-hidden pt-24">
         {/* Dotted surface background */}
         <DottedSurface className="z-0" color={[34, 211, 238]} />
         {/* gradient atmosphere */}
@@ -146,7 +146,7 @@ const ITSupportInner = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section></SectionGlow></div>
 
 
 
