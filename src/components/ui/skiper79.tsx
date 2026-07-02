@@ -1,14 +1,19 @@
 import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 import { useRef } from "react";
+import ehsan1 from "@/assets/ehsan-1.jpg.asset.json";
+import ehsan2 from "@/assets/ehsan-2.jpg.asset.json";
+import ehsan3 from "@/assets/ehsan-3.jpg.asset.json";
+import ehsan4 from "@/assets/ehsan-4.jpg.asset.json";
+import ehsan5 from "@/assets/ehsan-5.jpg.asset.json";
 
 export type Person = { name: string; role: string; src: string };
 
 const DEFAULT_PEOPLE: Person[] = [
-  { name: "Ehsan", role: "DevOps Engineer", src: "https://skiper-ui.com/images/oct25Coll/portraits/p_1.png" },
-  { name: "Ehsan", role: "Cloud Architect", src: "https://skiper-ui.com/images/oct25Coll/portraits/p_2.png" },
-  { name: "Ehsan", role: "Infrastructure", src: "https://skiper-ui.com/images/oct25Coll/portraits/p_3.png" },
-  { name: "Ehsan", role: "Automation", src: "https://skiper-ui.com/images/oct25Coll/portraits/p_4.png" },
-  { name: "Ehsan", role: "Platform", src: "https://skiper-ui.com/images/oct25Coll/portraits/p_5.png" },
+  { name: "Ehsan", role: "DevOps Engineer", src: ehsan1.url },
+  { name: "Ehsan", role: "Cloud Architect", src: ehsan2.url },
+  { name: "Ehsan", role: "Infrastructure", src: ehsan5.url },
+  { name: "Ehsan", role: "Automation", src: ehsan3.url },
+  { name: "Ehsan", role: "Platform", src: ehsan4.url },
 ];
 
 const Tile = ({
