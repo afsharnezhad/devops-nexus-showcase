@@ -151,7 +151,7 @@ const ITSupportInner = () => {
 
 
       {/* ===================== ABOUT ===================== */}
-      <section className="bg-slate-950 pt-16 sm:pt-20 lg:pt-32 pb-12 sm:pb-16 lg:pb-24 overflow-hidden">
+      <div className="px-3 sm:px-5 md:px-8 pt-6"><SectionGlow><section className="bg-slate-950 pt-16 sm:pt-20 lg:pt-32 pb-12 sm:pb-16 lg:pb-24 overflow-hidden">
         <div className="mx-auto max-w-[1440px]">
           <div className="px-5 sm:px-8 lg:px-12 flex items-center gap-3 mb-6 sm:mb-8">
             <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-cyan-400 text-slate-950 text-[11px] sm:text-[12px] font-semibold flex items-center justify-center">
@@ -217,10 +217,10 @@ const ITSupportInner = () => {
             />
           </div>
         </div>
-      </section>
+      </section></SectionGlow></div>
 
       {/* ===================== CASE STUDIES ===================== */}
-      <section className="bg-[#070b15] pt-16 sm:pt-20 lg:pt-28 pb-16 sm:pb-20 lg:pb-28">
+      <div className="px-3 sm:px-5 md:px-8"><SectionGlow><section className="bg-[#070b15] pt-16 sm:pt-20 lg:pt-28 pb-16 sm:pb-20 lg:pb-28">
         <div className="mx-auto max-w-[1440px]">
           <div className="px-5 sm:px-8 lg:px-12 flex items-center gap-3 mb-6 sm:mb-8">
             <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-cyan-400 text-slate-950 text-[11px] sm:text-[12px] font-semibold flex items-center justify-center">
@@ -300,9 +300,10 @@ const ITSupportInner = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section></SectionGlow></div>
 
       <div className="px-3 sm:px-5 md:px-8 py-6"><SectionGlow><PersianITSections /></SectionGlow></div>
+    </div>
   );
 };
 
